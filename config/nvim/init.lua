@@ -1,16 +1,6 @@
--- Requires
-
-require "user.settings"
-
-
--- Variables
-
-local home = vim.env.HOME
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-local opt = vim.opt
-
-
 -- Bootstrap lazy.nvim
+
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
 if not vim.loop.fs_stat(lazypath) then
     vim.fn.system({
@@ -37,6 +27,31 @@ require("lazy").setup({
 	        vim.cmd.colorscheme("tokyonight")
     	end
     },
-
+	-- LSP
+	{
+		"neovim/nvim-lspconfig",
+		dependencies = {
+			"williamboman/mason.nvim",
+			"williamboman/mason-lspconfig.nvim",
+			{ "folke/neodev.nvim", opts = {} }
+		}
+	},
+	-- Completion
+	{
+		"hrsh7th/nvim-cmp",
+		dependencies = {
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-nvim-lua",
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-emoji",
+			"L3MON4D3/LuaSnip",
+			"saadparwaiz1/cmp_luasnip",
+			"rafamadriz/friendly-snippets"
+		}
+	}
 })
 
+for _, v in pairs({ "settings", "keymaps", "lsp" }) do
+	require("user." .. v)
+end
