@@ -17,7 +17,7 @@ noto-fonts-cjk
 noto-fonts-emoji
 noto-fonts-extra
 nvidia-open-dkms
-nvidia-vaapi-driver-git
+libva-nvidia-driver-git
 openssh
 pipewire
 polkit-kde-agent
@@ -35,6 +35,8 @@ wl-clipboard
 xdg-desktop-portal-hyprland-git
 zsh
 pipewire
+pipewire-audio
+pipewire-alsa
+pipewire-
 wireplumber
 mako
-cliphist
