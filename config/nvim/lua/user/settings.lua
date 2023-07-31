@@ -22,7 +22,7 @@ local options = {
     breakindent = true,
     formatoptions = "nqc1jp",
     ----------------------------------------------------------------------
-    
+
     --------------------------------- UI ---------------------------------
     shortmess = "filnxtToOFcsS",
     number = true,

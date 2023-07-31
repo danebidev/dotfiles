@@ -38,6 +38,7 @@ require("lazy").setup({
 		dependencies = {
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
+			{ "jose-elias-alvarez/null-ls.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
 			{ "folke/neodev.nvim", opts = {} }
 		}
 	},

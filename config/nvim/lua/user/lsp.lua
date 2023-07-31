@@ -1,5 +1,65 @@
+-- null-ls
+
+local null_ls = require("null-ls")
+
+null_ls.setup({
+	border = "rounded",
+	sources = {
+		null_ls.builtins.formatting.styleua,
+
+		null_ls.builtins.code_actions.refactoring,
+		null_ls.builtins.code_actions.gitsigns,
+
+		null_ls.builtins.diagnostics.shellcheck,
+		null_ls.builtins.diagnostics.zsh,
+		null_ls.builtins.diagnostics.shellcheck,
+	},
+})
+
+local signs = {
+	{ name = "DiagnosticSignError", text = "" },
+	{ name = "DiagnosticSignWarn", text = "" },
+	{ name = "DiagnosticSignHint", text = "" },
+	{ name = "DiagnosticSignInfo", text = "" },
+}
+
+for _, sign in ipairs(signs) do
+	vim.fn.sign_define(sign.name, {
+		texthl = sign.name,
+		text = sign.text,
+		numhl = sign.name,
+	})
+end
+
+local diagnostic_config = {
+	underline = false,
+	virtual_text = true,
+	signs = true,
+	update_in_insert = false,
+	float = {
+		focusable = false,
+		style = "minimal",
+		border = "rounded",
+		source = "always",
+		header = "",
+		prefix = "",
+	},
+}
+
+vim.diagnostic.config(diagnostic_config)
+
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+	border = "rounded",
+})
+
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+	border = "rounded",
+})
+
+-- Mason setup
+
 local on_attach = function(_, bufnr)
-		local nmap = function(keys, func, desc)
+	local nmap = function(keys, func, desc)
 		if desc then
 			desc = 'LSP: ' .. desc
 		end
