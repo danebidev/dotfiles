@@ -8,14 +8,14 @@ vim.g.maplocalleader = ' '
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
 if not vim.loop.fs_stat(lazypath) then
-    vim.fn.system({
-        "git",
-        "clone",
-        "--filter=blob:none",
-        "https://github.com/folke/lazy.nvim.git",
-        "--branch=stable", -- latest stable release
-        lazypath,
-    })
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable", -- latest stable release
+		lazypath,
+	})
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -23,15 +23,15 @@ vim.opt.rtp:prepend(lazypath)
 -- Plugins
 
 require("lazy").setup({
-    -- Colorscheme
+	-- Colorscheme
 	{
-        "folke/tokyonight.nvim",
-        lazy = false,
-        priority = 1000,
-        config = function()
-	        vim.cmd.colorscheme("tokyonight")
-    	end
-    },
+		"folke/tokyonight.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			vim.cmd.colorscheme("tokyonight")
+		end
+	},
 	-- LSP
 	{
 		"neovim/nvim-lspconfig",
@@ -39,7 +39,7 @@ require("lazy").setup({
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
 			{ "jose-elias-alvarez/null-ls.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
-			{ "folke/neodev.nvim", opts = {} }
+			{ "folke/neodev.nvim",               opts = {} }
 		}
 	},
 	-- Completion
@@ -50,6 +50,7 @@ require("lazy").setup({
 			"hrsh7th/cmp-nvim-lua",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
+			"chrisgrieser/cmp-nerdfont",
 			"hrsh7th/cmp-emoji",
 			"L3MON4D3/LuaSnip",
 			"saadparwaiz1/cmp_luasnip",
@@ -58,6 +59,6 @@ require("lazy").setup({
 	}
 })
 
-for _, v in pairs({ "settings", "keymaps", "lsp" }) do
+for _, v in pairs({ "settings", "keymaps", "lsp", "cmp" }) do
 	require("user." .. v)
 end
