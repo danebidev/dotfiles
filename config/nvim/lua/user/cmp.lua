@@ -1,36 +1,9 @@
 local cmp = require("cmp")
 local luasnip = require("luasnip")
+local lspkind = require('lspkind')
 
 require("luasnip.loaders.from_vscode").lazy_load()
 luasnip.config.setup {}
-
-local kind_icons = {
-	Text = "🗨",
-	Method = "⟜",
-	Function = "➠",
-	Constructor = "",
-	Field = "",
-	Variable = "λ",
-	Class = "",
-	Interface = "",
-	Module = "",
-	Property = "",
-	Unit = "",
-	Value = "󱁦",
-	Enum = "",
-	Keyword = "",
-	Snippet = "",
-	Color = "",
-	File = "",
-	Reference = "",
-	Folder = "",
-	EnumMember = "",
-	Constant = "ℎ",
-	Struct = "",
-	Event = "",
-	Operator = "",
-	TypeParameter = "",
-}
 
 cmp.setup({
 	snippet = {
@@ -74,41 +47,27 @@ cmp.setup({
 	}),
 	formatting = {
 		fields = { "kind", "abbr", "menu" },
-		format = function(entry, vim_item)
-			vim_item.kind = string.format("%s ", kind_icons[vim_item.kind])
-			vim_item.menu = ({
-				nvim_lua = " nvim_lua",
-				nvim_lsp = " lsp",
-				luasnip = " luasnip",
-				buffer = "⼞buffer",
-				path = "⨒ path",
-				emoji = "ﲃ emoji",
-				nerdfont = "󰊪 nerdfont",
-			})[entry.source.name]
-			return vim_item
-		end,
+		format = lspkind.cmp_format({
+			mode = 'symbol',
+			maxwidth = 50,
+			ellipsis_char = '...',
+
+			before = function(_, vim_item)
+				return vim_item
+			end
+		})
+	},
+	window = {
+		completion = cmp.config.window.bordered(),
+		documentation = cmp.config.window.bordered(),
 	},
 	sources = {
 		{ name = "nvim_lsp", group_index = 2 },
-		{ name = "luasnip", group_index = 2 },
-		{ name = "path", group_index = 2 },
+		{ name = "luasnip",  group_index = 2 },
+		{ name = "path",     group_index = 2 },
 		{ name = "nvim_lua", group_index = 2 },
-		{ name = "buffer", group_index = 2 },
-		{ name = "emoji", group_index = 2 },
+		{ name = "buffer",   group_index = 2 },
+		{ name = "emoji",    group_index = 2 },
 		{ name = "nerdfont", group_index = 2 },
-	},
-	sorting = {
-		priority_weight = 2,
-		comparators = {
-			cmp.config.compare.offset,
-			cmp.config.compare.exact,
-			cmp.config.compare.score,
-			cmp.config.compare.recently_used,
-			cmp.config.compare.locality,
-			cmp.config.compare.kind,
-			cmp.config.compare.sort_text,
-			cmp.config.compare.length,
-			cmp.config.compare.order,
-		},
 	}
 })
