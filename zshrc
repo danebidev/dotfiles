@@ -103,5 +103,6 @@ export EDITOR='nvim'
 
 alias update='sudo pacman -Sy --noconfirm archlinux-keyring && yay -Syu --answerclean All --answerdiff None --noconfirm'
 alias genpass='~/.oh-my-zsh/plugins/genpass/genpass-monkey 5'
+alias discord='discord-canary --disable-gpu-memory-buffer-video-frames'
 
 export GPG_TTY=$(tty)
