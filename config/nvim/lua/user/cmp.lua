@@ -1,6 +1,6 @@
 local cmp = require("cmp")
 local luasnip = require("luasnip")
-local lspkind = require('lspkind')
+local lspkind = require("lspkind")
 
 require("luasnip.loaders.from_vscode").lazy_load()
 luasnip.config.setup {}
@@ -48,9 +48,9 @@ cmp.setup({
 	formatting = {
 		fields = { "kind", "abbr", "menu" },
 		format = lspkind.cmp_format({
-			mode = 'symbol',
+			mode = "symbol",
 			maxwidth = 50,
-			ellipsis_char = '...',
+			ellipsis_char = "...",
 
 			before = function(_, vim_item)
 				return vim_item

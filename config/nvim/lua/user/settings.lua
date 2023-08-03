@@ -3,7 +3,6 @@ local options = {
     ----------------------------- Indentation ----------------------------
     tabstop = 4,
     shiftwidth = 4,
-    shiftround = true,
     autoindent = true,
     smartindent = true,
     ----------------------------------------------------------------------
@@ -12,7 +11,7 @@ local options = {
     wrapscan = true,
     incsearch = true,
     ignorecase = true,
-    scrolloff = 25,
+    scrolloff = 50,
     sidescrolloff = 5,
     ----------------------------------------------------------------------
 
