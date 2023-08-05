@@ -38,7 +38,7 @@ require("lazy").setup({
 				"williamboman/mason.nvim",
 				"williamboman/mason-lspconfig.nvim",
 				{ "jose-elias-alvarez/null-ls.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
-				{ "folke/neodev.nvim", opts = {} }
+				{ "folke/neodev.nvim",               opts = {} }
 			}
 		},
 
@@ -68,17 +68,27 @@ require("lazy").setup({
 
 		{
 			"nvim-treesitter/nvim-treesitter",
-             build = ":TSUpdate",
+			build = ":TSUpdate",
+			dependencies = {
+				"nvim-treesitter/playground",
+				"windwp/nvim-ts-autotag",
+				"windwp/nvim-autopairs"
+			}
 		},
 
- 		-- Some small plugins
+		-- Some small plugins
 		{
 			"brenoprata10/nvim-highlight-colors",
 			opts = {
 				enable_named_colors = true
 			}
 		},
-		"andweeb/presence.nvim"
+		{
+			"lervag/vimtex",
+			lazy = false
+		},
+		"andweeb/presence.nvim",
+		"rhysd/clever-f.vim",
 	},
 	{
 		ui = { border = "rounded" }

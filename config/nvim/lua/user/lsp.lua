@@ -107,7 +107,7 @@ local servers = {
 		Lua = {
 			workspace = { checkThirdParty = false },
 			telemetry = { enable = false },
-			format = { enable = true },
+			diagnostics = { globals = { "vim" } },
 		},
 	},
 }
