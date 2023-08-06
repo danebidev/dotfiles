@@ -38,7 +38,7 @@ require("lazy").setup({
 				"williamboman/mason.nvim",
 				"williamboman/mason-lspconfig.nvim",
 				{ "jose-elias-alvarez/null-ls.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
-				{ "folke/neodev.nvim",               opts = {} }
+				{ "folke/neodev.nvim", opts = {} }
 			}
 		},
 
@@ -71,6 +71,7 @@ require("lazy").setup({
 			build = ":TSUpdate",
 			dependencies = {
 				"nvim-treesitter/playground",
+				"nvim-treesitter/nvim-treesitter-textobjects",
 				"windwp/nvim-ts-autotag",
 				"windwp/nvim-autopairs"
 			}
@@ -87,13 +88,18 @@ require("lazy").setup({
 			"lervag/vimtex",
 			lazy = false
 		},
-		"andweeb/presence.nvim",
+		{
+			"andweeb/presence.nvim",
+			opts = {
+				buttons = false
+			}
+		},
 		"rhysd/clever-f.vim",
 	},
 	{
 		ui = { border = "rounded" }
 	})
 
-for _, v in pairs({ "settings", "keymaps", "autocmds", "cmp", "telescope", "treesitter", "lsp", "misc" }) do
+for _, v in pairs({ "settings", "keymaps", "autocmds", "cmp", "telescope", "treesitter", "lsp" }) do
 	require("user." .. v)
 end

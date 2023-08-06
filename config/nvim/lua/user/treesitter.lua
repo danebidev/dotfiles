@@ -2,15 +2,16 @@ local treesitter = require("nvim-treesitter.configs")
 
 treesitter.setup({
 	ensure_installeid = {
-		"lua", "vimdoc"
+		"lua", "vimdoc", "query"
 	},
 	sync_install = true,
-	auto_install = true,
+	auto_install = false,
 	highlight = {
 		enable = true,
 		additional_vim_regex_highlighting = false,
 	},
 	indent = { enable = true },
+
 	incremental_selection = {
 		enable = true,
 		keymaps = {
