@@ -11,6 +11,8 @@ end
 require("luasnip.loaders.from_vscode").lazy_load()
 luasnip.config.setup {}
 
+local compare = cmp.config.compare
+
 cmp.setup({
 	snippet = {
 		expand = function(args)
@@ -95,5 +97,15 @@ cmp.setup({
 		{ name = "buffer", group_index = 2 },
 		{ name = "emoji", group_index = 2 },
 		{ name = "nerdfont", group_index = 2 },
-	}
+	},
+	sorting = {
+		priority_weight = 1.0,
+		comparators = {
+			compare.locality,
+			compare.recently_used,
+			compare.score,
+			compare.offset,
+			compare.order,
+		},
+	},
 })
