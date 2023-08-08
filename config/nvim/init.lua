@@ -29,6 +29,9 @@ require("lazy").setup({
 			lazy = false,
 			priority = 1000,
 			config = function()
+				require("tokyonight").setup({
+					style = "night"
+				})
 				vim.cmd.colorscheme("tokyonight")
 			end
 		},
@@ -67,12 +70,12 @@ require("lazy").setup({
 			}
 		},
 
-		{
+		{ -- Treesitter
 			"nvim-treesitter/nvim-treesitter",
 			build = ":TSUpdate",
 			dependencies = {
-				"nvim-treesitter/playground",
 				"nvim-treesitter/nvim-treesitter-textobjects",
+				"JoosepAlviste/nvim-ts-context-commentstring",
 				"windwp/nvim-ts-autotag",
 				"windwp/nvim-autopairs"
 			}
@@ -80,25 +83,26 @@ require("lazy").setup({
 
 		-- Some small plugins
 		{
-			"brenoprata10/nvim-highlight-colors",
-			opts = {
-				enable_named_colors = true
-			}
-		},
-		{
-			"lervag/vimtex",
-			lazy = false
-		},
-		{
 			"andweeb/presence.nvim",
 			opts = {
 				buttons = false
 			}
 		},
+		{
+			"brenoprata10/nvim-highlight-colors",
+			opts = {
+				enable_named_colors = true
+			}
+		},
+		'numToStr/Comment.nvim',
+		"lervag/vimtex",
 		"rhysd/clever-f.vim",
 	},
 	{
-		ui = { border = "rounded" }
+		ui = {
+			border = "rounded",
+			title = " lazy.nvim "
+		}
 	})
 
 for _, v in pairs({ "settings", "keymaps", "autocmds", "cmp", "telescope", "treesitter", "lsp" }) do

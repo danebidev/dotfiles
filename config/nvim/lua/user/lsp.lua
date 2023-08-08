@@ -118,7 +118,9 @@ local servers = {
 				defaultConfig = {
 					align_continuous_assign_statement = "false",
 					align_continuous_rect_table_field = "false",
-					align_array_table = "false"
+					align_array_table = "false",
+					align_function_params = "false",
+					align_call_args = "false"
 				}
 			}
 		},

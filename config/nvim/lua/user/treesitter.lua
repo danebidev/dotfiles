@@ -63,6 +63,12 @@ treesitter.setup({
 			swap_previous = {
 				['<leader>A'] = '@parameter.inner'
 			}
-		}
+		},
+		context_commentstring = {
+			enable = true,
+			enable_autocmd = false,
+		},
+		autopairs = { enable = true },
+		autotag = { enable = true },
 	}
 })
