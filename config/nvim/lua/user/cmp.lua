@@ -27,6 +27,9 @@ cmp.setup({
 			luasnip.lsp_expand(args.body)
 		end,
 	},
+	completion = {
+		keyword_length = 1,
+	},
 	window = {
 		completion = {
 			scrollbar = false,

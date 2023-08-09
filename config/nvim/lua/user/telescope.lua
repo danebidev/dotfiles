@@ -4,15 +4,20 @@ telescope.load_extension("zf-native")
 
 telescope.setup({
 	defaults = {
-		layout_strategy = "vertical",
+		sorting_strategy = "ascending",
 		layout_config = {
-			vertical = {
+			horizontal = {
+				height = 0.8,
+				width = 0.8,
+				preview_width = 0.6,
 				prompt_position = "top",
 			},
 		},
-		sorting_strategy = "ascending",
+		winblend = 7,
 		prompt_prefix = " 󰭎  ",
-		selection_caret = "  ",
+		selection_caret = "  ",
+		dynamic_preview_title = true,
+		results_title = "",
 		path_display = { "smart" },
 	},
 })
