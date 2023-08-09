@@ -40,13 +40,7 @@ require("lazy").setup({
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
 			{ "folke/neodev.nvim", opts = {} },
-		},
-	},
-
-	{ -- null-ls
-		"jose-elias-alvarez/null-ls.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
+			{ "jose-elias-alvarez/null-ls.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
 		},
 	},
 
@@ -103,6 +97,7 @@ require("lazy").setup({
 	"rhysd/clever-f.vim",
 }, {
 	ui = {
+		size = { width = 0.6, height = 0.8 },
 		border = "rounded",
 		title = "  lazy.nvim  ",
 	},

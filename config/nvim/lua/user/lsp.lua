@@ -1,10 +1,5 @@
 -- null-ls
 
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
-vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
-
 local null_ls = require("null-ls")
 
 null_ls.setup({
@@ -15,6 +10,13 @@ null_ls.setup({
 		null_ls.builtins.formatting.black,
 	},
 })
+
+-- Diagnostics
+
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
+vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
+vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 
 local signs = {
 	{ name = "DiagnosticSignError", text = "" },
@@ -96,7 +98,16 @@ local mason = require("mason")
 require("neodev").setup()
 
 mason.setup({
-	ui = { border = "rounded" },
+	ui = {
+		border = "rounded",
+		icons = {
+			package_installed = "✓",
+			package_pending = "➜",
+			package_uninstalled = "✗"
+		},
+		width = 0.6,
+		height = 0.8
+	},
 })
 
 local mason_lspconfig = require("mason-lspconfig")
