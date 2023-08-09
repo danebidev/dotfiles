@@ -2,7 +2,9 @@ local treesitter = require("nvim-treesitter.configs")
 
 treesitter.setup({
 	ensure_installeid = {
-		"lua", "vimdoc", "query"
+		"lua",
+		"vimdoc",
+		"query",
 	},
 	sync_install = true,
 	auto_install = false,
@@ -11,15 +13,15 @@ treesitter.setup({
 		additional_vim_regex_highlighting = false,
 	},
 	indent = {
-		enable = true
+		enable = true,
 	},
 	incremental_selection = {
 		enable = true,
 		keymaps = {
-			init_selection = '<C-space>',
-			node_incremental = '<C-space>',
-			scope_incremental = '<C-s>',
-			node_decremental = '<M-space>',
+			init_selection = "<C-space>",
+			node_incremental = "<C-space>",
+			scope_incremental = "<C-s>",
+			node_decremental = "<M-space>",
 		},
 	},
 	textobjects = {
@@ -27,42 +29,42 @@ treesitter.setup({
 			enable = true,
 			lookahead = true,
 			keymaps = {
-				['aa'] = '@parameter.outer',
-				['ia'] = '@parameter.inner',
-				['af'] = '@function.outer',
-				['if'] = '@function.inner',
-				['ac'] = '@class.outer',
-				['ic'] = '@class.inner',
+				["aa"] = "@parameter.outer",
+				["ia"] = "@parameter.inner",
+				["af"] = "@function.outer",
+				["if"] = "@function.inner",
+				["ac"] = "@class.outer",
+				["ic"] = "@class.inner",
 			},
 		},
 		move = {
 			enable = true,
 			set_jumps = true,
 			goto_next_start = {
-				[']m'] = '@function.outer',
-				[']]'] = '@class.outer'
+				["]m"] = "@function.outer",
+				["]]"] = "@class.outer",
 			},
 			goto_next_end = {
-				[']M'] = '@function.outer',
-				[']['] = '@class.outer'
+				["]M"] = "@function.outer",
+				["]["] = "@class.outer",
 			},
 			goto_previous_start = {
-				['[m'] = '@function.outer',
-				['[['] = '@class.outer'
+				["[m"] = "@function.outer",
+				["[["] = "@class.outer",
 			},
 			goto_previous_end = {
-				['[M'] = '@function.outer',
-				['[]'] = '@class.outer'
-			}
+				["[M"] = "@function.outer",
+				["[]"] = "@class.outer",
+			},
 		},
 		swap = {
 			enable = true,
 			swap_next = {
-				['<leader>a'] = '@parameter.inner'
+				["<leader>a"] = "@parameter.inner",
 			},
 			swap_previous = {
-				['<leader>A'] = '@parameter.inner'
-			}
+				["<leader>A"] = "@parameter.inner",
+			},
 		},
 		context_commentstring = {
 			enable = true,
@@ -70,5 +72,5 @@ treesitter.setup({
 		},
 		autopairs = { enable = true },
 		autotag = { enable = true },
-	}
+	},
 })

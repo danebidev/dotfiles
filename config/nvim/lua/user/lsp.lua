@@ -1,23 +1,18 @@
 -- null-ls
 
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
+vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
+vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 
 local null_ls = require("null-ls")
 
 null_ls.setup({
 	border = "rounded",
 	sources = {
-		null_ls.builtins.formatting.styleua,
-
-		null_ls.builtins.code_actions.refactoring,
-		null_ls.builtins.code_actions.gitsigns,
-
-		null_ls.builtins.diagnostics.shellcheck,
-		null_ls.builtins.diagnostics.zsh,
-		null_ls.builtins.diagnostics.shellcheck,
+		-- Formatters
+		null_ls.builtins.formatting.stylua,
+		null_ls.builtins.formatting.black,
 	},
 })
 
@@ -37,10 +32,10 @@ for _, sign in ipairs(signs) do
 end
 
 local diagnostic_config = {
-	underline = false,
+	underline = true,
 	virtual_text = true,
 	signs = true,
-	update_in_insert = false,
+	update_in_insert = true,
 	float = {
 		focusable = false,
 		style = "minimal",
@@ -63,7 +58,7 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
 
 -- Mason setup
 
-local on_attach = function(_, bufnr)
+local on_attach = function(client, bufnr)
 	local nmap = function(keys, func, desc)
 		if desc then
 			desc = "LSP: " .. desc
@@ -76,10 +71,10 @@ local on_attach = function(_, bufnr)
 
 	nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
 	nmap("gI", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
-	nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+	nmap("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
 	nmap("<leader>D", vim.lsp.buf.type_definition, "Type [D]efinition")
-	nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-	nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+	nmap("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
+	nmap("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
 
 	nmap("K", vim.lsp.buf.hover, "Hover Documentation")
 	nmap("<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
@@ -91,7 +86,9 @@ local on_attach = function(_, bufnr)
 		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 	end, "[W]orkspace [L]ist Folders")
 
-	nmap("<leader>fm", vim.lsp.buf.format, "[F]or[m]at")
+	if client.supports_method("textDocument/formatting") then
+		nmap("<leader>fm", vim.lsp.buf.format, "[F]or[m]at")
+	end
 end
 
 local mason = require("mason")
@@ -108,27 +105,19 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 local servers = {
+	pyright = {},
 	lua_ls = {
 		Lua = {
 			workspace = { checkThirdParty = false },
 			telemetry = { enable = false },
 			diagnostics = { globals = { "vim" } },
-			format = {
-				enable = true,
-				defaultConfig = {
-					align_continuous_assign_statement = "false",
-					align_continuous_rect_table_field = "false",
-					align_array_table = "false",
-					align_function_params = "false",
-					align_call_args = "false"
-				}
-			}
+			format = { enable = false },
 		},
 	},
 }
 
 mason_lspconfig.setup({
-	ensure_installed = vim.tbl_keys(servers)
+	ensure_installed = vim.tbl_keys(servers),
 })
 
 mason_lspconfig.setup_handlers({
@@ -136,7 +125,7 @@ mason_lspconfig.setup_handlers({
 		require("lspconfig")[server_name].setup({
 			capabilities = capabilities,
 			settings = servers[server_name],
-			on_attach = on_attach
+			on_attach = on_attach,
 		})
 	end,
 })

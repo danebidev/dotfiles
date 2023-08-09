@@ -9,7 +9,7 @@ local has_words_before = function()
 end
 
 require("luasnip.loaders.from_vscode").lazy_load()
-luasnip.config.setup {}
+luasnip.config.setup({})
 
 local compare = cmp.config.compare
 
@@ -28,7 +28,7 @@ cmp.setup({
 		["<C-e>"] = cmp.mapping(function(_)
 			cmp.abort()
 			cmp.setup({
-				enabled = false
+				enabled = false,
 			})
 		end, { "i", "s" }),
 		["<Right>"] = cmp.mapping.confirm({
@@ -37,7 +37,6 @@ cmp.setup({
 		}),
 		["<CR>"] = cmp.mapping({
 			i = function(fallback)
-				print("1")
 				if cmp.visible() and cmp.get_active_entry() then
 					cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
 				else
@@ -48,7 +47,6 @@ cmp.setup({
 			c = cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
 		}),
 		["<Tab>"] = cmp.mapping(function(fallback)
-			print("2")
 			if cmp.visible() then
 				cmp.select_next_item()
 			elseif luasnip.expand_or_jumpable() then
@@ -58,14 +56,13 @@ cmp.setup({
 			end
 		end, { "i", "s" }),
 		["<S-Tab>"] = cmp.mapping(function(fallback)
-			print("3")
 			if cmp.visible() then
 				cmp.select_prev_item()
 			elseif luasnip.jumpable(-1) then
 				luasnip.jump(-1)
 			elseif has_words_before() then
 				cmp.setup({
-					enabled = true
+					enabled = true,
 				})
 				cmp.complete()
 			else
@@ -82,8 +79,8 @@ cmp.setup({
 
 			before = function(_, vim_item)
 				return vim_item
-			end
-		})
+			end,
+		}),
 	},
 	window = {
 		completion = cmp.config.window.bordered(),
