@@ -36,7 +36,7 @@ local options = {
 	splitbelow = true,
 	splitright = true,
 	showmode = false,
-	completeopt = { "menu", "menuone", "noinsert", "noselect" },
+	completeopt = { "menu", "menuone", "noselect" },
 	swapfile = false,
 	undofile = true,
 	----------------------------------------------------------------------

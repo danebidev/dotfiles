@@ -103,10 +103,10 @@ mason.setup({
 		icons = {
 			package_installed = "✓",
 			package_pending = "➜",
-			package_uninstalled = "✗"
+			package_uninstalled = "✗",
 		},
 		width = 0.6,
-		height = 0.8
+		height = 0.8,
 	},
 })
 

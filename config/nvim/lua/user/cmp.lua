@@ -14,27 +14,32 @@ luasnip.config.setup({})
 local compare = cmp.config.compare
 
 cmp.setup({
+	enabled = function()
+		local context = require("cmp.config.context")
+		if vim.api.nvim_get_mode().mode == "c" then
+			return true
+		else
+			return not context.in_treesitter_capture("comment") and not context.in_syntax_group("Comment")
+		end
+	end,
 	snippet = {
 		expand = function(args)
 			luasnip.lsp_expand(args.body)
 		end,
 	},
-	completion = {
-		autocomplete = false,
+	window = {
+		completion = {
+			scrollbar = false,
+			border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+		},
+		documentation = {
+			border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+		},
 	},
 	mapping = cmp.mapping.preset.insert({
 		["<C-u>"] = cmp.mapping.scroll_docs(-4),
 		["<C-d>"] = cmp.mapping.scroll_docs(4),
-		["<C-e>"] = cmp.mapping(function(_)
-			cmp.abort()
-			cmp.setup({
-				enabled = false,
-			})
-		end, { "i", "s" }),
-		["<Right>"] = cmp.mapping.confirm({
-			behavior = cmp.ConfirmBehavior.Replace,
-			select = false,
-		}),
+		["<C-e>"] = cmp.mapping.abort(),
 		["<CR>"] = cmp.mapping({
 			i = function(fallback)
 				if cmp.visible() and cmp.get_active_entry() then
@@ -51,6 +56,8 @@ cmp.setup({
 				cmp.select_next_item()
 			elseif luasnip.expand_or_jumpable() then
 				luasnip.expand_or_jump()
+			elseif has_words_before() then
+				cmp.complete()
 			else
 				fallback()
 			end
@@ -60,11 +67,6 @@ cmp.setup({
 				cmp.select_prev_item()
 			elseif luasnip.jumpable(-1) then
 				luasnip.jump(-1)
-			elseif has_words_before() then
-				cmp.setup({
-					enabled = true,
-				})
-				cmp.complete()
 			else
 				fallback()
 			end
@@ -81,10 +83,6 @@ cmp.setup({
 				return vim_item
 			end,
 		}),
-	},
-	window = {
-		completion = cmp.config.window.bordered(),
-		documentation = cmp.config.window.bordered(),
 	},
 	sources = {
 		{ name = "nvim_lsp", group_index = 2 },
