@@ -130,14 +130,26 @@ require("lazy").setup({
 	},
 	"rhysd/clever-f.vim", -- }}}
 }, {
-
-	ui = { -- Lazy.nvim UI {{{
+	ui = { -- Lazy config {{{
 		size = { width = 0.6, height = 0.8 },
 		border = "rounded",
 		title = "  lazy.nvim  ",
 	}, -- }}}
 })
 
-for _, v in pairs({ "settings", "keymaps", "autocmds", "cmp", "telescope", "treesitter", "lsp" }) do
-	require("user." .. v)
-end
+local config = { -- User config {{{
+	-- Core
+	"options",
+	"keymaps",
+	"autocmds",
+
+	-- Plugins
+	"plugins.telescope",
+	"plugins.treesitter",
+	"plugins.lsp",
+	"plugins.cmp",
+}
+
+for _, v in pairs(config) do
+	require(v)
+end -- }}}
