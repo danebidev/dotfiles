@@ -20,6 +20,7 @@ local options = {
 	linebreak = true,
 	breakindent = true,
 	formatoptions = "nqc1jp",
+	spell = false,
 	----------------------------------------------------------------------
 
 	--------------------------------- UI ---------------------------------
@@ -28,17 +29,19 @@ local options = {
 	relativenumber = true,
 	termguicolors = true,
 	signcolumn = "yes",
-	foldlevelstart = 99,
+	foldmethod = "marker",
+	showmode = false,
+	completeopt = { "menu", "menuone", "noselect" },
 	----------------------------------------------------------------------
 
 	------------------------------- Extra --------------------------------
 	mouse = "nv",
 	splitbelow = true,
 	splitright = true,
-	showmode = false,
-	completeopt = { "menu", "menuone", "noselect" },
 	swapfile = false,
 	undofile = true,
+	timeout = true,
+	timeoutlen = 750,
 	----------------------------------------------------------------------
 }
 

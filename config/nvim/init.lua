@@ -93,15 +93,22 @@ require("lazy").setup({
 			vim.o.timeout = true
 			vim.o.timeoutlen = 1000
 		end,
+		opts = {},
 	},
 	{
 		"brenoprata10/nvim-highlight-colors",
 		opts = {
-			enable_named_colors = true,
+			enable_named_colors = false,
 		},
 	},
-	"numToStr/Comment.nvim",
-	"lervag/vimtex",
+	{
+		"numToStr/Comment.nvim",
+		opts = {},
+	},
+	{
+		"lervag/vimtex",
+		lazy = false,
+	},
 	"rhysd/clever-f.vim",
 }, {
 	ui = {
