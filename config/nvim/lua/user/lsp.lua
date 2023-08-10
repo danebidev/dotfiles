@@ -34,7 +34,7 @@ for _, sign in ipairs(signs) do
 end
 
 local diagnostic_config = {
-	underline = true,
+	underline = false,
 	virtual_text = true,
 	signs = true,
 	update_in_insert = true,

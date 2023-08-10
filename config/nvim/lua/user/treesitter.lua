@@ -6,7 +6,6 @@ treesitter.setup({
 		"vimdoc",
 		"query",
 	},
-	sync_install = true,
 	auto_install = false,
 	highlight = {
 		enable = true,
@@ -25,45 +24,54 @@ treesitter.setup({
 		},
 	},
 	textobjects = {
-		select = {
-			enable = true,
-			lookahead = true,
-			keymaps = {
-				["aa"] = "@parameter.outer",
-				["ia"] = "@parameter.inner",
-				["af"] = "@function.outer",
-				["if"] = "@function.inner",
-				["ac"] = "@class.outer",
-				["ic"] = "@class.inner",
-			},
-		},
 		move = {
 			enable = true,
 			set_jumps = true,
 			goto_next_start = {
 				["]m"] = "@function.outer",
+				["gj"] = "@function.outer",
 				["]]"] = "@class.outer",
+				["]b"] = "@block.outer",
+				["]a"] = "@parameter.inner",
 			},
 			goto_next_end = {
 				["]M"] = "@function.outer",
+				["gJ"] = "@function.outer",
 				["]["] = "@class.outer",
+				["]B"] = "@block.outer",
+				["]A"] = "@parameter.inner",
 			},
 			goto_previous_start = {
 				["[m"] = "@function.outer",
+				["gk"] = "@function.outer",
 				["[["] = "@class.outer",
+				["[b"] = "@block.outer",
+				["[a"] = "@parameter.inner",
 			},
 			goto_previous_end = {
 				["[M"] = "@function.outer",
+				["gK"] = "@function.outer",
 				["[]"] = "@class.outer",
+				["[B"] = "@block.outer",
+				["[A"] = "@parameter.inner",
 			},
 		},
-		swap = {
+		select = {
 			enable = true,
-			swap_next = {
-				["<leader>a"] = "@parameter.inner",
-			},
-			swap_previous = {
-				["<leader>A"] = "@parameter.inner",
+			lookahead = true,
+			keymaps = {
+				["af"] = "@function.outer",
+				["if"] = "@function.inner",
+				["ac"] = "@class.outer",
+				["ic"] = "@class.inner",
+				["ab"] = "@block.outer",
+				["ib"] = "@block.inner",
+				["al"] = "@loop.outer",
+				["il"] = "@loop.inner",
+				["a/"] = "@comment.outer",
+				["i/"] = "@comment.inner",
+				["aa"] = "@parameter.outer",
+				["ia"] = "@parameter.inner",
 			},
 		},
 		context_commentstring = {

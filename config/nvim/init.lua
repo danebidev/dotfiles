@@ -87,6 +87,19 @@ require("lazy").setup({
 		},
 	},
 	{
+		"folke/which-key.nvim",
+		event = "VeryLazy",
+		init = function()
+			vim.o.timeout = true
+			vim.o.timeoutlen = 1000
+		end,
+		opts = {
+			window = {
+				winblend = 7
+			}
+		},
+	},
+	{
 		"brenoprata10/nvim-highlight-colors",
 		opts = {
 			enable_named_colors = true,
