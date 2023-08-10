@@ -93,11 +93,6 @@ require("lazy").setup({
 			vim.o.timeout = true
 			vim.o.timeoutlen = 1000
 		end,
-		opts = {
-			window = {
-				winblend = 7
-			}
-		},
 	},
 	{
 		"brenoprata10/nvim-highlight-colors",
