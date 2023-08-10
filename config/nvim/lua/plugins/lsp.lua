@@ -1,5 +1,4 @@
--- null-ls
-
+-- null-ls {{{
 local null_ls = require("null-ls")
 
 null_ls.setup({
@@ -10,9 +9,9 @@ null_ls.setup({
 		null_ls.builtins.formatting.black,
 	},
 })
+-- }}}
 
--- Diagnostics
-
+-- Diagnostics {{{
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
@@ -57,9 +56,10 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
 	border = "rounded",
 })
+-- }}}
 
--- Mason setup
-
+-- Mason and LSP setup {{{
+-- on_attach function {{{
 local on_attach = function(client, bufnr)
 	local nmap = function(keys, func, desc)
 		if desc then
@@ -92,7 +92,8 @@ local on_attach = function(client, bufnr)
 		nmap("<leader>fm", vim.lsp.buf.format, "[F]or[m]at")
 	end
 end
-
+-- }}}
+-- Mason setup {{{
 local mason = require("mason")
 
 require("neodev").setup()
@@ -140,3 +141,5 @@ mason_lspconfig.setup_handlers({
 		})
 	end,
 })
+-- }}}
+-- }}}

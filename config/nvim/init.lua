@@ -1,11 +1,13 @@
--- Changing leader key to <space>
+-- Change leader key to <space> {{{
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- Bootstrap lazy.nvim
+-- }}}
 
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim" -- Lazy.nvim {{{
+-- Bootstrap lazy.nvim {{{
+
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
@@ -17,12 +19,15 @@ if not vim.loop.fs_stat(lazypath) then
 		lazypath,
 	})
 end
-vim.opt.rtp:prepend(lazypath) -- }}}
+vim.opt.rtp:prepend(lazypath)
+
+-- }}}
 
 -- Plugins
 
 require("lazy").setup({
-	{ -- Colorscheme {{{
+	-- Colorscheme {{{
+	{
 		"folke/tokyonight.nvim",
 		lazy = false,
 		priority = 1000,
@@ -34,7 +39,8 @@ require("lazy").setup({
 		end,
 	}, -- }}}
 
-	{ -- LSP {{{
+	-- LSP {{{
+	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			"williamboman/mason.nvim",
@@ -44,7 +50,8 @@ require("lazy").setup({
 		},
 	}, -- }}}
 
-	{ -- Completion {{{
+	-- Completion {{{
+	{
 		"hrsh7th/nvim-cmp",
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",
@@ -60,7 +67,8 @@ require("lazy").setup({
 		},
 	}, -- }}}
 
-	{ -- Telescope {{{
+	-- Telescope {{{
+	{
 		"nvim-telescope/telescope.nvim",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
@@ -68,7 +76,8 @@ require("lazy").setup({
 		},
 	}, -- }}}
 
-	{ -- Treesitter {{{
+	-- Treesitter {{{
+	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 		dependencies = {
@@ -130,14 +139,16 @@ require("lazy").setup({
 	},
 	"rhysd/clever-f.vim", -- }}}
 }, {
-	ui = { -- Lazy config {{{
+	-- Lazy config {{{
+	ui = {
 		size = { width = 0.6, height = 0.8 },
 		border = "rounded",
 		title = "  lazy.nvim  ",
 	}, -- }}}
 })
 
-local config = { -- User config {{{
+-- User config {{{
+local config = { 
 	-- Core
 	"options",
 	"keymaps",
