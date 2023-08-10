@@ -5,7 +5,7 @@ vim.g.maplocalleader = " "
 
 -- Bootstrap lazy.nvim
 
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim" -- Lazy.nvim {{{
 
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
@@ -17,12 +17,12 @@ if not vim.loop.fs_stat(lazypath) then
 		lazypath,
 	})
 end
-vim.opt.rtp:prepend(lazypath)
+vim.opt.rtp:prepend(lazypath) -- }}}
 
 -- Plugins
 
 require("lazy").setup({
-	{ -- Colorscheme
+	{ -- Colorscheme {{{
 		"folke/tokyonight.nvim",
 		lazy = false,
 		priority = 1000,
@@ -32,9 +32,9 @@ require("lazy").setup({
 			})
 			vim.cmd.colorscheme("tokyonight")
 		end,
-	},
+	}, -- }}}
 
-	{ -- LSP
+	{ -- LSP {{{
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			"williamboman/mason.nvim",
@@ -42,9 +42,9 @@ require("lazy").setup({
 			{ "folke/neodev.nvim", opts = {} },
 			{ "jose-elias-alvarez/null-ls.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
 		},
-	},
+	}, -- }}}
 
-	{ -- Completion
+	{ -- Completion {{{
 		"hrsh7th/nvim-cmp",
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",
@@ -58,17 +58,17 @@ require("lazy").setup({
 			"rafamadriz/friendly-snippets",
 			"onsails/lspkind.nvim",
 		},
-	},
+	}, -- }}}
 
-	{ -- Telescope
+	{ -- Telescope {{{
 		"nvim-telescope/telescope.nvim",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"natecraddock/telescope-zf-native.nvim",
 		},
-	},
+	}, -- }}}
 
-	{ -- Treesitter
+	{ -- Treesitter {{{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 		dependencies = {
@@ -77,9 +77,28 @@ require("lazy").setup({
 			"windwp/nvim-ts-autotag",
 			"windwp/nvim-autopairs",
 		},
-	},
+	}, -- }}}
 
-	-- Some small plugins
+	-- Some small plugins {{{
+	{
+		"anuvyklack/pretty-fold.nvim",
+		opts = {
+			sections = {
+				left = { "content", "⮯ " },
+				right = { " ", "number_of_folded_lines", ": ", "percentage" },
+			},
+			fill_char = "⋅",
+			process_comment_signs = "delete",
+		},
+	},
+	{
+		"anuvyklack/fold-preview.nvim",
+		opts = {
+			auto = 500,
+			border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+		},
+		dependencies = { "anuvyklack/keymap-amend.nvim" },
+	},
 	{
 		"andweeb/presence.nvim",
 		opts = {
@@ -109,13 +128,14 @@ require("lazy").setup({
 		"lervag/vimtex",
 		lazy = false,
 	},
-	"rhysd/clever-f.vim",
+	"rhysd/clever-f.vim", -- }}}
 }, {
-	ui = {
+
+	ui = { -- Lazy.nvim UI {{{
 		size = { width = 0.6, height = 0.8 },
 		border = "rounded",
 		title = "  lazy.nvim  ",
-	},
+	}, -- }}}
 })
 
 for _, v in pairs({ "settings", "keymaps", "autocmds", "cmp", "telescope", "treesitter", "lsp" }) do

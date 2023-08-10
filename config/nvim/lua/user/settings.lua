@@ -1,5 +1,4 @@
 local options = {
-
 	----------------------------- Indentation ----------------------------
 	tabstop = 4,
 	shiftwidth = 4,
