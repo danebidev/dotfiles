@@ -1,9 +1,7 @@
--- Change leader key to <space> {{{
+-- Change leader key to <space>
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-
--- }}}
 
 -- Bootstrap lazy.nvim {{{
 
@@ -20,7 +18,6 @@ if not vim.loop.fs_stat(lazypath) then
 	})
 end
 vim.opt.rtp:prepend(lazypath)
-
 -- }}}
 
 -- Plugins
@@ -37,8 +34,8 @@ require("lazy").setup({
 			})
 			vim.cmd.colorscheme("tokyonight")
 		end,
-	}, -- }}}
-
+	},
+	-- }}}
 	-- LSP {{{
 	{
 		"neovim/nvim-lspconfig",
@@ -48,8 +45,8 @@ require("lazy").setup({
 			{ "folke/neodev.nvim", opts = {} },
 			{ "jose-elias-alvarez/null-ls.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
 		},
-	}, -- }}}
-
+	},
+	-- }}}
 	-- Completion {{{
 	{
 		"hrsh7th/nvim-cmp",
@@ -65,8 +62,8 @@ require("lazy").setup({
 			"rafamadriz/friendly-snippets",
 			"onsails/lspkind.nvim",
 		},
-	}, -- }}}
-
+	},
+	-- }}}
 	-- Telescope {{{
 	{
 		"nvim-telescope/telescope.nvim",
@@ -74,8 +71,8 @@ require("lazy").setup({
 			"nvim-lua/plenary.nvim",
 			"natecraddock/telescope-zf-native.nvim",
 		},
-	}, -- }}}
-
+	},
+	-- }}}
 	-- Treesitter {{{
 	{
 		"nvim-treesitter/nvim-treesitter",
@@ -86,8 +83,8 @@ require("lazy").setup({
 			"windwp/nvim-ts-autotag",
 			"windwp/nvim-autopairs",
 		},
-	}, -- }}}
-
+	},
+	-- }}}
 	-- Some small plugins {{{
 	{
 		"anuvyklack/pretty-fold.nvim",
@@ -137,18 +134,20 @@ require("lazy").setup({
 		"lervag/vimtex",
 		lazy = false,
 	},
-	"rhysd/clever-f.vim", -- }}}
+	"rhysd/clever-f.vim",
+	-- }}}
 }, {
 	-- Lazy config {{{
 	ui = {
 		size = { width = 0.6, height = 0.8 },
 		border = "rounded",
 		title = "  lazy.nvim  ",
-	}, -- }}}
+	},
+	-- }}}
 })
 
 -- User config {{{
-local config = { 
+local config = {
 	-- Core
 	"options",
 	"keymaps",
@@ -158,9 +157,11 @@ local config = {
 	"plugins.telescope",
 	"plugins.treesitter",
 	"plugins.lsp",
+	"plugins.autopairs",
 	"plugins.cmp",
 }
 
 for _, v in pairs(config) do
 	require(v)
-end -- }}}
+end
+-- }}}

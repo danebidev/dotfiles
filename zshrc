@@ -102,6 +102,6 @@ export EDITOR='nvim'
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias yolo='sudo pacman -Sy --noconfirm archlinux-keyring && yay -Syu --answerclean All --answerdiff None --noconfirm'
-alias genpass='~/.oh-my-zsh/plugins/genpass/genpass-monkey 5'
+alias pwgen='pwgen -s -1 -y'
 
 export GPG_TTY=$(tty)
