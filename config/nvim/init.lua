@@ -93,6 +93,7 @@ require("lazy").setup({
 	-- nvim-tree {{{
 	{
 		"nvim-tree/nvim-tree.lua",
+		lazy = false,
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
 			"antosha417/nvim-lsp-file-operations",
