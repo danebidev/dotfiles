@@ -2,7 +2,7 @@ local cmp = require("cmp")
 local luasnip = require("luasnip")
 local lspkind = require("lspkind")
 
--- Helper function {{{
+-- Helper function
 local has_words_before = function()
 	unpack = unpack or table.unpack
 	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -19,7 +19,6 @@ luasnip.config.setup({})
 local compare = cmp.config.compare
 
 cmp.setup({
-	-- Setup {{{
 	enabled = function()
 		local context = require("cmp.config.context")
 		if vim.api.nvim_get_mode().mode == "c" then
@@ -45,8 +44,6 @@ cmp.setup({
 			border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
 		},
 	},
-	-- }}}
-	-- Mappings {{{
 	mapping = cmp.mapping.preset.insert({
 		["<C-u>"] = cmp.mapping.scroll_docs(-4),
 		["<C-d>"] = cmp.mapping.scroll_docs(4),
@@ -83,8 +80,6 @@ cmp.setup({
 			end
 		end, { "i", "s" }),
 	}),
-	-- }}}
-	-- Formatting {{{
 	formatting = {
 		fields = { "kind", "abbr", "menu" },
 		format = lspkind.cmp_format({
@@ -97,8 +92,6 @@ cmp.setup({
 			end,
 		}),
 	},
-	-- }}}
-	-- Sources and sortings {{{
 	sources = {
 		{ name = "nvim_lsp", group_index = 2 },
 		{ name = "luasnip", group_index = 2 },
@@ -118,5 +111,4 @@ cmp.setup({
 			compare.order,
 		},
 	},
-	-- }}}
 })

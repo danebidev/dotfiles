@@ -1,26 +1,19 @@
 local treesitter = require("nvim-treesitter.configs")
 
 treesitter.setup({
-	-- Parsers {{{
 	ensure_installeid = {
 		"lua",
 		"vimdoc",
 		"query",
 	},
 	auto_install = false,
-	-- }}}
-	-- Highlight {{{
 	highlight = {
 		enable = true,
 		additional_vim_regex_highlighting = false,
 	},
-	-- }}}
-	-- Indent {{{
 	indent = {
 		enable = true,
 	},
-	-- }}}
-	-- Incremental selection {{{
 	incremental_selection = {
 		enable = true,
 		keymaps = {
@@ -30,10 +23,7 @@ treesitter.setup({
 			node_decremental = "<M-space>",
 		},
 	},
-	-- }}}
-	-- Text Objects {{{
 	textobjects = {
-		-- Move {{{
 		move = {
 			enable = true,
 			set_jumps = true,
@@ -66,8 +56,6 @@ treesitter.setup({
 				["[A"] = "@parameter.inner",
 			},
 		},
-		-- }}}
-		-- Select {{{
 		select = {
 			enable = true,
 			lookahead = true,
@@ -86,15 +74,11 @@ treesitter.setup({
 				["ia"] = "@parameter.inner",
 			},
 		},
-		-- }}}
-		-- Extra settings {{{
 		context_commentstring = {
 			enable = true,
 			enable_autocmd = false,
 		},
 		autopairs = { enable = true },
 		autotag = { enable = true },
-		-- }}}
 	},
-	-- }}}
 })
