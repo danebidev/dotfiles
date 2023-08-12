@@ -36,6 +36,7 @@ require("lazy").setup({
 		end,
 	},
 	-- }}}
+
 	-- LSP {{{
 	{
 		"neovim/nvim-lspconfig",
@@ -47,6 +48,7 @@ require("lazy").setup({
 		},
 	},
 	-- }}}
+
 	-- Completion {{{
 	{
 		"hrsh7th/nvim-cmp",
@@ -64,6 +66,7 @@ require("lazy").setup({
 		},
 	},
 	-- }}}
+	
 	-- Telescope {{{
 	{
 		"nvim-telescope/telescope.nvim",
@@ -73,6 +76,7 @@ require("lazy").setup({
 		},
 	},
 	-- }}}
+
 	-- Treesitter {{{
 	{
 		"nvim-treesitter/nvim-treesitter",
@@ -85,6 +89,17 @@ require("lazy").setup({
 		},
 	},
 	-- }}}
+
+	-- nvim-tree {{{
+	{
+		"nvim-tree/nvim-tree.lua",
+		dependencies = {
+			"nvim-tree/nvim-web-devicons",
+			"antosha417/nvim-lsp-file-operations",
+		},
+	},
+	-- }}}
+
 	-- Some small plugins {{{
 	{
 		"anuvyklack/pretty-fold.nvim",
@@ -159,6 +174,7 @@ local config = {
 	"plugins.lsp",
 	"plugins.autopairs",
 	"plugins.cmp",
+	"plugins.nvimtree",
 }
 
 for _, v in pairs(config) do
