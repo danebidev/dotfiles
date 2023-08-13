@@ -10,7 +10,7 @@ local options = {
 	wrapscan = true,
 	incsearch = true,
 	ignorecase = true,
-	scrolloff = 50,
+	scrolloff = 5,
 	sidescrolloff = 5,
 	---------------------------------------------------------------------- }}}
 

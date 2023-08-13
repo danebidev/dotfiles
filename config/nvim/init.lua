@@ -101,6 +101,15 @@ require("lazy").setup({
 	},
 	-- }}}
 
+	-- lualine {{{
+	{
+		"nvim-lualine/lualine.nvim",
+		dependencies = {
+			"nvim-tree/nvim-web-devicons",
+		},
+	},
+	-- }}}
+
 	-- Some small plugins {{{
 	{
 		"anuvyklack/pretty-fold.nvim",
