@@ -95,22 +95,20 @@ require("lazy").setup({
 		"nvim-tree/nvim-tree.lua",
 		lazy = false,
 		dependencies = {
-			"nvim-tree/nvim-web-devicons",
-			"antosha417/nvim-lsp-file-operations",
-		},
-	},
-	-- }}}
-
-	-- lualine {{{
-	{
-		"nvim-lualine/lualine.nvim",
-		dependencies = {
-			"nvim-tree/nvim-web-devicons",
+			{ "nvim-tree/nvim-web-devicons", opts = {} },
+			{ "antosha417/nvim-lsp-file-operations", opts = {} },
 		},
 	},
 	-- }}}
 
 	-- Some small plugins {{{
+	{
+		"nvim-lualine/lualine.nvim",
+		dependencies = {
+			{ "nvim-tree/nvim-web-devicons", opts = {} },
+			{ "arkav/lualine-lsp-progress", opts = {} },
+		},
+	},
 	{
 		"anuvyklack/pretty-fold.nvim",
 		opts = {
@@ -162,13 +160,12 @@ require("lazy").setup({
 	"rhysd/clever-f.vim",
 	-- }}}
 }, {
-	-- Lazy config {{{
+	-- Lazy config
 	ui = {
 		size = { width = 0.6, height = 0.8 },
 		border = "rounded",
 		title = "  lazy.nvim  ",
 	},
-	-- }}}
 })
 
 -- User config {{{
@@ -181,6 +178,7 @@ local config = {
 	-- Plugins
 	"plugins.telescope",
 	"plugins.treesitter",
+	"plugins.lualine",
 	"plugins.lsp",
 	"plugins.autopairs",
 	"plugins.cmp",
