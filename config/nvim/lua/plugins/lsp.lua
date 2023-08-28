@@ -111,6 +111,7 @@ capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 local servers = {
 	pyright = {},
+	clangd = {},
 	lua_ls = {
 		Lua = {
 			workspace = { checkThirdParty = false },

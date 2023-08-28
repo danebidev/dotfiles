@@ -53,7 +53,6 @@ nvimtree.setup({
 	update_focused_file = { enable = true },
 	diagnostics = { enable = true },
 	modified = { enable = true },
-	remove_keymaps = true,
 	view = { signcolumn = "yes" },
 	renderer = {
 		highlight_git = true,

@@ -1,10 +1,11 @@
 local treesitter = require("nvim-treesitter.configs")
 
 treesitter.setup({
-	ensure_installeid = {
+	ensure_installed = {
 		"lua",
-		"vimdoc",
-		"query",
+		"c",
+		"cpp",
+		"python",
 	},
 	auto_install = false,
 	highlight = {

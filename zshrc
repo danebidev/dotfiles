@@ -103,5 +103,6 @@ export EDITOR='nvim'
 
 alias yolo='sudo pacman -Sy --noconfirm archlinux-keyring && yay -Syu --answerclean All --answerdiff None --noconfirm'
 alias pwgen='pwgen -s -1 -y'
+alias ed='nvim'
 
 export GPG_TTY=$(tty)

@@ -16,7 +16,6 @@ telescope.setup({
 		winblend = 7,
 		prompt_prefix = " 󰭎  ",
 		selection_caret = "  ",
-		dynamic_preview_title = true,
 		results_title = "",
 		path_display = { "smart" },
 	},
