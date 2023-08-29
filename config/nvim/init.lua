@@ -90,13 +90,13 @@ require("lazy").setup({
 	},
 	-- }}}
 
-	-- nvim-tree {{{
+	-- neo-tree {{{
 	{
-		"nvim-tree/nvim-tree.lua",
-		lazy = false,
+		"nvim-neo-tree/neo-tree.nvim",
 		dependencies = {
-			{ "nvim-tree/nvim-web-devicons", opts = {} },
-			{ "antosha417/nvim-lsp-file-operations", opts = {} },
+			"nvim-lua/plenary.nvim",
+			"nvim-tree/nvim-web-devicons",
+			"MunifTanjim/nui.nvim",
 		},
 	},
 	-- }}}
@@ -182,7 +182,7 @@ local config = {
 	"plugins.lsp",
 	"plugins.autopairs",
 	"plugins.cmp",
-	"plugins.nvimtree",
+	"plugins.neotree",
 }
 
 for _, v in pairs(config) do

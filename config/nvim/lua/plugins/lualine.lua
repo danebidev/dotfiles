@@ -49,7 +49,9 @@ lualine.setup({
 		section_separators = { left = "", right = "" },
 		component_separators = "",
 		refresh = { statusline = 100 },
-		ignorefocus = { "TelescopePrompt", "NvimTree", "Mason", "lazy" },
+		disabled_filetypes = {
+			statusline = { "TelescopePrompt", "neo-tree", "Mason", "lazy" },
+		},
 	},
 	sections = {
 		lualine_a = { mode },
