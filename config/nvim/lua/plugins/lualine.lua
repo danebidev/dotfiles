@@ -25,9 +25,13 @@ local lsp_progress = {
 	timer = { spinner = 200 },
 }
 
+local fileformat = {
+	"fileformat",
+	padding = { left = 1, right = 2 },
+}
+
 local progress = {
 	"progress",
-	-- separator = { left = "", right = "" },
 	fmt = function(str)
 		if str == "Top" then
 			return " 0%%"
@@ -45,13 +49,14 @@ lualine.setup({
 		section_separators = { left = "", right = "" },
 		component_separators = "",
 		refresh = { statusline = 100 },
+		ignorefocus = { "TelescopePrompt", "NvimTree", "Mason", "lazy" },
 	},
 	sections = {
 		lualine_a = { mode },
 		lualine_b = { "branch", "diff" },
 		lualine_c = { "filetype", filename, diagnostics },
 		lualine_x = { lsp_progress },
-		lualine_y = { "encoding", "fileformat" },
+		lualine_y = { "encoding", fileformat },
 		lualine_z = { progress },
 	},
 })
