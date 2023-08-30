@@ -10,7 +10,10 @@ local mode = {
 local filename = {
 	"filename",
 	newfile_status = true,
-	symbols = { modified = "󰏫 ", readonly = "󰏮 " },
+	symbols = { modified = "", readonly = "󰏮 " },
+	color = function()
+		return { fg = vim.bo.modified and "#9ece6a" or nil }
+	end,
 }
 
 local diagnostics = {
@@ -19,16 +22,28 @@ local diagnostics = {
 	symbols = { error = " ", warn = " ", info = " ", hint = " " },
 }
 
-local lsp_progress = {
-	"lsp_progress",
-	display_components = { "spinner", { "percentage" }, "lsp_client_name" },
-	timer = { spinner = 200 },
-}
-
-local fileformat = {
-	"fileformat",
-	padding = { left = 1, right = 2 },
-}
+local function lsp_progress()
+	return require("lsp-progress").progress({
+		format = function(messages)
+			local active_clients = vim.lsp.get_clients()
+			local client_count = #active_clients
+			if #messages > 0 then
+				return " LSP: " .. client_count .. " " .. table.concat(messages, " ")
+			end
+			if #active_clients <= 0 then
+				return " LSP: " .. client_count
+			else
+				local client_names = {}
+				for _, client in ipairs(active_clients) do
+					if client and client.name ~= "" then
+						table.insert(client_names, "[" .. client.name .. "]")
+					end
+				end
+				return " LSP: " .. client_count .. " " .. table.concat(client_names, " ")
+			end
+		end,
+	})
+end
 
 local progress = {
 	"progress",
@@ -55,10 +70,10 @@ lualine.setup({
 	},
 	sections = {
 		lualine_a = { mode },
-		lualine_b = { "branch", "diff" },
-		lualine_c = { "filetype", filename, diagnostics },
-		lualine_x = { lsp_progress },
-		lualine_y = { "encoding", fileformat },
+		lualine_b = { "filetype", filename, diagnostics },
+		lualine_c = { lsp_progress },
+		lualine_x = {},
+		lualine_y = { "diff", "branch" },
 		lualine_z = { progress },
 	},
 })

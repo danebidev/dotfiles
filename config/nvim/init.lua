@@ -101,14 +101,17 @@ require("lazy").setup({
 	},
 	-- }}}
 
-	-- Some small plugins {{{
+	-- Lualine {{{
 	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = {
 			{ "nvim-tree/nvim-web-devicons", opts = {} },
-			{ "arkav/lualine-lsp-progress", opts = {} },
+			{ "linrongbin16/lsp-progress.nvim", opts = {} },
 		},
 	},
+	-- }}}
+
+	-- Some small plugins {{{
 	{
 		"anuvyklack/pretty-fold.nvim",
 		opts = {
