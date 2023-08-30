@@ -23,6 +23,7 @@ local signs = {
 
 for _, sign in ipairs(signs) do
 	vim.fn.sign_define(sign.name, {
+		icon = sign.text,   -- LSP for some reason considers this a required field and keeps complaining
 		texthl = sign.name,
 		text = sign.text,
 		numhl = sign.name,
