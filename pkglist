@@ -27,6 +27,7 @@ pipewire-
 pipewire-alsa
 pipewire-audio
 polkit-kde-agent
+pwgen
 qt5ct
 qt5-wayland
 qt6-wayland
@@ -41,4 +42,3 @@ wireplumber
 wl-clipboard
 xdg-desktop-portal-hyprland-git
 zsh
-pwgen
