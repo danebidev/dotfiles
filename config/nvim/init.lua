@@ -113,6 +113,21 @@ require("lazy").setup({
 
 	-- Some small plugins {{{
 	{
+		"akinsho/bufferline.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		opts = {
+			options = {
+				max_name_length = 20,
+				tab_size = 15,
+				offsets = {
+					{
+						filetype = "neo-tree",
+					},
+				},
+			},
+		},
+	},
+	{
 		"anuvyklack/pretty-fold.nvim",
 		opts = {
 			sections = {
@@ -160,19 +175,7 @@ require("lazy").setup({
 		"lervag/vimtex",
 		lazy = false,
 	},
-	{
-		"akinsho/bufferline.nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-		opts = {
-			options = {
-				offsets = {
-					{
-						filetype = "neo-tree",
-					},
-				},
-			},
-		},
-	},
+
 	"rhysd/clever-f.vim",
 	-- }}}
 }, {

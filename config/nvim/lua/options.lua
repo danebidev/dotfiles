@@ -35,6 +35,7 @@ local options = {
 
 	------------------------------- Extra -------------------------------- {{{
 	mouse = "nv",
+	mousemoveevent = true,
 	splitbelow = true,
 	splitright = true,
 	swapfile = false,
