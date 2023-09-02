@@ -3,31 +3,31 @@ local telescope = require("telescope")
 telescope.load_extension("zf-native")
 
 telescope.setup({
-	defaults = {
-		sorting_strategy = "ascending",
-		layout_config = {
-			horizontal = {
-				height = 0.8,
-				width = 0.8,
-				preview_width = 0.6,
-				prompt_position = "top",
-			},
-		},
-		winblend = 7,
-		prompt_prefix = " 󰭎  ",
-		selection_caret = "  ",
-		results_title = "",
-		path_display = { "smart" },
-	},
+    defaults = {
+        sorting_strategy = "ascending",
+        layout_config = {
+            horizontal = {
+                height = 0.8,
+                width = 0.8,
+                preview_width = 0.6,
+                prompt_position = "top",
+            },
+        },
+        winblend = 7,
+        prompt_prefix = " 󰭎  ",
+        selection_caret = "  ",
+        results_title = "",
+        path_display = { "smart" },
+    },
 })
 
 vim.keymap.set("n", "<leader>?", require("telescope.builtin").oldfiles, { desc = "[?] Find recently opened files" })
 vim.keymap.set("n", "<leader><space>", require("telescope.builtin").buffers, { desc = "[ ] Find existing buffers" })
 vim.keymap.set("n", "<leader>/", function()
-	require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
-		winblend = 10,
-		previewer = false,
-	}))
+    require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
+        winblend = 10,
+        previewer = false,
+    }))
 end, { desc = "[/] Fuzzily search in current buffer" })
 
 vim.keymap.set("n", "<leader>gf", require("telescope.builtin").git_files, { desc = "Search [G]it [F]iles" })
