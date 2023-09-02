@@ -44,6 +44,7 @@ local options = {
     undofile = true,
     timeout = true,
     timeoutlen = 750,
+    makeprg = "mkdir -p build; cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -S . -B build; ln -sf build/compile_commands.json ."
     ---------------------------------------------------------------------- }}}
 }
 

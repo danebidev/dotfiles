@@ -49,6 +49,15 @@ require("lazy").setup({
     },
     -- }}}
 
+    -- DAP {{{
+    {
+        "mfussenegger/nvim-dap",
+        dependencies = {
+            "rcarriga/nvim-dap-ui",
+        },
+    },
+    -- }}}
+
     -- Completion {{{
     {
         "hrsh7th/nvim-cmp",
@@ -128,7 +137,7 @@ require("lazy").setup({
                     if vim.bo[buf_number].buftype ~= "terminal" then
                         return true
                     end
-                end
+                end,
             },
         },
     },
@@ -185,7 +194,7 @@ require("lazy").setup({
     -- }}}
 }, {
     -- Lazy config
-    ui = {
+ui = {
         size = { width = 0.6, height = 0.8 },
         border = "rounded",
         title = "  lazy.nvim  ",

@@ -7,6 +7,9 @@ local function map(mode, lhs, rhs, desc, opts)
     vim.keymap.set(mode, lhs, rhs, options)
 end
 
+local bufname = vim.fn.expand("%:t:r")
+local extension = vim.fn.expand("%:e")
+
 -- Disable arrow keys
 map("", "<Up>", "<Nop>")
 map("", "<Down>", "<Nop>")
@@ -30,3 +33,9 @@ end, "[C]lose current [b]uffer")
 -- Terminal
 map("n", "<leader>t", "<Cmd>split | resize 18 | terminal<CR>", "Open [t]erminal in split")
 map("t", "<Esc>", "<C-\\><C-n>")
+
+-- C++ / CMake
+map("n", "<leader>bpc", "<Cmd>!cmake --build build<CR>", "[B]uild current [p]roject with [c]make")
+map("n", "<leader>bpd", "<leader>bp", "[B]uild [p]roject and [d]ebug it")
+map("n", "<leader>bfc", "<Cmd>!mkdir -p build && clang++ -std=c++20 -o build/" .. bufname .. " " .. bufname .. "." .. extension .. "<CR>", "[B]uild current [f]ile with normal [c]ompiler")
+map("n", "<leader>bfd", "<leader>bfc", "[B]uild current [f]ile and debug it")
