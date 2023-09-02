@@ -124,6 +124,11 @@ require("lazy").setup({
                         filetype = "neo-tree",
                     },
                 },
+                custom_filter = function(buf_number, _)
+                    if vim.bo[buf_number].buftype ~= "terminal" then
+                        return true
+                    end
+                end
             },
         },
     },
@@ -175,7 +180,7 @@ require("lazy").setup({
         "lervag/vimtex",
         lazy = false,
     },
-
+    "famiu/bufdelete.nvim",
     "rhysd/clever-f.vim",
     -- }}}
 }, {
