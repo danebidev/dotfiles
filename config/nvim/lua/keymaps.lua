@@ -7,10 +7,7 @@ local function map(mode, lhs, rhs, desc, opts)
     vim.keymap.set(mode, lhs, rhs, options)
 end
 
-local bufname = vim.fn.expand("%:t:r")
-local extension = vim.fn.expand("%:e")
-
--- Disable arrow keys
+-- Disable some keybinds
 map("", "<Up>", "<Nop>")
 map("", "<Down>", "<Nop>")
 map("", "<Left>", "<Nop>")
@@ -24,8 +21,8 @@ map("n", "<leader>p", '"+p', "[P]aste from system clipboard after cursor")
 map("n", "<leader>P", '"+P', "[P]aste from system clipboard before cursor")
 
 -- Bufferline
-map("n", "<leader>>", "<Cmd>BufferLineCycleNext<CR>", "[ ] Next buffer")
-map("n", "<leader><", "<Cmd>BufferLineCyclePrev<CR>", "[ ] Previous buffer")
+map("n", "<leader>>", "<Cmd>BufferLineCycleNext<CR>", "[>] Next buffer")
+map("n", "<leader><", "<Cmd>BufferLineCyclePrev<CR>", "[<] Previous buffer")
 map("n", "<leader>cb", function()
     require("bufdelete").bufdelete(0)
 end, "[C]lose current [b]uffer")
@@ -35,7 +32,24 @@ map("n", "<leader>t", "<Cmd>split | resize 18 | terminal<CR>", "Open [t]erminal 
 map("t", "<Esc>", "<C-\\><C-n>")
 
 -- C++ / CMake
-map("n", "<leader>bpc", "<Cmd>!cmake --build build<CR>", "[B]uild current [p]roject with [c]make")
-map("n", "<leader>bpd", "<leader>bp", "[B]uild [p]roject and [d]ebug it")
-map("n", "<leader>bfc", "<Cmd>!mkdir -p build && clang++ -std=c++20 -o build/" .. bufname .. " " .. bufname .. "." .. extension .. "<CR>", "[B]uild current [f]ile with normal [c]ompiler")
-map("n", "<leader>bfd", "<leader>bfc", "[B]uild current [f]ile and debug it")
+map("n", "<leader>cfb", function()
+    local file = vim.fn.expand("%")
+    local bufname = vim.fn.expand("%:t:r")
+    vim.cmd("!mkdir -p build && clang++ -std=c++20 -o ./build/" .. bufname .. " " .. file)
+end, "[C]++: Current [f]ile [b]uild")
+map("n", "<leader>cfd", function()
+    local file = vim.fn.expand("%")
+    local bufname = vim.fn.expand("%:t:r")
+    vim.cmd("!mkdir -p build && clang++ -std=c++20 -g -o ./build/" .. bufname .. " " .. file)
+    vim.cmd("Neotree close")
+    require("dap").run(require("dap").configurations.cpp[1])
+end, "[C]++: Build current [f]ile and [d]ebug it")
+map("n", "<leader>cpd", function()
+    vim.cmd("Neotree close")
+    vim.cmd("CMakeDebug")
+end, "[C]++: Build [p]roject and [d]ebug")
+map("n", "<leader>cpr", "<Cmd>CMakeRun<CR>", "[C]++: Build current [p]roject and [r]un it")
+map("n", "<leader>cla", require("cmake-tools").launch_args, "[C]++: Set [l]aunch [a]rgs")
+
+-- DAP
+map("n", "<leader>bt", require("dap").toggle_breakpoint, "[B]reakpoint [t]oggle ")

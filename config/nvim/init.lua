@@ -53,7 +53,7 @@ require("lazy").setup({
     {
         "mfussenegger/nvim-dap",
         dependencies = {
-            "rcarriga/nvim-dap-ui",
+            { "rcarriga/nvim-dap-ui", opts = {} },
         },
     },
     -- }}}
@@ -153,6 +153,21 @@ require("lazy").setup({
         },
     },
     {
+        "Civitasv/cmake-tools.nvim",
+        opts = {
+            cmake_generate_options = { "-DCMAKE_EXPORT_COMPILE_COMMANDS=1", "-DCMAKE_C_COMPILER=clang", "-DCMAKE_CXX_COMPILER=clang++" },
+            cmake_build_directory = "build",
+            cmake_dap_configuration = {
+                stopOnEntry = true,
+            },
+            cmake_terminal = {
+                opts = {
+                    split_size = 15,
+                },
+            },
+        },
+    },
+    {
         "anuvyklack/fold-preview.nvim",
         opts = {
             auto = 500,
@@ -194,7 +209,7 @@ require("lazy").setup({
     -- }}}
 }, {
     -- Lazy config
-ui = {
+    ui = {
         size = { width = 0.6, height = 0.8 },
         border = "rounded",
         title = "  lazy.nvim  ",
@@ -213,6 +228,7 @@ local config = {
     "plugins.treesitter",
     "plugins.lualine",
     "plugins.lsp",
+    "plugins.dap",
     "plugins.autopairs",
     "plugins.cmp",
     "plugins.neotree",
