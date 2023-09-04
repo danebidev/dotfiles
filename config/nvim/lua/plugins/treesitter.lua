@@ -6,6 +6,7 @@ treesitter.setup({
         "c",
         "cpp",
         "python",
+        "cmake",
     },
     auto_install = false,
     highlight = {

@@ -64,9 +64,8 @@ lualine.setup({
         section_separators = { left = "", right = "" },
         component_separators = "",
         refresh = { statusline = 100 },
-        disabled_filetypes = {
-            statusline = { "TelescopePrompt", "neo-tree", "Mason", "lazy" },
-        },
+        disabled_filetypes = { statusline = { "TelescopePrompt", "neo-tree", "Mason", "lazy" } },
+        ignore_focus = { "dapui_console", "dapui_scopes", "dapui_breakpoints", "dapui_stacks", "dapui_watches", "dap-repl" },
     },
     sections = {
         lualine_a = { mode },

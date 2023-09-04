@@ -54,6 +54,7 @@ require("lazy").setup({
         "mfussenegger/nvim-dap",
         dependencies = {
             { "rcarriga/nvim-dap-ui", opts = {} },
+            "Civitasv/cmake-tools.nvim",
         },
     },
     -- }}}
@@ -132,6 +133,9 @@ require("lazy").setup({
                     {
                         filetype = "neo-tree",
                     },
+                    {
+                        filetype = "dapui_scopes",
+                    },
                 },
                 custom_filter = function(buf_number, _)
                     if vim.bo[buf_number].buftype ~= "terminal" then
@@ -150,21 +154,6 @@ require("lazy").setup({
             },
             fill_char = "⋅",
             process_comment_signs = "delete",
-        },
-    },
-    {
-        "Civitasv/cmake-tools.nvim",
-        opts = {
-            cmake_generate_options = { "-DCMAKE_EXPORT_COMPILE_COMMANDS=1", "-DCMAKE_C_COMPILER=clang", "-DCMAKE_CXX_COMPILER=clang++" },
-            cmake_build_directory = "build",
-            cmake_dap_configuration = {
-                stopOnEntry = true,
-            },
-            cmake_terminal = {
-                opts = {
-                    split_size = 15,
-                },
-            },
         },
     },
     {

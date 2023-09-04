@@ -8,9 +8,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     pattern = "*",
 })
 
-vim.api.nvim_create_autocmd("BufLeave", {
-    pattern = "term://*",
-    callback = function ()
-        vim.cmd("bd!")
-    end,
+vim.api.nvim_create_autocmd("TermOpen", {
+    command = "setlocal bufhidden=delete",
 })

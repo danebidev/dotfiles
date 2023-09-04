@@ -86,11 +86,7 @@ local on_attach = function(client, bufnr)
     end, "[W]orkspace [L]ist Folders")
 
     if client.supports_method("textDocument/formatting") then
-        local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-        vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
         vim.api.nvim_create_autocmd("BufWritePre", {
-            group = augroup,
-            buffer = bufnr,
             callback = function()
                 vim.lsp.buf.format()
             end,
@@ -121,6 +117,7 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 local servers = {
+    cmake = {},
     pyright = {},
     clangd = {},
     lua_ls = {
