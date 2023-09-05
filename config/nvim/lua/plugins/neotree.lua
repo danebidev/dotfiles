@@ -19,7 +19,3 @@ neotree.setup({
         width = 35,
     },
 })
-
-local win = vim.api.nvim_get_current_win()
-vim.cmd("Neotree")
-vim.api.nvim_set_current_win(win)

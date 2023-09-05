@@ -189,10 +189,6 @@ require("lazy").setup({
         "numToStr/Comment.nvim",
         opts = {},
     },
-    {
-        "lervag/vimtex",
-        lazy = false,
-    },
     "famiu/bufdelete.nvim",
     "rhysd/clever-f.vim",
     -- }}}
