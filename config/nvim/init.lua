@@ -53,7 +53,7 @@ require("lazy").setup({
     {
         "mfussenegger/nvim-dap",
         dependencies = {
-            { "rcarriga/nvim-dap-ui", opts = {} },
+            "rcarriga/nvim-dap-ui",
             "Civitasv/cmake-tools.nvim",
         },
     },

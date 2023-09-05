@@ -7,6 +7,43 @@ dap.adapters.cppdbg = {
     id = "cppdbg",
 }
 
+require("dapui").setup({
+    layouts = {
+        {
+            elements = {
+                {
+                    id = "scopes",
+                    size = 0.6,
+                },
+                {
+                    id = "watches",
+                    size = 0.2,
+                },
+                {
+                    id = "stacks",
+                    size = 0.1,
+                },
+                {
+                    id = "breakpoints",
+                    size = 0.1,
+                },
+            },
+            position = "left",
+            size = 45,
+        },
+        {
+            elements = {
+                {
+                    id = "console",
+                    size = 1,
+                },
+            },
+            position = "bottom",
+            size = 13,
+        },
+    },
+})
+
 require("cmake-tools").setup({
     cmake_generate_options = { "-DCMAKE_EXPORT_COMPILE_COMMANDS=1", "-DCMAKE_C_COMPILER=clang", "-DCMAKE_CXX_COMPILER=clang++" },
     cmake_build_directory = "build",
@@ -14,7 +51,6 @@ require("cmake-tools").setup({
         type = "cppdbg",
         MIMode = "gdb",
         miDebuggerPath = "/usr/bin/gdb",
-        cwd = "${workspaceFolder}",
         externalConsole = false,
         stopAtEntry = true,
         setupCommands = {
@@ -30,9 +66,6 @@ require("cmake-tools").setup({
             split_size = 15,
         },
     },
-    cmake_executor = {
-        name = "terminal",
-    },
 })
 
 dap.configurations.cpp = {
@@ -44,12 +77,7 @@ dap.configurations.cpp = {
             return "./build/" .. vim.fn.expand("%:t:r")
         end,
         args = function()
-            local input = vim.fn.input("Arguments (cwd is nvim root directory): ")
-            local t = {}
-            for str in string.gmatch(input, "([^ ]+)") do
-                table.insert(t, str)
-            end
-            return t
+            return vim.split(vim.fn.input("Arguments (cwd is nvim workspace directory): "), " ")
         end,
         MIMode = "gdb",
         miDebuggerPath = "/usr/bin/gdb",
@@ -71,10 +99,10 @@ dap.listeners.after.event_initialized["dapui_config"] = function()
     dapui.open()
 end
 dap.listeners.before.event_terminated["dapui_config"] = function()
-    dapui.close()
+    dapui.close({ layout = 1 })
     vim.cmd("Neotree reveal")
 end
 dap.listeners.before.event_exited["dapui_config"] = function()
-    dapui.close()
+    dapui.close({ layout = 1 })
     vim.cmd("Neotree reveal")
 end
