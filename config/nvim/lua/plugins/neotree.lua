@@ -19,3 +19,5 @@ neotree.setup({
         width = 35,
     },
 })
+
+vim.cmd("Neotree reveal")

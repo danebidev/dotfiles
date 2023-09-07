@@ -123,29 +123,6 @@ require("lazy").setup({
 
     -- Some small plugins {{{
     {
-        "akinsho/bufferline.nvim",
-        dependencies = { "nvim-tree/nvim-web-devicons" },
-        opts = {
-            options = {
-                max_name_length = 20,
-                tab_size = 15,
-                offsets = {
-                    {
-                        filetype = "neo-tree",
-                    },
-                    {
-                        filetype = "dapui_scopes",
-                    },
-                },
-                custom_filter = function(buf_number, _)
-                    if vim.bo[buf_number].buftype ~= "terminal" then
-                        return true
-                    end
-                end,
-            },
-        },
-    },
-    {
         "anuvyklack/pretty-fold.nvim",
         opts = {
             sections = {

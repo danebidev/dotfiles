@@ -57,7 +57,7 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
     border = "rounded",
 })
 
-local on_attach = function(client, bufnr)
+local on_attach = function(_, bufnr)
     local nmap = function(keys, func, desc)
         if desc then
             desc = "LSP: " .. desc
@@ -84,14 +84,18 @@ local on_attach = function(client, bufnr)
     nmap("<leader>wl", function()
         print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     end, "[W]orkspace [L]ist Folders")
+end
 
-    if client.supports_method("textDocument/formatting") then
-        vim.api.nvim_create_autocmd("BufWritePre", {
-            callback = function()
-                vim.lsp.buf.format()
-            end,
-        })
-    end
+local augroup_format = vim.api.nvim_create_augroup("Format", { clear = true })
+local enable_format_on_save = function(_, bufnr)
+    vim.api.nvim_clear_autocmds({ group = augroup_format, buffer = bufnr })
+    vim.api.nvim_create_autocmd("BufWritePre", {
+        group = augroup_format,
+        buffer = bufnr,
+        callback = function()
+            vim.lsp.buf.format({ bufnr = bufnr })
+        end,
+    })
 end
 
 local mason = require("mason")
@@ -139,7 +143,12 @@ mason_lspconfig.setup_handlers({
         require("lspconfig")[server_name].setup({
             capabilities = capabilities,
             settings = servers[server_name],
-            on_attach = on_attach,
+            on_attach = function(client, bufnr)
+                on_attach(client, bufnr)
+                if client.supports_method("textDocument/formatting") then
+                    enable_format_on_save(client, bufnr)
+                end
+            end,
         })
     end,
 })
