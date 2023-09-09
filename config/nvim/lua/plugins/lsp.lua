@@ -1,3 +1,17 @@
+require("mason-tool-installer").setup({
+    ensure_installed = {
+        "lua-language-server",
+        "black",
+        "stylua",
+        "clang-format",
+        "clangd",
+        "cmake-language-server",
+        "cpptools",
+        "pyright",
+    },
+    auto_update = true,
+})
+
 local null_ls = require("null-ls")
 
 null_ls.setup({
@@ -133,10 +147,6 @@ local servers = {
         },
     },
 }
-
-mason_lspconfig.setup({
-    ensure_installed = vim.tbl_keys(servers),
-})
 
 mason_lspconfig.setup_handlers({
     function(server_name)
