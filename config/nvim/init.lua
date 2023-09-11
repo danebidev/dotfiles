@@ -143,12 +143,6 @@ require("lazy").setup({
         dependencies = { "anuvyklack/keymap-amend.nvim" },
     },
     {
-        "andweeb/presence.nvim",
-        opts = {
-            buttons = false,
-        },
-    },
-    {
         "folke/which-key.nvim",
         event = "VeryLazy",
         init = function()
@@ -156,6 +150,21 @@ require("lazy").setup({
             vim.o.timeoutlen = 1000
         end,
         opts = {},
+    },
+    {
+        "akinsho/toggleterm.nvim",
+        opts = {
+            open_mapping = "<leader>t",
+            insert_mappings = false,
+            start_in_insert = false,
+            terminal_mappings = false,
+        },
+    },
+    {
+        "andweeb/presence.nvim",
+        opts = {
+            buttons = false,
+        },
     },
     {
         "brenoprata10/nvim-highlight-colors",
@@ -169,6 +178,7 @@ require("lazy").setup({
     },
     "famiu/bufdelete.nvim",
     "rhysd/clever-f.vim",
+    "rcarriga/nvim-notify",
     -- }}}
 }, {
     -- Lazy config
@@ -192,6 +202,7 @@ local config = {
     "plugins.lualine",
     "plugins.lsp",
     "plugins.dap",
+    "plugins.cpp",
     "plugins.autopairs",
     "plugins.cmp",
     "plugins.neotree",
