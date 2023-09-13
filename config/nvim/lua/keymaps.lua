@@ -10,46 +10,66 @@ wk.register({})
 -- <leader> prefix
 wk.register({
     -- Move between splits
-    h = { "<cmd>wincmd h<CR>", "Move left" },
-    j = { "<cmd>wincmd j<CR>", "Move down" },
-    k = { "<cmd>wincmd k<CR>", "Move up" },
-    l = { "<cmd>wincmd l<CR>", "Move right" },
+    h = { "<cmd>wincmd h<CR>", "move left" },
+    j = { "<cmd>wincmd j<CR>", "move down" },
+    k = { "<cmd>wincmd k<CR>", "move up" },
+    l = { "<cmd>wincmd l<CR>", "move right" },
 
     -- System clipboard
-    y = { '"+y', "Copy" },
-    Y = { '"+y$', "Copy line" },
-    p = { '"+p', "Paste after cursor" },
-    P = { '"+P', "Paste before cursor" },
+    y = { '"+y', "copy" },
+    Y = { '"+y$', "copy line" },
+    p = { '"+p', "paste after cursor" },
+    P = { '"+P', "paste before cursor" },
+
+    t = { "<cmd>Neotree float<cr>", "open tree" },
+
+    -- Open
+    o = {
+        name = "open",
+    },
+
+    -- Search / Find
+    s = {
+        name = "search",
+    },
+
+    q = {
+        name = "quit",
+        w = { "<cmd>q<CR>", "window" },
+        W = { "<cmd>wincmd o<CR>", "window" },
+        b = { "<cmd>Bdelete<CR>", "buffer" },
+        B = { "<cmd>BufOnly<CR>", "all other buffers" },
+    },
 
     -- Debug
     d = {
         name = "debug",
-        b = { dap.toggle_breakpoint, "Toggle breakpoint" },
-        c = { dap.continue, "Continue" },
+        b = { dap.toggle_breakpoint, "toggle breakpoint" },
+        c = { dap.continue, "continue" },
         t = {
             function()
                 dap.terminate()
                 require("dapui").close({ layout = 1 })
             end,
-            "Terminate",
+            "terminate",
         },
-        s = { dap.step_over, "Step over" },
-        i = { dap.step_into, "Step into" },
-        o = { dap.step_out, "Step out" },
+        s = { dap.step_over, "step over" },
+        i = { dap.step_into, "step into" },
+        o = { dap.step_out, "step out" },
     },
 
     -- C++ / CMake
     c = {
-        name = "c++",
+        name = "cpp",
         l = {
             function()
                 return "<Cmd>CMakeLaunchArgs " .. vim.fn.input("Arguments (cwd is build directory): ")
             end,
-            "Set launch arguments",
+            "set launch arguments",
         },
-        f = { cpp.build_file, "Build file" },
-        F = { cpp.debug_file, "Debug file" },
-        p = { cpp.build_project, "Run project (CMake)" },
-        P = { cpp.debug_project, "Debug project (CMake)" },
+        f = { cpp.build_file, "build file" },
+        F = { cpp.debug_file, "debug file" },
+        p = { cpp.build_project, "run project (CMake)" },
+        P = { cpp.debug_project, "debug project (CMake)" },
     },
 }, { prefix = "<leader>" })

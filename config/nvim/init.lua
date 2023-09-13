@@ -122,7 +122,7 @@ require("lazy").setup({
     },
     -- }}}
 
-    -- Some small plugins {{{
+    -- Some smaller plugins {{{
     {
         "anuvyklack/pretty-fold.nvim",
         opts = {
@@ -154,7 +154,7 @@ require("lazy").setup({
     {
         "akinsho/toggleterm.nvim",
         opts = {
-            open_mapping = "<leader>t",
+            open_mapping = "<leader><cr>",
             insert_mappings = false,
             start_in_insert = false,
             terminal_mappings = false,
@@ -172,11 +172,10 @@ require("lazy").setup({
             enable_named_colors = false,
         },
     },
-    {
-        "numToStr/Comment.nvim",
-        opts = {},
-    },
+    { "numToStr/Comment.nvim", opts = {} },
+    { "folke/trouble.nvim", opts = {} },
     "famiu/bufdelete.nvim",
+    "numtostr/BufOnly.nvim",
     "rhysd/clever-f.vim",
     "rcarriga/nvim-notify",
     -- }}}

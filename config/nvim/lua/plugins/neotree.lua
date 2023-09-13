@@ -12,12 +12,16 @@ neotree.setup({
         },
         hijack_netrw_behavior = "open_default",
     },
-    close_if_last_window = true,
     use_libuv_file_watcher = true,
     open_files_do_not_replace_types = { "terminal", "neo-tree", "help" },
     window = {
-        width = 35,
+        position = "float",
+        popup = {
+            size = {
+                width = "60%",
+                height = "80%",
+            },
+            border = "rounded",
+        },
     },
 })
-
-vim.cmd("Neotree reveal")

@@ -10,8 +10,8 @@ kitty
 libva
 libva-nvidia-driver-git
 linux-firmware
-linux-zen
-linux-zen-headers
+linux
+linux-headers
 mako
 neofetch
 neovim

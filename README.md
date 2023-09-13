@@ -11,9 +11,6 @@ Dotfiles for my arch system. Still work in progress.
 > minimal install but you might want to check them before
 > installing, especially if you don't have an nvidia card.
 
-> I also prefer using the linux-zen firmware so
-> you might also want to change that
-
 ## 🧩 Software
 
 <details open>
