@@ -178,6 +178,7 @@ require("lazy").setup({
     "numtostr/BufOnly.nvim",
     "rhysd/clever-f.vim",
     "rcarriga/nvim-notify",
+    "turbio/bracey.vim",
     -- }}}
 }, {
     -- Lazy config
