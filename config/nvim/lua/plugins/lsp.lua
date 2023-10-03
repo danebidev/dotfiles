@@ -8,6 +8,7 @@ require("mason-tool-installer").setup({
         "cmake-language-server",
         "cpptools",
         "pyright",
+        "html-lsp",
     },
     auto_update = true,
 })
@@ -138,27 +139,36 @@ local servers = {
     cmake = {},
     pyright = {},
     clangd = {},
+    html = {},
+    phpactor = {
+        root_dir = function(fname)
+            local primary = require("lspconfig.util").root_pattern(".git", "compacter.json")(fname)
+            local fallback = vim.uv.cwd()
+            return primary or fallback
+        end,
+    },
     lua_ls = {
-        Lua = {
-            diagnostics = { disable = { "missing-fields" } },
-            workspace = { checkThirdParty = false },
-            telemetry = { enable = false },
-            format = { enable = false },
+        settings = {
+            Lua = {
+                diagnostics = { disable = { "missing-fields" } },
+                workspace = { checkThirdParty = false },
+                telemetry = { enable = false },
+                format = { enable = false },
+            },
         },
     },
 }
 
 mason_lspconfig.setup_handlers({
     function(server_name)
-        require("lspconfig")[server_name].setup({
+        require("lspconfig")[server_name].setup(vim.tbl_extend("force", servers[server_name], {
             capabilities = capabilities,
-            settings = servers[server_name],
             on_attach = function(client, bufnr)
                 on_attach(client, bufnr)
                 if client.supports_method("textDocument/formatting") then
                     enable_format_on_save(client, bufnr)
                 end
             end,
-        })
+        }))
     end,
 })
