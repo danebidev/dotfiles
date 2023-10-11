@@ -101,8 +101,8 @@ export EDITOR='nvim'
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias yolo='sudo pacman -Sy --noconfirm archlinux-keyring && yay -Syu --answerclean All --answerdiff None --noconfirm'
+alias yolo='sudo pacman -Sy --noconfirm archlinux-keyring && yay -Syu --noconfirm'
 alias pwgen='pwgen -s -1 -y'
-alias ed='nvim'
+alias vim='nvim'
 
 export GPG_TTY=$(tty)
