@@ -7,6 +7,8 @@ treesitter.setup({
         "cpp",
         "python",
         "cmake",
+        "html",
+        "javascript",
     },
     auto_install = false,
     highlight = {
