@@ -19,23 +19,7 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 require("awful.hotkeys_popup.keys")
 
 -- {{{ Autostart
-awful.spawn.with_shell(
-    'if (xrdb -query | grep -q "^awesome\\.started:\\s*true$"); then exit; fi;'
-        .. 'xrdb -merge <<< "awesome.started:true";'
-        .. "dex --environment Awesome --autostart"
-)
--- }}}
-
--- {{{ Error handling
--- Check if awesome encountered an error during startup and fell back to
--- another config (This code will only ever execute for the fallback config)
-naughty.connect_signal("request::display_error", function(message, startup)
-    naughty.notification({
-        urgency = "critical",
-        title = "Oops, an error happened" .. (startup and " during startup!" or "!"),
-        message = message,
-    })
-end)
+awful.spawn.with_shell('if (xrdb -query | grep -q "^awesome\\.started:\\s*true$"); then exit; fi;' .. 'xrdb -merge <<< "awesome.started:true";' .. "dex --environment Awesome --autostart")
 -- }}}
 
 -- {{{ Variable definitions
@@ -45,7 +29,7 @@ beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 -- This is used later as the default terminal and editor to run.
 local terminal = "kitty"
 local editor = os.getenv("EDITOR") or "vim"
-local editor_cmd = terminal .. " -c " .. editor
+local editor_cmd = terminal .. editor
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.

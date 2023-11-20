@@ -9,6 +9,7 @@ require("mason-tool-installer").setup({
         "cpptools",
         "pyright",
         "html-lsp",
+        "json-lsp",
     },
     auto_update = true,
 })
@@ -19,9 +20,7 @@ null_ls.setup({
     border = "rounded",
     sources = {
         -- Formatters
-        null_ls.builtins.formatting.stylua.with({
-            extra_args = { "--config-path", vim.fn.expand("~/.config/nvim/stylua.toml") },
-        }),
+        null_ls.builtins.formatting.stylua,
         null_ls.builtins.formatting.black,
         null_ls.builtins.formatting.clang_format,
     },
@@ -140,6 +139,7 @@ local servers = {
     pyright = {},
     clangd = {},
     html = {},
+    jsonls = {},
     phpactor = {
         root_dir = function(fname)
             local primary = require("lspconfig.util").root_pattern(".git", "compacter.json")(fname)
