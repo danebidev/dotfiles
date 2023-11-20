@@ -4,6 +4,7 @@ base-devel
 efibootmgr
 firefox-developer-edition
 git
+dex
 grub
 kitty
 linux
@@ -16,15 +17,18 @@ noto-fonts
 noto-fonts-cjk
 noto-fonts-emoji
 noto-fonts-extra
+npm
 pipewire
 pipewire-alsa
 pipewire-audio
 pipewire-jack
 pwgen
+startx
 sudo
 ttf-fira-mono
 ttf-nerd-fonts-symbols
 ttf-nerd-fonts-symbols-common
+unzip
 wget
 wireplumber
 zsh
