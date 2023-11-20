@@ -1,23 +1,20 @@
 # ⚙️ dotfiles
 
-### **[Arch is the best](https://wiki.archlinux.org/title/arch_is_the_best)**
-
-Dotfiles for my arch system. Still work in progress.
+Dotfiles for my arch system. WIP
 
 > **Note**: the configs are extremely tailored to my
 > needs and may not work on other hardware.
 
-> I've added a list with the packages needed for a 
-> minimal install but you might want to check them before
-> installing, especially if you don't have an nvidia card.
+> I've added a list with the packages needed for a minimal
+> install but you might want to check them before installing
 
 ## 🧩 Software
 
 <details open>
 <summary><b>🖥️  Display</b></summary>
 
-- **Display Server**: [Wayland](https://wayland.freedesktop.org/)
-- **Compositor**: [Hyprland](https://hyprland.org/)
+- **Display Server**: [X11](https://www.x.org/wiki/)
+- **Compositor**: [AwesomeWM](https://awesomewm.org/)
 - **Wallpaper**: WIP
 
 </details>
