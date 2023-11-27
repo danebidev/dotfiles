@@ -135,14 +135,6 @@ require("lazy").setup({
         },
     },
     {
-        "anuvyklack/fold-preview.nvim",
-        opts = {
-            auto = 500,
-            border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-        },
-        dependencies = { "anuvyklack/keymap-amend.nvim" },
-    },
-    {
         "folke/which-key.nvim",
         event = "VeryLazy",
         init = function()

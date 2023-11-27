@@ -1,3 +1,6 @@
+-- awesome_mode: api-level=4:screen=on
+-- If LuaRocks is installed, make sure that packages installed through it are
+-- found (e.g. lgi). If LuaRocks is not installed, do nothing.
 pcall(require, "luarocks.loader")
 
 -- Standard awesome library
@@ -18,8 +21,16 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
--- {{{ Autostart
-awful.spawn.with_shell('if (xrdb -query | grep -q "^awesome\\.started:\\s*true$"); then exit; fi;' .. 'xrdb -merge <<< "awesome.started:true";' .. "dex --environment Awesome --autostart")
+-- {{{ Error handling
+-- Check if awesome encountered an error during startup and fell back to
+-- another config (This code will only ever execute for the fallback config)
+naughty.connect_signal("request::display_error", function(message, startup)
+    naughty.notification({
+        urgency = "critical",
+        title = "Oops, an error happened" .. (startup and " during startup!" or "!"),
+        message = message,
+    })
+end)
 -- }}}
 
 -- {{{ Variable definitions
@@ -27,28 +38,28 @@ awful.spawn.with_shell('if (xrdb -query | grep -q "^awesome\\.started:\\s*true$"
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-local terminal = "kitty"
-local editor = os.getenv("EDITOR") or "vim"
-local editor_cmd = terminal .. editor
+terminal = "kitty"
+editor = os.getenv("EDITOR") or "vim"
+editor_cmd = terminal .. " " .. editor
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
 -- If you do not like this or do not have such a key,
 -- I suggest you to remap Mod4 to another key using xmodmap or other tools.
 -- However, you can use another modifier like Mod1, but it may interact with others.
-local modkey = "Mod4"
+modkey = "Mod4"
 -- }}}
 
 -- {{{ Menu
 -- Create a launcher widget and a main menu
-local myawesomemenu = {
+myawesomemenu = {
     {
         "hotkeys",
         function()
             hotkeys_popup.show_help(nil, awful.screen.focused())
         end,
     },
-    { "manual", terminal .. " -c man awesome" },
+    { "manual", terminal .. " -e man awesome" },
     { "edit config", editor_cmd .. " " .. awesome.conffile },
     { "restart", awesome.restart },
     {
@@ -59,9 +70,9 @@ local myawesomemenu = {
     },
 }
 
-local mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon }, { "open terminal", terminal } } })
+mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon }, { "open terminal", terminal } } })
 
-local mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon, menu = mymainmenu })
+mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon, menu = mymainmenu })
 
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
