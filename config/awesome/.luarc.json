@@ -1,0 +1,18 @@
+{
+    "$schema": "https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json",
+    "diagnostics": {
+        "enable": true,
+        "globals": [
+            "awesome",
+            "awful",
+            "client",
+            "screen",
+            "tag"
+        ]
+    },
+    "workspace": {
+        "library": [
+            "/usr/share/awesome/lib/"
+        ]
+    }
+}

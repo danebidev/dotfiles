@@ -9,6 +9,8 @@ treesitter.setup({
         "cmake",
         "html",
         "javascript",
+        "json",
+        "html",
     },
     auto_install = false,
     highlight = {
