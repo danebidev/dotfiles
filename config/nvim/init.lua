@@ -158,12 +158,6 @@ require("lazy").setup({
             buttons = false,
         },
     },
-    {
-        "brenoprata10/nvim-highlight-colors",
-        opts = {
-            enable_named_colors = false,
-        },
-    },
     { "numToStr/Comment.nvim", opts = {} },
     { "folke/trouble.nvim", opts = {} },
     "famiu/bufdelete.nvim",

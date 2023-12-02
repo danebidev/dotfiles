@@ -11,6 +11,9 @@ treesitter.setup({
         "javascript",
         "json",
         "html",
+        "ruby",
+        "rust",
+        "markdown"
     },
     auto_install = false,
     highlight = {

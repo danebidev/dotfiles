@@ -12,6 +12,8 @@ require("mason-tool-installer").setup({
         "eslint-lsp",
         "prettier",
         "json-lsp",
+        "rust-analyzer",
+        "ruby-lsp",
     },
     auto_update = true,
 })
@@ -152,6 +154,8 @@ local servers = {
     pyright = {},
     clangd = {},
     eslint = {},
+    rust_analyzer = {},
+    ruby_ls = {},
     html = {
         settings = {
             html = {

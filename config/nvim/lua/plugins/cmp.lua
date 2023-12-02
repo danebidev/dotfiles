@@ -97,4 +97,5 @@ cmp.setup({
             compare.order,
         },
     },
+    performance = { max_view_entries = 15 },
 })
