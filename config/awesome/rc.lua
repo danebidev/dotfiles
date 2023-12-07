@@ -46,12 +46,12 @@ local modkey = "Mod4"
 -- Create a launcher widget and a main menu
 local myawesomemenu = {
     {
-        "otkeys",
+        "hotkeys",
         function()
             hotkeys_popup.show_help(nil, awful.screen.focused())
         end,
     },
-    { "manual", terminal .. " -e man awesome" },
+    { "manual", terminal .. " man awesome" },
     { "edit config", editor_cmd .. " " .. awesome.conffile },
     { "restart", awesome.restart },
     {
@@ -121,8 +121,8 @@ local mytextclock = wibox.widget.textclock()
 
 screen.connect_signal("request::desktop_decoration", function(s)
     -- Each screen has its own tag table.
-    local names = { "www", "term", "misc" }
-    awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+    local names = { "www", "term", "apps", "misc1", "misc2", "misc3" }
+    awful.tag(names, s, awful.layout.suit.tile)
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -235,7 +235,6 @@ awful.mouse.append_global_mousebindings({
 
 -- General Awesome keys
 awful.keyboard.append_global_keybindings({
-    awful.key({ modkey }, "s", hotkeys_popup.show_help, { description = "show help", group = "awesome" }),
     awful.key({ modkey }, "w", function()
         mymainmenu:show()
     end, { description = "show main menu", group = "awesome" }),
@@ -249,6 +248,9 @@ awful.keyboard.append_global_keybindings({
             history_path = awful.util.get_cache_dir() .. "/history_eval",
         })
     end, { description = "lua execute prompt", group = "awesome" }),
+    awful.key({ modkey }, "s", function()
+        awful.util.spawn_with_shell("sleep 0.5 && scrot -s '%Y-%m-%d_$wx$h_scrot.png' -e 'mv $f " .. os.getenv("HOME") .. "/Pictures/Screenshots'")
+    end, { description = "screenshot with select", group = "awesome" }),
     awful.key({ modkey }, "Return", function()
         awful.spawn(terminal)
     end, { description = "open a terminal", group = "launcher" }),
