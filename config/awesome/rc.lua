@@ -4,7 +4,6 @@
 pcall(require, "luarocks.loader")
 
 -- Standard awesome library
-local gears = require("gears")
 local awful = require("awful")
 require("awful.autofocus")
 -- Widget and layout library
@@ -22,7 +21,13 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 require("awful.hotkeys_popup.keys")
 
 -- {{{ Autostart
-awful.spawn.with_shell('if (xrdb -query | grep -q "^awesome\\.started:\\s*true$"); then exit; fi;' .. 'xrdb -merge <<< "awesome.started:true";' .. "dex --environment Awesome --autostart")
+awful.spawn.with_shell(
+    'if (xrdb -query | grep -q "^awesome\\.started:\\s*true$"); then exit; fi;'
+        .. 'xrdb -merge <<< "awesome.started:true";'
+        .. "dex --environment Awesome --autostart"
+        .. "xrandr --output DP-4 --mode 1920x1080 --rate 165.00"
+        .. "firefox-developer-edition"
+)
 -- }}}
 
 -- {{{ Variable definitions
@@ -248,6 +253,9 @@ awful.keyboard.append_global_keybindings({
             history_path = awful.util.get_cache_dir() .. "/history_eval",
         })
     end, { description = "lua execute prompt", group = "awesome" }),
+    awful.key({ modkey }, "p", function()
+        awful.spawn.with_shell("rofi -show drun")
+    end, { description = "run prompt", group = "launcher" }),
     awful.key({ modkey }, "s", function()
         awful.util.spawn_with_shell("sleep 0.5 && scrot -s '%Y-%m-%d_$wx$h_scrot.png' -e 'mv $f " .. os.getenv("HOME") .. "/Pictures/Screenshots'")
     end, { description = "screenshot with select", group = "awesome" }),
@@ -257,9 +265,6 @@ awful.keyboard.append_global_keybindings({
     awful.key({ modkey }, "r", function()
         awful.screen.focused().mypromptbox:run()
     end, { description = "run prompt", group = "launcher" }),
-    awful.key({ modkey }, "p", function()
-        menubar.show()
-    end, { description = "show the menubar", group = "launcher" }),
 })
 
 -- Tags related keybindings
