@@ -20,16 +20,6 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
--- {{{ Autostart
-awful.spawn.with_shell(
-    'if (xrdb -query | grep -q "^awesome\\.started:\\s*true$"); then exit; fi;'
-        .. 'xrdb -merge <<< "awesome.started:true";'
-        .. "dex --environment Awesome --autostart"
-        .. "xrandr --output DP-4 --mode 1920x1080 --rate 165.00"
-        .. "firefox-developer-edition"
-)
--- }}}
-
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/default/theme.lua")
@@ -580,6 +570,9 @@ naughty.connect_signal("request::display", function(n)
 end)
 
 -- }}}
+
+-- Autostart
+awful.spawn.with_shell("~/.config/awesome/autostart.sh")
 
 -- Enable sloppy focus, so that focus follows mouse.
 client.connect_signal("mouse::enter", function(c)

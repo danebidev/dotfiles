@@ -104,5 +104,6 @@ export EDITOR='nvim'
 alias yolo='sudo pacman -Sy --noconfirm archlinux-keyring && yay -Syu --noconfirm'
 alias pwgen='pwgen -s -1 -y'
 alias vim='nvim'
+alias testwm='Xephyr :5 & sleep 1 ; DISPLAY=:5 awesome'
 
 export GPG_TTY=$(tty)
