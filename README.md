@@ -15,7 +15,7 @@ Dotfiles for my arch system. WIP
 
 - **Display Server**: [X11](https://www.x.org/wiki/)
 - **Compositor**: [AwesomeWM](https://awesomewm.org/)
-- **Wallpaper**: WIP
+- [**Wallpaper**](https://github.com/danebidev/dotfiles/blob/main/config/awesome/themes/default/wallpaper.png)
 
 </details>
 
@@ -23,8 +23,8 @@ Dotfiles for my arch system. WIP
 <summary><b>🎯 Core</b></summary>
 
 - **Terminal**: [kitty](https://sw.kovidgoyal.net/kitty/)
-- **Shell**: [zsh](https://www.zsh.org/) 
-    - with [Oh My Zsh](https://ohmyz.sh/)
+- **Shell**: [zsh](https://www.zsh.org/)
+  - with [Oh My Zsh](https://ohmyz.sh/)
 - **Browser**: [Firefox Developer Edition](https://www.mozilla.org/en-US/firefox/developer/)
 - **Editor**: [Neovim](https://neovim.io/)
 
@@ -36,6 +36,6 @@ Dotfiles for my arch system. WIP
 - **Sans serif**: [Noto Sans](https://fonts.google.com/noto/specimen/Noto+Sans)
 - **Serif**: [Noto Serif](https://fonts.google.com/noto/specimen/Noto+Serif)
 - **Monospace**: [Fira Mono](https://fonts.google.com/specimen/Fira+Mono)
-    - **Italic**: [JetBrains Mono](https://www.jetbrains.com/lp/mono/)
-    - **Symbols**: [Nerd Font Symbols](https://github.com/ryanoasis/nerd-fonts)
+  - **Italic**: [JetBrains Mono](https://www.jetbrains.com/lp/mono/)
+  - **Symbols**: [Nerd Font Symbols](https://github.com/ryanoasis/nerd-fonts)
 - **Emoji**: [Noto Color Emoji](https://fonts.google.com/noto/specimen/Noto+Color+Emoji)
