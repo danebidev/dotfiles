@@ -3,7 +3,6 @@ awesome-git
 base
 base-devel
 calibre
-htop
 dex
 discord-canary
 efibootmgr
@@ -11,6 +10,7 @@ firefox-developer-edition
 fontconfig
 git
 grub
+htop
 keepassxc
 kitty
 lib32-mesa
@@ -26,6 +26,7 @@ networkmanager
 noto-fonts
 noto-fonts-cjk
 noto-fonts-emoji
+i3lock
 noto-fonts-extra
 npm
 nvidia-open
@@ -52,3 +53,4 @@ xclip
 xorg-server
 xorg-xinit
 zsh
+zsh-theme-powerlevel10k-git

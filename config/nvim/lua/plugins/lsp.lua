@@ -14,6 +14,7 @@ require("mason-tool-installer").setup({
         "json-lsp",
         "rust-analyzer",
         "ruby-lsp",
+        "bash-language-server",
     },
     auto_update = true,
 })
@@ -165,7 +166,6 @@ local servers = {
             },
         },
     },
-    html = {},
     jsonls = {},
     phpactor = {
         root_dir = function(fname)
@@ -184,6 +184,7 @@ local servers = {
             },
         },
     },
+    bashls = {},
 }
 
 mason_lspconfig.setup_handlers({

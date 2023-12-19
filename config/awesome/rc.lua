@@ -20,25 +20,36 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
+-- {{{ Error handling
+
+naughty.connect_signal("request::display_error", function(message, startup)
+    naughty.notification({
+        urgency = "critical",
+        title = "Oops, an error happened" .. (startup and " during startup!" or "!"),
+        message = message,
+    })
+end)
+
+-- }}}
+
 -- {{{ Variable definitions
--- Themes define colours, icons, font and wallpapers.
+
+-- Theme
 beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/default/theme.lua")
 
--- This is used later as the default terminal and editor to run.
+-- Default terminal and editor
 local terminal = "kitty"
 local editor = os.getenv("EDITOR") or "vim"
 local editor_cmd = terminal .. " " .. editor
 
 -- Default modkey.
--- Usually, Mod4 is the key with a logo between Control and Alt.
--- If you do not like this or do not have such a key,
--- I suggest you to remap Mod4 to another key using xmodmap or other tools.
--- However, you can use another modifier like Mod1, but it may interact with others.
 local modkey = "Mod4"
+
 -- }}}
 
 -- {{{ Menu
--- Create a launcher widget and a main menu
+
+-- Main menu
 local myawesomemenu = {
     {
         "hotkeys",
@@ -63,6 +74,7 @@ local mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon, menu 
 
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
+
 -- }}}
 
 -- {{{ Tag layout

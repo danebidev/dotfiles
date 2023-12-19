@@ -13,7 +13,10 @@ treesitter.setup({
         "html",
         "ruby",
         "rust",
-        "markdown"
+        "markdown",
+        "bash",
+        "css",
+        "php",
     },
     auto_install = false,
     highlight = {

@@ -74,6 +74,15 @@ require("lazy").setup({
             "saadparwaiz1/cmp_luasnip",
             "rafamadriz/friendly-snippets",
             "onsails/lspkind.nvim",
+            {
+                "zbirenbaum/copilot.lua",
+                cmd = "Copilot",
+                event = "InsertEnter",
+                dependencies = {
+                    "zbirenbaum/copilot-cmp",
+                    "gptlang/CopilotChat.nvim",
+                },
+            },
         },
     },
     -- }}}
