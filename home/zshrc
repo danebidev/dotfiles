@@ -20,11 +20,8 @@ alias pwgen='pwgen -s -1 -y'
 alias vim='nvim'
 alias testwm='Xephyr :5 & sleep 1 ; DISPLAY=:5 awesome'
 
-alias envim='${EDITOR} ~/dotfiles/config/nvim'
-alias ewm='${EDITOR} ~/dotfiles/config/awesome'
-alias ezshrc='${EDITOR} ~/dotfiles/home/zshrc'
-alias ezsh='${EDITOR} ~/dotfiles/config/zsh'
-alias econf='${EDITOR} ~/dotfiles/config'
+alias config='cd ~/dotfiles/config'
+alias dotfiles='cd ~/dotfiles'
 
 export GPG_TTY=$(tty)
 
