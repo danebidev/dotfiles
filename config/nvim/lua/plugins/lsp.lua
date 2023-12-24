@@ -8,6 +8,7 @@ require("mason-tool-installer").setup({
         "cmake-language-server",
         "cpptools",
         "pyright",
+        "omnisharp",
         "html-lsp",
         "eslint-lsp",
         "prettier",
@@ -156,7 +157,9 @@ local servers = {
     clangd = {},
     eslint = {},
     rust_analyzer = {},
+    omnisharp = {},
     ruby_ls = {},
+    bashls = {},
     html = {
         settings = {
             html = {
@@ -184,7 +187,6 @@ local servers = {
             },
         },
     },
-    bashls = {},
 }
 
 mason_lspconfig.setup_handlers({

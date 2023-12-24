@@ -256,7 +256,7 @@ awful.keyboard.append_global_keybindings({
         })
     end, { description = "lua execute prompt", group = "awesome" }),
     awful.key({ modkey }, "p", function()
-        awful.spawn.with_shell("rofi -show drun")
+        awful.spawn.with_shell('rofi -show drun -show-icons -icon-theme "Numix-Circle"')
     end, { description = "run prompt", group = "launcher" }),
     awful.key({ modkey }, "s", function()
         awful.util.spawn_with_shell("sleep 0.5 && scrot -s '%Y-%m-%d_$wx$h_scrot.png' -e 'mv $f " .. os.getenv("HOME") .. "/Pictures/Screenshots'")

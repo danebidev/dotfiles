@@ -34,6 +34,7 @@ npm
 nvidia-open
 nvidia-utils
 pavucontrol
+picom
 pipewire
 pipewire-alsa
 pipewire-jack
@@ -55,6 +56,7 @@ wine-mono
 wine-staging
 wireplumber
 xclip
+xdg-desktop-portal-gnome
 xdg-desktop-portal-gtk
 xorg-server
 xorg-xinit

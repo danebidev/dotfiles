@@ -5,6 +5,7 @@ treesitter.setup({
         "lua",
         "c",
         "cpp",
+        "c_sharp",
         "python",
         "cmake",
         "html",
