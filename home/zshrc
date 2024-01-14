@@ -1,6 +1,5 @@
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
-# Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
 zstyle ':omz:update' mode auto
@@ -20,13 +19,13 @@ alias pwgen='pwgen -s -1 -y'
 alias vim='nvim'
 alias testwm='Xephyr :5 & sleep 1 ; DISPLAY=:5 awesome'
 
-alias config='cd ~/dotfiles/config'
-alias dotfiles='cd ~/dotfiles'
+alias cfg='cd ~/dotfiles/config'
+alias dotf='cd ~/dotfiles'
 
 export GPG_TTY=$(tty)
 
 [[ ! -f ~/dotfiles/config/zsh/p10k.zsh ]] || source ~/dotfiles/config/zsh/p10k.zsh
 
 if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
-  exec startx
+  startx
 fi

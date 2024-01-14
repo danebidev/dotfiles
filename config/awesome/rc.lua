@@ -522,6 +522,15 @@ ruled.client.connect_signal("request::rules", function()
     --     properties = { screen = 1, tag = "2" }
     -- }
 end)
+
+client.connect_signal("request::manage", function(c)
+    if c.maximized then
+        c.x = c.screen.workarea.x
+        c.y = c.screen.workarea.y
+        c.width = c.screen.workarea.width
+        c.height = c.screen.workarea.height
+    end
+end)
 -- }}}
 
 -- {{{ Titlebars

@@ -44,6 +44,8 @@ require("lazy").setup({
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
             "WhoIsSethDaniel/mason-tool-installer.nvim",
+            "Hoffs/omnisharp-extended-lsp.nvim",
+            "lervag/vimtex",
             { "folke/neodev.nvim", opts = {} },
             { "jose-elias-alvarez/null-ls.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
         },

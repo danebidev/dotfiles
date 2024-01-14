@@ -7,6 +7,7 @@ dex
 discord-canary
 easyeffects
 efibootmgr
+fd
 firefox-developer-edition
 flatpak
 fontconfig
@@ -41,6 +42,7 @@ pipewire-jack
 pipewire-pulse
 protonup-qt
 pwgen
+ripgrep
 rofi
 ruby
 scrot

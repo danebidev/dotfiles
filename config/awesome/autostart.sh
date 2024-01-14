@@ -9,3 +9,4 @@ run() {
 
 run dex --environment Awesome --autostart
 run picom -b --config ~/.config/picom/picom.conf
+run replay-sorcery

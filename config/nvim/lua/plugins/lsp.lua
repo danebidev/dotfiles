@@ -15,6 +15,7 @@ require("mason-tool-installer").setup({
         "json-lsp",
         "rust-analyzer",
         "ruby-lsp",
+        "texlab",
         "bash-language-server",
     },
     auto_update = true,
@@ -148,18 +149,31 @@ mason.setup({
 
 local mason_lspconfig = require("mason-lspconfig")
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 local servers = {
     cmake = {},
     pyright = {},
     clangd = {},
     eslint = {},
+    texlab = {},
     rust_analyzer = {},
-    omnisharp = {},
     ruby_ls = {},
     bashls = {},
+    jsonls = {},
+    omnisharp = {
+        handlers = {
+            ["textDocument/definition"] = require("omnisharp_extended").handler,
+        },
+        cmd = { "omnisharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
+        enable_editorconfig_support = true,
+        enable_ms_build_load_projects_on_demand = false,
+        enable_roslyn_analyzers = true,
+        analyze_open_documents_only = true,
+        organize_imports_on_format = true,
+        enable_import_completion = false,
+        sdk_include_prereleases = true,
+    },
     html = {
         settings = {
             html = {
@@ -169,7 +183,6 @@ local servers = {
             },
         },
     },
-    jsonls = {},
     phpactor = {
         root_dir = function(fname)
             local primary = require("lspconfig.util").root_pattern(".git", "compacter.json")(fname)
