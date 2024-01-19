@@ -56,48 +56,23 @@ local function create_build_dir()
     vim.cmd("!mkdir -p build")
 end
 
-local function build_file(debug)
+local function debug_file()
     local file = vim.fn.expand("%")
     local bufname = vim.fn.expand("%:t:r")
     create_build_dir()
-    if debug then
-        vim.cmd("!clang++ -std=c++20 -g -o ./build/" .. bufname .. " " .. file)
-    else
-        vim.cmd("!clang++ -std=c++20 -o ./build/" .. bufname .. " " .. file)
-    end
-end
-
-local function debug_file()
-    build_file(true)
+    vim.cmd("!clang++ -std=c++20 -g -o ./build/" .. bufname .. " " .. file)
     require("dap").run(require("dap").configurations.cpp)
 end
 
-local function cmake_build(debug)
-    create_build_dir()
-    if debug then
-        require("cmake-tools.config").build_type = "Debug"
-    else
-        require("cmake-tools.config").build_type = "Release"
-        cmake.generate({}, function()
-            cmake.build({})
-        end)
-    end
-end
-
 local function cmake_debug()
-    cmake_build(true)
+    create_build_dir()
+    require("cmake-tools.config").build_type = "Debug"
     cmake.generate({}, function()
         cmake.debug({})
     end)
 end
 
 return {
-    build_file = function()
-        build_file(false)
-    end,
     debug_file = debug_file,
-    build_project = function()
-        cmake_build(false)
-    end,
     debug_project = cmake_debug,
 }
