@@ -53,6 +53,7 @@ ttf-liberation
 ttf-nerd-fonts-symbols
 ttf-nerd-fonts-symbols-common
 unzip
+gdb
 wget
 wine-mono
 wine-staging
