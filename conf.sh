@@ -33,4 +33,4 @@ cd ..
 rm -rf yay
 
 # Install packages
-yay -S $(cat ./packages)
+yay -S $(cat ./pkglist)
