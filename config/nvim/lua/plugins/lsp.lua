@@ -6,6 +6,7 @@ require("mason-tool-installer").setup({
         "clang-format",
         "clangd",
         "cmake-language-server",
+        "typescript-language-server",
         "cpptools",
         "pyright",
         "omnisharp",
@@ -81,6 +82,7 @@ null_ls.setup({
         null_ls.builtins.formatting.black,
         null_ls.builtins.formatting.clang_format,
         null_ls.builtins.formatting.prettier,
+        null_ls.builtins.formatting.eslint,
     },
     on_attach = on_attach,
 })
@@ -161,6 +163,7 @@ local servers = {
     ruby_ls = {},
     bashls = {},
     jsonls = {},
+    tsserver = {},
     omnisharp = {
         handlers = {
             ["textDocument/definition"] = require("omnisharp_extended").handler,
