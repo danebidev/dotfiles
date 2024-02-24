@@ -1,11 +1,10 @@
 alsa-utils
-awesome-git
 base
 base-devel
 calibre
 dex
+discord
 discord-canary
-easyeffects
 efibootmgr
 fd
 firefox-developer-edition
@@ -14,11 +13,8 @@ fontconfig
 git
 grub
 htop
-i3lock
 keepassxc
 kitty
-lib32-mesa
-lib32-nvidia-utils
 linux
 linux-firmware
 linux-headers
@@ -32,7 +28,7 @@ noto-fonts-cjk
 noto-fonts-emoji
 noto-fonts-extra
 npm
-nvidia-open
+nvidia
 nvidia-utils
 pavucontrol
 picom
@@ -40,13 +36,11 @@ pipewire
 pipewire-alsa
 pipewire-jack
 pipewire-pulse
-protonup-qt
 pwgen
 ripgrep
 rofi
 ruby
 scrot
-steam
 sudo
 ttf-fira-mono
 ttf-liberation

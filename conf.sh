@@ -6,9 +6,6 @@ if [ "$response" != "y" ]; then
     exit 1
 fi
 
-cp ./home/zshrc ~/.zshrc
-cp ./home/xinitrc ~/.xinitrc
-
 for folder in $(ls ./config); do
     rm -rf ~/.config/$folder
 done
@@ -24,6 +21,11 @@ done
 for folder in $(ls ./etc); do
     sudo cp -r $(pwd)/etc/$folder /etc/$folder
 done
+
+sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
+
+cp ./home/zshrc ~/.zshrc
+cp ./home/xinitrc ~/.xinitrc
 
 # Clone yay and install it
 git clone https://aur.archlinux.org/yay.git
