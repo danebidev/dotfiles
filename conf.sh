@@ -24,7 +24,9 @@ for folder in $(ls ./etc); do
     sudo cp -r $(pwd)/etc/$folder /etc/$folder
 done
 
-sudo pacman -S git base-devel
+sudo pacman -Syu
+
+sudo pacman -S --needed git base-devel
 
 if pacman -Q yay &> /dev/null; then
     git clone https://aur.archlinux.org/yay.git
@@ -34,7 +36,7 @@ if pacman -Q yay &> /dev/null; then
     rm -rf yay
 fi
 
-yay -S $(cat ./pkglist)
+yay -S --needed $(cat ./pkglist)
 
 sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
 
