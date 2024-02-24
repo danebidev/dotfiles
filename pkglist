@@ -49,8 +49,6 @@ ttf-nerd-fonts-symbols-common
 unzip
 gdb
 wget
-wine-mono
-wine-staging
 wireplumber
 xclip
 xdg-desktop-portal-gnome
