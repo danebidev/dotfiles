@@ -4,8 +4,14 @@ font pango:monospace 8
 
 #font pango:DejaVu Sans Mono 8
 
-# XDG autostart
-exec --no-startup-id dex --autostart --environment i3
+# Remove borders
+for_window [class="^.*"] border pixel 0
+
+# Gap size
+gaps inner 15
+gaps outer 5
+#gaps top 15
+
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -25,6 +31,9 @@ bindsym $mod+p exec rofi -show drun -show-icons -icon-theme "Numix-Circle"
 
 # Scrot
 bindsym $mod+s exec sleep 0.5 && scrot -s '%Y-%m-%d_$wx$h.png' -e 'mv $f ~/Pictures/Screenshots'
+
+# Lock
+bindsym $mod+Shift+b exec i3lock
 
 # change focus
 bindsym $mod+h focus left
@@ -145,3 +154,6 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
+
+# XDG autostart
+exec --no-startup-id dex --autostart --environment i3
