@@ -41,5 +41,6 @@ yay -S --needed $(cat ./pkglist)
 
 sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
 
-cp ./home/zshrc ~/.zshrc
-cp ./home/xinitrc ~/.xinitrc
+ln -s $(pwd)/home/zshrc ~/.zshrc
+ln -s $(pwd)/home/xinitrc ~/.xinitrc
+ln -s $(pwd)/home/fehbg ~/.fehbg
