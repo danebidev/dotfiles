@@ -14,8 +14,8 @@ Dotfiles for my arch system. WIP
 <summary><b>🖥️  Display</b></summary>
 
 - **Display Server**: [X11](https://www.x.org/wiki/)
-- **Compositor**: [AwesomeWM](https://awesomewm.org/)
-- [**Wallpaper**](https://github.com/danebidev/dotfiles/blob/main/config/awesome/themes/default/wallpaper.png)
+- **Window Manager**: [i3](https://i3wm.org/)
+- [**Wallpaper**](https://github.com/danebidev/dotfiles/blob/main/misc/wallpaper.jpg)
 
 </details>
 

@@ -1,8 +1,6 @@
 set $mod Mod4
 
-font pango:monospace 8
-
-#font pango:DejaVu Sans Mono 8
+font pango:Fira Mono 8
 
 # Remove borders
 for_window [class="^.*"] border pixel 0
@@ -10,8 +8,6 @@ for_window [class="^.*"] border pixel 0
 # Gap size
 gaps inner 15
 gaps outer 5
-#gaps top 15
-
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod

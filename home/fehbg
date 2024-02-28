@@ -1,2 +1,2 @@
 #!/bin/sh
-feh --no-fehbg --bg-scale ../misc/wallpaper.jpg
+feh --no-fehbg --bg-scale $(dirname $(realpath $0))/../misc/wallpaper.jpg
