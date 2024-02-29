@@ -1,2 +1,2 @@
 export EDITOR='nvim'
-export DOTFILES=/home/danebidev/dotfiles
+export DOTFILES=$(dirname $(realpath $0))/..

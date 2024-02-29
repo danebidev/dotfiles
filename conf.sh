@@ -43,5 +43,3 @@ sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/ins
 ln -s $(pwd)/home/zshrc ~/.zshrc
 ln -s $(pwd)/home/zshenv ~/.zshenv
 ln -s $(pwd)/home/xinitrc ~/.xinitrc
-
-echo "export DOTFILES=$(pwd)" >> ./home/zshenv
