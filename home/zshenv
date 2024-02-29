@@ -1,2 +1,2 @@
 export EDITOR='nvim'
-export DOTFILES=$(dirname $(realpath $0))/..
+export DOTFILES=$(cd "$(dirname $(realpath $0))/.."; pwd)
