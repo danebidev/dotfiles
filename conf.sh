@@ -28,7 +28,6 @@ sudo pacman -Syu
 
 sudo pacman -S --needed git base-devel
 
-# Check if yay is not installed with pacman
 if ! pacman -Qs yay > /dev/null; then
     git clone https://aur.archlinux.org/yay.git
     cd yay
@@ -42,5 +41,7 @@ yay -S --needed $(cat ./pkglist)
 sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
 
 ln -s $(pwd)/home/zshrc ~/.zshrc
+ln -s $(pwd)/home/zshenv ~/.zshenv
 ln -s $(pwd)/home/xinitrc ~/.xinitrc
-ln -s $(pwd)/home/fehbg ~/.fehbg
+
+echo "export DOTFILES=$(pwd)" >> ./home/zshenv
