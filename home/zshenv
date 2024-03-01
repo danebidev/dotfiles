@@ -1,2 +1,2 @@
 export EDITOR='nvim'
-export DOTFILES=$(cd "$(dirname $(realpath $0))/.."; pwd)
+export DOTFILES=$(dirname ${$(realpath ~/.zshenv):h})
