@@ -1,2 +1,2 @@
 export EDITOR='nvim'
-export DOTFILES=$(dirname ${$(realpath ~/.zshenv):h})
+export DOTFILES=${$(realpath ~/.zshenv):h:h}
