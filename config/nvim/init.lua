@@ -133,7 +133,7 @@ require("lazy").setup({
     },
     -- }}}
 
-    -- Some smaller plugins {{{
+    -- Smaller plugins {{{
     {
         "anuvyklack/pretty-fold.nvim",
         opts = {
@@ -169,6 +169,7 @@ require("lazy").setup({
             buttons = false,
         },
     },
+    { "xeluxee/competitest.nvim", dependencies = { "MunifTanjim/nui.nvim" } },
     { "numToStr/Comment.nvim", opts = {} },
     { "folke/trouble.nvim", opts = {} },
     "famiu/bufdelete.nvim",
@@ -203,6 +204,7 @@ local config = {
     "plugins.autopairs",
     "plugins.cmp",
     "plugins.neotree",
+    "plugins.competitest",
 }
 
 for _, v in pairs(config) do
