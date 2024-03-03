@@ -3,7 +3,7 @@ local competitest = require("competitest")
 competitest.setup({
     compile_directory = "build",
     compile_command = {
-        cpp = { exec = "clang++", args = { "-std=c++20", "-g", "-O2", "-Wall", "-Wextra", "-Wshadow", "-fsanitize=address,undefined", "$(FABSPATH)", "-o", "$(FNOEXT)" } },
+        cpp = { exec = "clang++", args = { "-std=c++20", "-g", "-O2", "-Wall", "-Wextra", "-Wshadow", "-fsanitize=address,undefined", "-D", "DEBUG", "$(FABSPATH)", "-o", "$(FNOEXT)" } },
     },
 
     run_command = {
