@@ -58,6 +58,7 @@ require("lazy").setup({
         dependencies = {
             "rcarriga/nvim-dap-ui",
             "Civitasv/cmake-tools.nvim",
+            "nvim-neotest/nvim-nio",
         },
     },
     -- }}}

@@ -11,9 +11,10 @@ plugins=( git )
 
 source $ZSH/oh-my-zsh.sh
 
-alias yolo='sudo pacman -Sy --noconfirm archlinux-keyring && yay -Syu --noconfirm'
+alias yolo='sudo pacman -Sy --needed --noconfirm archlinux-keyring && yay -Syu --noconfirm'
 alias pwgen='pwgen -s -1 -y'
 alias vim='nvim'
+alias cd='z'
 
 alias conf='cd $DOTFILES/config'
 alias dots='cd $DOTFILES'
@@ -25,3 +26,24 @@ export GPG_TTY=$(tty)
 if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
   startx
 fi
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/danebidev/miniforge3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/danebidev/miniforge3/etc/profile.d/conda.sh" ]; then
+        . "/home/danebidev/miniforge3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/danebidev/miniforge3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+
+if [ -f "/home/danebidev/miniforge3/etc/profile.d/mamba.sh" ]; then
+    . "/home/danebidev/miniforge3/etc/profile.d/mamba.sh"
+fi
+# <<< conda initialize <<<
+
+eval "$(zoxide init zsh)"

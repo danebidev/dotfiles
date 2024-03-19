@@ -60,7 +60,7 @@ local function debug_file()
     local file = vim.fn.expand("%")
     local bufname = vim.fn.expand("%:t:r")
     create_build_dir()
-    vim.cmd("!clang++ -std=c++20 -g -o './build/" .. bufname .. "' '" .. file .. "'")
+    vim.cmd("!clang++ -std=c++20 -g -D DEBUG -o './build/" .. bufname .. "' '" .. file .. "'")
     require("dap").run(require("dap").configurations.cpp)
 end
 

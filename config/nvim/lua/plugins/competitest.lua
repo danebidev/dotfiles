@@ -15,7 +15,6 @@ competitest.setup({
     testcases_single_file_format = "$(FNOEXT).testcases",
 
     template_file = "$(HOME)/programming/cp/template.cpp",
-    evaluate_template_modifiers = true,
     received_problems_path = "$(HOME)/programming/cp/$(JUDGE)/$(CONTEST)/$(PROBLEM).$(FEXT)",
     received_problems_prompt_path = false,
     received_contests_directory = "$(HOME)/programming/cp/$(JUDGE)/$(CONTEST)",
