@@ -54,5 +54,6 @@ xdg-desktop-portal-gnome
 xdg-desktop-portal-gtk
 xorg-server
 xorg-xinit
+zoxide
 zsh
 zsh-theme-powerlevel10k-git
