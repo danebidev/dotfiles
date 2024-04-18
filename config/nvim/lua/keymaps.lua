@@ -68,6 +68,6 @@ wk.register({
             "set launch arguments",
         },
         F = { cpp.debug_file, "debug file" },
-        P = { cpp.debug_project, "debug project (CMake)" },
+        P = { cpp.debug_project, "debug CMake project" },
     },
 }, { prefix = "<leader>" })

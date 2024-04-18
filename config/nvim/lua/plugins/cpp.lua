@@ -18,7 +18,7 @@ cmake.setup({
         },
     },
     cmake_executor = {
-        name = "quickfix",
+        name = "terminal",
         opts = { show = "only_on_error" },
     },
     cmake_terminal = {
@@ -36,7 +36,7 @@ require("dap").configurations.cpp = {
         return "./build/" .. vim.fn.expand("%:t:r")
     end,
     args = function()
-        return vim.split(vim.fn.input("Arguments (cwd is nvim workspace directory): "), " ")
+        return vim.split(vim.fn.input("Arguments (cwd is workspace directory): "), " ")
     end,
     MIMode = "gdb",
     miDebuggerPath = "/usr/bin/gdb",
@@ -52,20 +52,23 @@ require("dap").configurations.cpp = {
     },
 }
 
-local function create_build_dir()
-    vim.cmd("!mkdir -p build")
-end
-
 local function debug_file()
     local file = vim.fn.expand("%")
     local bufname = vim.fn.expand("%:t:r")
-    create_build_dir()
-    vim.cmd("!clang++ -std=c++20 -g -D DEBUG -o './build/" .. bufname .. "' '" .. file .. "'")
+    local flags = {
+        "-std=c++20",
+        "-D DEBUG",
+        "-Wall",
+        "-Wextra",
+    }
+
+    vim.cmd("!mkdir -p build")
+    vim.cmd("!g++ -g " .. table.concat(flags, " ") .. " " .. file .. " -o build/" .. bufname)
+
     require("dap").run(require("dap").configurations.cpp)
 end
 
 local function cmake_debug()
-    create_build_dir()
     require("cmake-tools.config").build_type = "Debug"
     cmake.generate({}, function()
         cmake.debug({})

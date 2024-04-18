@@ -9,8 +9,16 @@ for_window [class="^.*"] border pixel 0
 gaps inner 15
 gaps outer 5
 
+# Autostart
+exec "setxkbmap -model pc105 -layout us,it -option grp:win_space_toggle"
+
+exec --no-startup-id dex --autostart --environment i3
+exec --no-startup-id dunst
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
+
+mouse_warping none
 
 # move tiling windows via drag & drop by left-clicking into the title bar,
 # or left-clicking anywhere into the window while holding the floating modifier.
@@ -151,6 +159,3 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# XDG autostart
-exec --no-startup-id dex --autostart --environment i3
-exec --no-startup-id dunst
