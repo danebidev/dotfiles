@@ -10,7 +10,7 @@ gaps inner 15
 gaps outer 5
 
 # Autostart
-exec "setxkbmap -model pc105 -layout us,it -option grp:win_space_toggle"
+exec "setxkbmap -model pc105 -layout us,it -option grp:alt_shift_toggle"
 
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id dunst
