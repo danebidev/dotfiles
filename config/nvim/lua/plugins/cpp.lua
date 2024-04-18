@@ -2,7 +2,7 @@ local cmake = require("cmake-tools")
 
 cmake.setup({
     cmake_generate_options = { "-DCMAKE_EXPORT_COMPILE_COMMANDS=1", "-DCMAKE_C_COMPILER=clang", "-DCMAKE_CXX_COMPILER=clang++" },
-    cmake_build_directory = "build/Debug",
+    cmake_build_directory = "build/${variant:buildType}",
     cmake_dap_configuration = {
         type = "cppdbg",
         MIMode = "gdb",
@@ -18,7 +18,7 @@ cmake.setup({
         },
     },
     cmake_executor = {
-        name = "terminal",
+        name = "quickfix",
         opts = { show = "only_on_error" },
     },
     cmake_terminal = {
