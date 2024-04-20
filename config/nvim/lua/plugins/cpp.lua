@@ -19,11 +19,18 @@ cmake.setup({
     },
     cmake_executor = {
         name = "quickfix",
-        opts = { show = "only_on_error" },
-    },
-    cmake_terminal = {
         opts = {
-            split_size = 15,
+            quickfix = {
+                auto_close_when_success = true,
+            },
+        },
+    },
+    cmake_runner = {
+        name = "quickfix",
+        opts = {
+            quickfix = {
+                auto_close_when_success = true,
+            },
         },
     },
 })
@@ -63,7 +70,7 @@ local function debug_file()
     }
 
     vim.cmd("!mkdir -p build")
-    vim.cmd("!g++ -g " .. table.concat(flags, " ") .. " " .. file .. " -o build/" .. bufname)
+    vim.cmd("!clang++ -g " .. table.concat(flags, " ") .. " '" .. file .. "' -o 'build/" .. bufname .. "'")
 
     require("dap").run(require("dap").configurations.cpp)
 end
