@@ -3,6 +3,13 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- Change copilot key to <C-l>
+vim.keymap.set("i", "<C-l>", 'copilot#Accept("")', {
+    expr = true,
+    replace_keycodes = false,
+})
+vim.g.copilot_no_tab_map = true
+
 -- Bootstrap lazy.nvim {{{
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -78,9 +85,7 @@ require("lazy").setup({
             "rafamadriz/friendly-snippets",
             "onsails/lspkind.nvim",
             {
-                "zbirenbaum/copilot.lua",
-                cmd = "Copilot",
-                event = "InsertEnter",
+                "github/copilot.vim",
                 dependencies = {
                     "zbirenbaum/copilot-cmp",
                     "gptlang/CopilotChat.nvim",

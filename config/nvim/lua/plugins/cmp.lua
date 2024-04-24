@@ -1,7 +1,6 @@
 local cmp = require("cmp")
 local luasnip = require("luasnip")
 local lspkind = require("lspkind")
-local copilot = require("copilot")
 
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
@@ -101,34 +100,4 @@ cmp.setup({
         },
     },
     performance = { max_view_entries = 15 },
-})
-
-copilot.setup({
-    panel = { enabled = false },
-    suggestion = {
-        enabled = true,
-        auto_trigger = true,
-        debounce = 75,
-        keymap = {
-            accept = "<C-l>",
-            accept_word = false,
-            accept_line = false,
-            next = "<C-y>",
-            prev = "<C-g>",
-            dismiss = "<C-e>",
-        },
-    },
-    filetypes = {
-        yaml = false,
-        markdown = false,
-        help = false,
-        gitcommit = false,
-        gitrebase = false,
-        hgcommit = false,
-        svn = false,
-        cvs = false,
-        ["."] = false,
-    },
-    copilot_node_command = "node",
-    server_opts_overrides = {},
 })
