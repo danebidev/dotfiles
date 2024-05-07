@@ -88,7 +88,13 @@ require("lazy").setup({
                 "github/copilot.vim",
                 dependencies = {
                     "zbirenbaum/copilot-cmp",
-                    "gptlang/CopilotChat.nvim",
+                    {
+                        "CopilotC-Nvim/CopilotChat.nvim",
+                        branch = "canary",
+                        opts = {
+                            debug = false,
+                        },
+                    },
                 },
             },
         },
