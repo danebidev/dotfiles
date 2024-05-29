@@ -33,7 +33,8 @@ bindsym $mod+c kill
 # Rofi
 bindsym $mod+p exec rofi -show drun -show-icons -icon-theme "Numix-Circle"
 
-# Scrot
+# Screenshot
+bindsym $mod+Shift+s exec gnome-screenshot -i
 bindsym $mod+s exec sleep 0.5 && scrot -s '%Y-%m-%d_$wx$h.png' -e 'mv $f ~/Pictures/Screenshots'
 
 # Lock
