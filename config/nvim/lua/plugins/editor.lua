@@ -1,29 +1,19 @@
 return {
-    -- WhichKey {{{
+    -- Keybinds
     {
         "folke/which-key.nvim",
         event = "VeryLazy",
-        init = function()
-            vim.o.timeout = true
-            vim.o.timeoutlen = 300
-        end,
-        opts = {
-            icons = {
-                separator = "",
-            },
-            window = {
-                winblend = 5,
-            },
+    },
+    -- }}}
+
+    -- File explorer
+    {
+        "nvim-neo-tree/neo-tree.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-tree/nvim-web-devicons",
+            "MunifTanjim/nui.nvim",
         },
-        config = function()
-            local wk = require("which-key")
-
-            -- No prefix
-            wk.register({}, {})
-
-            -- <leader> prefix
-            wk.register({}, { prefix = "<leader>" })
-        end,
     },
     -- }}}
 }

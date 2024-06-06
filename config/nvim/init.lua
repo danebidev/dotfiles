@@ -30,7 +30,13 @@ local config = {
     "config/options",
     "config/autocmds",
 
+    -- Plugins initialization
+    "plugins/util",
+    "plugins/ui",
     "plugins/editor",
+
+    -- Plugins configuration
+    "config/plugins/editor",
 }
 
 for _, v in pairs(config) do
