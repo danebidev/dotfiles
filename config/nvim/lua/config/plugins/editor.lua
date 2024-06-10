@@ -19,9 +19,21 @@ wk.register({}, { prefix = "<leader>" })
 
 -- NeoTree {{{
 require("neo-tree").setup({
+    window = {
+        position = "float",
+        popup = {
+            size = {
+                width = "50%",
+                height = "80%",
+            },
+        },
+    },
+    default_component_configs = {},
     sources = {
         "filesystem",
-        "git_status",
     },
+    enable_opened_markers = false,
+    popup_border_style = "double",
+    sort_case_insensitive = true,
 })
 -- }}}
