@@ -24,7 +24,7 @@ function colormap() for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)
 
 export GPG_TTY=$(tty)
 
-[[ ! -f $DOTFILES/config/zsh/p10k.zsh ]] || source $DOTFILES/config/zsh/p10k.zsh
+[[ ! -f $DOTFILES/misc/p10k.zsh ]] || source $DOTFILES/misc/p10k.zsh
 
 if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
     if read -q "REPLY?Start i3? "; then
