@@ -18,33 +18,38 @@ alias cd='z'
 
 alias conf='cd $DOTFILES/config'
 alias dots='cd $DOTFILES'
+alias pkg='vim $DOTFILES/pkglist && sort $DOTFILES/pkglist -o $DOTFILES/pkglist'
 
 function colormap() for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done
 
 export GPG_TTY=$(tty)
 
-[[ ! -f $DOTFILES/config/zsh/p10k.zsh ]] || source $DOTFILES/config/zsh/p10k.zsh
+[[ ! -f $DOTFILES/misc/p10k.zsh ]] || source $DOTFILES/misc/p10k.zsh
 
 if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
-  startx
+    if read -q "REPLY?Start i3? "; then
+        startx
+    fi
 fi
+
+fastfetch
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/danebidev/miniforge3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('/home/mkryss/miniforge3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/home/danebidev/miniforge3/etc/profile.d/conda.sh" ]; then
-        . "/home/danebidev/miniforge3/etc/profile.d/conda.sh"
+    if [ -f "/home/mkryss/miniforge3/etc/profile.d/conda.sh" ]; then
+        . "/home/mkryss/miniforge3/etc/profile.d/conda.sh"
     else
-        export PATH="/home/danebidev/miniforge3/bin:$PATH"
+        export PATH="/home/mkryss/miniforge3/bin:$PATH"
     fi
 fi
 unset __conda_setup
 
-if [ -f "/home/danebidev/miniforge3/etc/profile.d/mamba.sh" ]; then
-    . "/home/danebidev/miniforge3/etc/profile.d/mamba.sh"
+if [ -f "/home/mkryss/miniforge3/etc/profile.d/mamba.sh" ]; then
+    . "/home/mkryss/miniforge3/etc/profile.d/mamba.sh"
 fi
 # <<< conda initialize <<<
 
