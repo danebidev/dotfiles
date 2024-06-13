@@ -22,7 +22,13 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup("plugins")
+require("lazy").setup({
+    {
+        { import = "plugins.lib" },
+        { import = "plugins.editor" },
+        { import = "plugins.code" },
+    },
+})
 -- }}}
 
 -- User config {{{
@@ -30,14 +36,6 @@ local config = {
     -- Core
     "config/settings",
     "config/autocmds",
-
-    -- Plugins initialization
-    "plugins/util",
-    "plugins/ui",
-    "plugins/editor",
-
-    -- Plugins configuration
-    "config/editor",
 }
 
 for _, v in pairs(config) do
