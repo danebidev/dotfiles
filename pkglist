@@ -5,7 +5,7 @@ blueman
 bluez-utils
 btrfs-progs
 dex
-dolphin
+dunst
 dust
 efibootmgr
 fastfetch
@@ -58,6 +58,7 @@ rustup
 scrot
 stow
 sudo
+swww
 unzip
 vim
 wget

@@ -19,6 +19,7 @@ alias cd='z'
 alias conf='cd $DOTFILES/config'
 alias dots='cd $DOTFILES'
 alias pkg='vim $DOTFILES/pkglist && sort $DOTFILES/pkglist -o $DOTFILES/pkglist'
+alias newvim='NVIM_APPNAME=newvim nvim'
 
 function colormap() for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done
 
