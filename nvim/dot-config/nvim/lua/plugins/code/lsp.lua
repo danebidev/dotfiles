@@ -38,13 +38,26 @@ return {
         config = function()
             local settings = {}
 
+            local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
             require("mason-lspconfig").setup()
             require("mason-lspconfig").setup_handlers({
                 function(server_name)
-                    require("lspconfig")[server_name].setup(vim.tbl_extend("force", settings[server_name] or {}, {}))
+                    require("lspconfig")[server_name].setup(vim.tbl_extend("force", settings[server_name] or {}, {
+                        capabilities = capabilities,
+                    }))
                 end,
             })
         end,
         priority = 150,
+    },
+    {
+        "folke/lazydev.nvim",
+        ft = "lua",
+        opts = {
+            library = {
+                { path = "luvit-meta/library", words = { "vim%.uv" } },
+            },
+        },
     },
 }
