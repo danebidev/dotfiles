@@ -4,6 +4,7 @@ base-devel
 blueman
 bluez-utils
 btrfs-progs
+chafa
 dex
 dunst
 dust
@@ -22,13 +23,14 @@ hyprland-git
 hyprlock-git
 hyprshot
 hyprwayland-scanner-git
+imagemagick
 intel-ucode
 keepassxc
-kitty
 less
 linux
 linux-firmware
 linux-headers
+llvm
 man-db
 neovim-git
 networkmanager
@@ -50,12 +52,10 @@ pipewire-alsa
 pipewire-jack
 pipewire-pulse
 polkit-kde-agent
-pwgen
 reflector
 ripgrep
 rofi-wayland
 rustup
-scrot
 stow
 sudo
 swww

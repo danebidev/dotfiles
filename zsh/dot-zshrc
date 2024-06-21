@@ -27,9 +27,9 @@ export GPG_TTY=$(tty)
 
 [[ ! -f $DOTFILES/misc/p10k.zsh ]] || source $DOTFILES/misc/p10k.zsh
 
-if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
-    if read -q "REPLY?Start i3? "; then
-        startx
+if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
+    if read -q "REPLY?Start Hyprland? "; then
+        Hyprland
     fi
 fi
 
