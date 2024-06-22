@@ -25,30 +25,13 @@ return {
                 mapping = {
                     ["<C-u>"] = cmp.mapping.scroll_docs(-4),
                     ["<C-d>"] = cmp.mapping.scroll_docs(4),
-                    ["<C-e>"] = cmp.mapping.abort(),
-                    ["<Tab>"] = cmp.mapping(function(fallback)
-                        if cmp.visible() then
-                            cmp.select_next_item()
-                        -- elseif luasnip.locally_jumpable(1) then
-                        --     luasnip.jump(1)
-                        else
-                            fallback()
-                        end
-                    end, { "i", "s" }),
-
-                    ["<S-Tab>"] = cmp.mapping(function(fallback)
-                        if cmp.visible() then
-                            cmp.select_prev_item()
-                        -- elseif luasnip.locally_jumpable(-1) then
-                        --     luasnip.jump(-1)
-                        else
-                            fallback()
-                        end
-                    end, { "i", "s" }),
+                    ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.ConfirmBehavior.Insert }),
+                    ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.ConfirmBehavior.Insert }),
+                    ["<C-c>"] = cmp.mapping.abort(),
                     ["<CR>"] = cmp.mapping({
                         i = function(fallback)
                             if cmp.visible() and cmp.get_active_entry() then
-                                cmp.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = false })
+                                cmp.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true })
                             else
                                 fallback()
                             end
@@ -56,6 +39,26 @@ return {
                         s = cmp.mapping.confirm({ select = true }),
                         c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true }),
                     }),
+                    -- ["<Tab>"] = cmp.mapping(
+                    --     function(fallback)
+                    --         if cmp.visible then
+                    --             cmp.select_next_item()
+                    --         else
+                    --             fallback()
+                    --         end
+                    --     end,
+                    --     { "i", "s" }
+                    -- ),
+                    -- ["<S-Tab>"] = cmp.mapping(
+                    --     function(fallback)
+                    --         if cmp.visible then
+                    --             cmp.select_prev_item()
+                    --         else
+                    --             fallback()
+                    --         end
+                    --     end,
+                    --     { "i", "s" }
+                    -- ),
                 },
                 snippet = {
                     expand = function(args)
@@ -73,11 +76,6 @@ return {
                             return math.floor(0.35 * vim.o.columns)
                         end,
                         ellipsis_char = "...",
-                        show_labelDetails = true, -- This does something. I don't know what
-                        -- Called before lspkind
-                        -- before = function(entry, vim_item)
-                        --     return vim_item
-                        -- end,
                     }),
                 },
                 sorting = {
@@ -93,12 +91,13 @@ return {
                 },
                 sources = {
                     { name = "lazydev", group_index = 1 },
-                    { name = "nvim_lsp", group_index = 1 },
                     { name = "luasnip_choice", group_index = 1 },
-                    { name = "path", group_index = 2 },
+                    { name = "nvim_lsp", group_index = 1 },
+                    { name = "path", group_index = 1 },
                     { name = "buffer", group_index = 2 },
                 },
-                performance = { max_view_entries = 15 },
+                performance = { max_view_entries = 20 },
+                preselect = cmp.PreselectMode.None
             })
         end,
     },
