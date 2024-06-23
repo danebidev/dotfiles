@@ -29,7 +29,7 @@ export GPG_TTY=$(tty)
 
 if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
     if read -q "REPLY?Start Hyprland? "; then
-        Hyprland
+        dbus-run-session Hyprland
     fi
 fi
 

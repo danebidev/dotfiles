@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if pgrep -f "$0" > /dev/null; then
+    exit
+fi
+
 # Edit below to control the images transition
 export SWWW_TRANSITION_FPS=165
 export SWWW_TRANSITION_STEP=2
