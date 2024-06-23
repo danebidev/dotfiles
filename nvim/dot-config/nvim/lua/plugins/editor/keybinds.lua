@@ -14,6 +14,11 @@ return {
                 },
             })
 
+            vim.keymap.set("i", "<C-l>", 'copilot#Accept("")', {
+                expr = true,
+                replace_keycodes = false,
+            })
+
             -- No prefix
             wk.register({}, {})
 

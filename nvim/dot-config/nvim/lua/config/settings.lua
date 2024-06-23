@@ -39,6 +39,8 @@ for k, v in pairs(options) do
     vim.opt[k] = v
 end
 
+vim.g.copilot_no_tab_map = true
+
 vim.keymap.set("n", "[d", function()
     vim.diagnostic.jump({ count = -1 })
 end, { desc = "Go to previous diagnostic message" })
