@@ -1,0 +1,10 @@
+#!/usr/bin/openrc-run
+
+supervisor=supervise-daemon
+command="/usr/lib/iwd/iwd"
+
+depend() {
+    need dbus
+    keyword -shutdown
+}
+
