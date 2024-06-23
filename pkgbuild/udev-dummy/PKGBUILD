@@ -1,0 +1,37 @@
+pkgname=('udev-dummy' 'libudev-dummy' 'esysusers-dummy' 'etmpfiles-dummy')
+pkgbase=udev-dummy
+pkgver=9999
+pkgrel=1
+pkgdesc="Dummy packages for udev"
+arch=('any')
+url="https://archlinux.org/"
+license=('GPLv2')
+
+package_udev-dummy() {
+    pkgdesc="Dummy package for udev"
+
+    install -d "$pkgdir"/usr/bin
+    ln -sv /usr/lib/systemd/systemd-udevd "$pkgdir"/usr/bin/udevd
+    ln -sv /usr/bin/systemd-hwdb "$pkgdir"/usr/bin/udev-hwdb
+}
+
+package_libudev-dummy() {
+    pkgdesc="Dummy package for libudev"
+    provides=('libudev')
+}
+
+package_esysusers-dummy() {
+    pkgdesc="Dummy package for esysusers"
+    provides=('esysusers')
+
+    install -d "$pkgdir"/usr/bin
+    ln -sv /usr/bin/systemd-sysusers "$pkgdir"/usr/bin/esysusers
+}
+
+package_etmpfiles-dummy() {
+    pkgdesc="Dummy package for etmpfiles"
+    provides=('etmpfiles')
+
+    install -d "$pkgdir"/usr/bin
+    ln -sv /usr/bin/systemd-tmpfiles "$pkgdir"/usr/bin/etmpfiles
+}
