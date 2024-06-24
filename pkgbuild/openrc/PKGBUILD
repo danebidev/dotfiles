@@ -88,7 +88,7 @@ build(){
         -Drootprefix=/usr
         -Dshell=/bin/bash
         -Dpam=true
-        -Dsysvinit=false
+        -Dsysvinit=true
         -Dpkgconfig=true
         -Dbash-completions=true
         -Dzsh-completions=true
@@ -127,6 +127,8 @@ package() {
 
     # remove suport dir
     rm -r "${pkgdir}"/usr/share/openrc
+
+    rm -r "${pkgdir}"/usr/bin/init
 
     install -m755 "${pkgname}-${pkgver}"/support/deptree2dot/deptree2dot "${pkgdir}"/usr/bin/deptree2dot
 }
