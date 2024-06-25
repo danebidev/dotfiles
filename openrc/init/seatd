@@ -1,6 +1,4 @@
 #!/usr/bin/openrc-run
-# Copyright 2021 Artix Linux
-# Distributed under the terms of the GNU General Public License v2
 
 supervisor=supervise-daemon
 command="/usr/bin/seatd"
