@@ -7,7 +7,7 @@ return {
         config = function()
             local null_ls = require("null-ls")
             null_ls.setup({
-                border = "double",
+                border = "single",
                 sources = {},
             })
         end,

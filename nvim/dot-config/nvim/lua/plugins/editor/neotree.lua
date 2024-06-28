@@ -14,16 +14,16 @@ return {
                     {
                         "container",
                         content = {
-                            { "name", zindex = 10 },
+                            { "name",          zindex = 10 },
                             {
                                 "symlink_target",
                                 zindex = 10,
                                 highlight = "NeoTreeSymbolicLinkTarget",
                             },
-                            { "diagnostics", zindex = 20, align = "right", hide_when_expanded = true },
-                            { "git_status", zindex = 10, align = "right", hide_when_expanded = true },
+                            { "diagnostics",   zindex = 20, align = "right", hide_when_expanded = true },
+                            { "git_status",    zindex = 10, align = "right", hide_when_expanded = true },
                             -- This is useless but without it, the size header is not shown
-                            { "file_size", zindex = 10, align = "right" },
+                            { "file_size",     zindex = 10, align = "right" },
                             { "last_modified", zindex = 10, align = "right" },
                         },
                     },
@@ -34,15 +34,15 @@ return {
                     {
                         "container",
                         content = {
-                            { "name", zindex = 10 },
+                            { "name",          zindex = 10 },
                             {
                                 "symlink_target",
                                 zindex = 10,
                                 highlight = "NeoTreeSymbolicLinkTarget",
                             },
-                            { "diagnostics", zindex = 20, align = "right", hide_when_expanded = true },
-                            { "git_status", zindex = 10, align = "right", hide_when_expanded = true },
-                            { "file_size", zindex = 10, align = "right" },
+                            { "diagnostics",   zindex = 20, align = "right", hide_when_expanded = true },
+                            { "git_status",    zindex = 10, align = "right", hide_when_expanded = true },
+                            { "file_size",     zindex = 10, align = "right" },
                             { "last_modified", zindex = 10, align = "right" },
                         },
                     },
@@ -77,7 +77,7 @@ return {
                 "filesystem",
             },
             enable_opened_markers = false,
-            popup_border_style = "double",
+            popup_border_style = "single",
             sort_case_insensitive = true,
         },
     },

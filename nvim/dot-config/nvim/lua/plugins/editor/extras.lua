@@ -1,4 +1,3 @@
--- Smaller plugins
 return {
     -- Fuzzy finder {{{
     {

@@ -90,11 +90,10 @@ return {
                     },
                 },
                 sources = {
-                    { name = "lazydev", group_index = 1 },
+                    { name = "lazydev",        group_index = 1 },
                     { name = "luasnip_choice", group_index = 1 },
-                    { name = "nvim_lsp", group_index = 1 },
-                    { name = "path", group_index = 1 },
-                    { name = "buffer", group_index = 2 },
+                    { name = "nvim_lsp",       group_index = 1 },
+                    { name = "path",           group_index = 1 },
                 },
                 performance = { max_view_entries = 20 },
                 preselect = cmp.PreselectMode.None
