@@ -23,6 +23,17 @@ return {
                     highlight_grey = "Comment",
                 },
             })
+
+            npairs.add_rules({
+                require("nvim-autopairs.rule")(" ", " "):with_pair(function(opts)
+                    local pair = opts.line:sub(opts.col - 1, opts.col)
+                    return vim.tbl_contains({
+                        "()",
+                        "[]",
+                        "{}"
+                    }, pair)
+                end),
+            })
         end,
     },
 }
