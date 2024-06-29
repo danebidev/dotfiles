@@ -1,0 +1,11 @@
+#!/usr/bin/openrc-run
+
+supervisor=supervise-daemon
+command="/usr/bin/seatd"
+command_args="-g seat"
+
+depend() {
+    need dbus
+    provide logind
+    before xdm
+}

@@ -1,0 +1,65 @@
+_fname=gentoo-functions
+_furl="https://github.com/gentoo/${_fname}/archive"
+_fver=0.19
+
+pkgname=netifrc
+pkgver=0.7.8
+pkgrel=1
+pkgdesc="Gentoo Network Interface Management Scripts"
+arch=('x86_64')
+url="https://github.com/gentoo/netifrc"
+license=('BSD2')
+depends=('glibc' 'udev' 'sh')
+backup=('etc/conf.d/net')
+source=("${pkgname}-${pkgver}.tar.gz::${url}/archive/${pkgver}.tar.gz"
+        "${_fname}-${_fver}.tar.gz::${_furl}/${_fver}.tar.gz"
+        'arch.patch')
+sha256sums=('45a48648e72a79e35335761500962ef759f90828a13b64607e158c2b0dd3918b'
+            'f65161c84874959780e332f33d6a8ac878a40dc88da4542448092be6ed9b2ffe'
+            '72798368b3c8f327eb16242d0e20bd2a0aed1bd3e514e5063ab455d465882706')
+
+_nargs=(
+    SYSCONFDIR=/etc
+    PREFIX=/usr
+    SBINDIR=/usr/bin
+    LIBEXECDIR=/usr/lib/"${pkgname}"
+)
+
+_fargs=(
+    ROOTPREFIX=/usr
+    ROOTSBINDIR=/usr/bin
+    ROOTLIBEXECDIR=/usr/lib/arch
+)
+
+prepare() {
+    cd "${pkgname}-${pkgver}"
+    patch -Np 1 -i ../arch.patch
+}
+
+build(){
+    # make netifrc
+    cd "${pkgname}-${pkgver}"
+    make "${_nargs[@]}"
+    cd ${srcdir}/${_fname}-${_fver}
+    make "${_fargs[@]}"
+}
+
+package() {
+    cd "${pkgname}-${pkgver}"
+
+    make DESTDIR="${pkgdir}" "${_nargs[@]}" install
+
+    install -Dm 644 doc/net.example "${pkgdir}"/etc/conf.d/net
+
+    install -d "${pkgdir}"/etc/runlevels/boot
+    ln -svf /etc/init.d/net.lo "${pkgdir}"/etc/runlevels/boot/net.lo
+
+    install -Dm644 LICENSE "${pkgdir}"/usr/share/licenses/"${pkgname}"/LICENSE
+
+    cd "${srcdir}/${_fname}-${_fver}"
+    make DESTDIR="${pkgdir}" "${_fargs[@]}" install
+
+    # rm systemd wrapper
+    rm -fv "${pkgdir}"/usr/lib/netifrc/sh/systemd-wrapper.sh
+}
+
