@@ -17,5 +17,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
         map('K', '<cmd>lua vim.lsp.buf.hover()<CR>', 'show hover')
         map('gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', 'goto implementation')
         map('<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', 'show signature help')
+
+        map('<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', 'code action')
+        map('<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', 'rename')
     end
 })
