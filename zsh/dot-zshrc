@@ -19,6 +19,7 @@ alias cd='z'
 alias conf='cd $DOTFILES/config'
 alias dots='cd $DOTFILES'
 alias pkg='vim $DOTFILES/pkglist && sort $DOTFILES/pkglist -o $DOTFILES/pkglist'
+alias newvim='NVIM_APPNAME=newvim nvim'
 
 function colormap() for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done
 
@@ -26,9 +27,9 @@ export GPG_TTY=$(tty)
 
 [[ ! -f $DOTFILES/misc/p10k.zsh ]] || source $DOTFILES/misc/p10k.zsh
 
-if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
-    if read -q "REPLY?Start i3? "; then
-        startx
+if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
+    if read -q "REPLY?Start Hyprland? "; then
+        dbus-run-session Hyprland
     fi
 fi
 

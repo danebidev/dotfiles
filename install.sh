@@ -26,4 +26,4 @@ yay -S --needed $(cat ./pkglist)
 sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
 
 rm ~/.zshrc ~/.zshenv ~/.zshrc.pre-oh-my-zsh
-stow --dotfiles -t ~ --adopt eww hypr nvim xorg zsh
+stow --dotfiles -t ~ --adopt eww hypr nvim xorg zsh foot
