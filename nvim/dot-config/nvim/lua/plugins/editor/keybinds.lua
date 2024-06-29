@@ -19,6 +19,8 @@ return {
                 replace_keycodes = false,
             })
 
+            vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
+
             -- <leader> prefix
             wk.register({
                 -- Splits movement
