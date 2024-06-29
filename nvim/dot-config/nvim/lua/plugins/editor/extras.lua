@@ -28,6 +28,5 @@ return {
 
     -- Trouble
     { "folke/trouble.nvim", opts = {} },
-
     { "rhysd/clever-f.vim" }
 }
