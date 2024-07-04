@@ -26,7 +26,7 @@ yay -S --needed $(cat ./pkglist)
 sudo chsh mkryss -s /usr/bin/zsh
 
 rm ~/.zshrc ~/.zshenv
-stow --dotfiles -t ~ --adopt sway nvim xorg zsh foot
+stow --dotfiles -t ~ --adopt sway nvim zsh foot
 
 echo "Do you also want to install the /etc files? (y/n)"
 read response
