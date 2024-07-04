@@ -27,3 +27,9 @@ sudo chsh mkryss -s /usr/bin/zsh
 
 rm ~/.zshrc ~/.zshenv
 stow --dotfiles -t ~ --adopt sway nvim xorg zsh foot
+
+echo "Do you also want to install the /etc files? (y/n)"
+read response
+if [ "$response" != "y" ]; then
+    sudo cp -r ./etc/* /etc/
+fi
