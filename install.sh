@@ -26,4 +26,4 @@ yay -S --needed $(cat ./pkglist)
 sudo chsh mkryss -s /usr/bin/zsh
 
 rm ~/.zshrc ~/.zshenv
-stow --dotfiles -t ~ --adopt eww hypr nvim xorg zsh foot
+stow --dotfiles -t ~ --adopt sway nvim xorg zsh foot
