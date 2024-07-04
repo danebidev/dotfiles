@@ -1,6 +1,8 @@
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+source <(fzf --zsh)
 
 export ZSH="$HOME/.oh-my-zsh"
+export HISTFILE="$XDG_STATE_HOME"/zsh/history
 
 zstyle ':omz:update' mode auto
 zstyle ':completion:*' rehash true
@@ -12,8 +14,8 @@ plugins=( git )
 source $ZSH/oh-my-zsh.sh
 
 alias yolo='sudo pacman -Sy --needed --noconfirm archlinux-keyring && yay -Syu --noconfirm'
-alias pwgen='pwgen -s -1 -y'
 alias vim='nvim'
+alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
 alias cd='z'
 
 alias conf='cd $DOTFILES/config'
@@ -27,8 +29,8 @@ export GPG_TTY=$(tty)
 [[ ! -f $DOTFILES/misc/p10k.zsh ]] || source $DOTFILES/misc/p10k.zsh
 
 if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
-    if read -q "REPLY?Start Hyprland? "; then
-        dbus-run-session Hyprland
+    if read -q "REPLY?Start Sway? "; then
+        dbus-run-session sway --unsupported-gpu
     fi
 fi
 

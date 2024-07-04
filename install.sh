@@ -23,7 +23,7 @@ mkdir ~/.config
 
 yay -S --needed $(cat ./pkglist)
 
-sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
+sudo chsh mkryss -s /usr/bin/zsh
 
-rm ~/.zshrc ~/.zshenv ~/.zshrc.pre-oh-my-zsh
+rm ~/.zshrc ~/.zshenv
 stow --dotfiles -t ~ --adopt eww hypr nvim xorg zsh foot
