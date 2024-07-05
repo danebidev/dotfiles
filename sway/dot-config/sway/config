@@ -42,7 +42,7 @@ bindsym $mod+c kill
 bindsym $mod+p exec rofi -show drun -show-icons -icon-theme "Numix-Circle"
 
 # Screenshot
-bindsym $mod+s exec hyprshot -m region -o ~/pictures/screenshots -f $(date +%Y%m%d-%H%M%S).png
+bindsym $mod+s exec hyprshot -z -m region -o ~/pictures/screenshots -f $(date +%Y%m%d-%H%M%S).png
 
 # Lock
 bindsym $mod+Shift+b exec swaylock

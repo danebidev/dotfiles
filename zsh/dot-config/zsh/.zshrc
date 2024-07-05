@@ -1,33 +1,3 @@
-source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
-source <(fzf --zsh)
-
-export ZSH="$HOME/.oh-my-zsh"
-export HISTFILE="$XDG_STATE_HOME"/zsh/history
-
-zstyle ':omz:update' mode auto
-zstyle ':completion:*' rehash true
-
-HIST_STAMPS="yyyy-mm-dd"
-
-plugins=( git )
-
-source $ZSH/oh-my-zsh.sh
-
-alias yolo='sudo pacman -Sy --needed --noconfirm archlinux-keyring && yay -Syu --noconfirm'
-alias vim='nvim'
-alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
-alias cd='z'
-
-alias conf='cd $DOTFILES/config'
-alias dots='cd $DOTFILES'
-alias pkg='vim $DOTFILES/pkglist && sort $DOTFILES/pkglist -o $DOTFILES/pkglist'
-
-function colormap() for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done
-
-export GPG_TTY=$(tty)
-
-[[ ! -f $DOTFILES/misc/p10k.zsh ]] || source $DOTFILES/misc/p10k.zsh
-
 if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
     if read -q "REPLY?Start Sway? "; then
         dbus-run-session sway --unsupported-gpu
@@ -36,23 +6,54 @@ fi
 
 fastfetch
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/mkryss/miniforge3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/mkryss/miniforge3/etc/profile.d/conda.sh" ]; then
-        . "/home/mkryss/miniforge3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/mkryss/miniforge3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
+bindkey -v
 
-if [ -f "/home/mkryss/miniforge3/etc/profile.d/mamba.sh" ]; then
-    . "/home/mkryss/miniforge3/etc/profile.d/mamba.sh"
+setopt GLOBDOTS
+setopt PROMPT_SUBST
+setopt NO_CASE_GLOB
+setopt AUTO_CD
+
+alias ls='ls --color=auto'
+alias la='ls -A'
+alias ll='ls -l'
+alias l='ls -lA'
+alias cd='z'
+alias grep='grep --color=auto'
+alias diff='diff --color=auto'
+
+alias yolo='sudo pacman -Sy --needed --noconfirm archlinux-keyring && yay -Syu --noconfirm'
+alias vim='nvim'
+
+alias conf='cd $DOTFILES/config'
+alias dots='cd $DOTFILES'
+alias pkg='vim $DOTFILES/pkglist && sort $DOTFILES/pkglist -o $DOTFILES/pkglist'
+
+autoload -Uz promptinit; promptinit
+autoload -Uz compinit; compinit
+
+plugin_dir=${XDG_DATA_HOME:-$HOME/.local/share}/zsh/plugins
+[ -d $plugin_dir ] || mkdir -p $plugin_dir
+
+if command -v fzf &> /dev/null; then
+    if [ ! -d $plugin_dir/fzf-tab ]; then
+        git clone https://github.com/Aloxaf/fzf-tab $plugin_dir/fzf-tab
+    fi
+    source $plugin_dir/fzf-tab/fzf-tab.plugin.zsh
 fi
-# <<< conda initialize <<<
+
+if [ ! -d $plugin_dir/fast-syntax-highlighting ]; then
+    git clone https://github.com/zdharma-continuum/fast-syntax-highlighting $plugin_dir/fast-syntax-highlighting
+fi
+source $plugin_dir/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+
+function colormap() for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done
+
+function fh() {
+    eval $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]* *//')
+}
+
+function weather() {
+    curl wttr.in/$1
+}
 
 eval "$(zoxide init zsh)"

@@ -22,3 +22,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
         map('<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', 'rename')
     end
 })
+
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+    pattern = '*.c',
+    callback = function()
+        vim.bo.filetype = 'c'
+    end
+})
