@@ -55,6 +55,7 @@ fi
 if [ ! -d $plugin_dir/zsh-autosuggestions ]; then
     git clone https://github.com/zsh-users/zsh-autosuggestions $plugin_dir/zsh-autosuggestions
 fi
+source $plugin_dir/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # If fast-syntax-highlighting is not installed, clone it
 if [ ! -d $plugin_dir/fast-syntax-highlighting ]; then
