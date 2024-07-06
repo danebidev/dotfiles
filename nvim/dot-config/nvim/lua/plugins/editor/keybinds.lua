@@ -45,7 +45,18 @@ return {
                     f = { "<cmd>Telescope find_files<cr>", "find files" },
                     g = { "<cmd>Telescope live_grep<cr>", "live grep" },
                     h = { "<cmd>Telescope help_tags<cr>", "help tags" },
-                }
+                },
+
+                -- DAP
+                d = {
+                    name = "debug",
+                    b = { "<cmd>DapToggleBreakpoint<cr>", "toggle breakpoint" },
+                    r = { "<cmd>DapToggleRepl<cr>", "toggle repl" },
+                    c = { "<cmd>DapContinue<cr>", "continue" },
+                    i = { "<cmd>DapStepInto<cr>", "step into" },
+                    o = { "<cmd>DapStepOver<cr>", "step over" },
+                    t = { "<cmd>DapStop<cr>", "terminate" },
+                },
             }, { prefix = "<leader>" })
         end,
     },
