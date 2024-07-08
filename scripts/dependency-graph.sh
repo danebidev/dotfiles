@@ -1,0 +1,68 @@
+#!/bin/bash
+
+services="${1:-/etc/s6/sv}"
+
+graph="digraph G {"
+
+get_service_name() {
+    local service=$1
+    
+    if [[ -d $services/$service ]]; then
+        echo "$service"
+    elif [[ -d $services/$service-srv ]]; then
+        echo "$service-srv"
+    else
+        echo "$service"
+    fi
+}
+
+is_service() {
+    local service=$1
+    service=$(get_service_name $service)
+    echo $(s6-rc-db list services | grep -c -e "^$service$")
+}
+
+get_deps() {
+    local service=$1
+    service=$(get_service_name $service)
+
+    srv_dir=$services/$service
+
+    if [[ -d $srv_dir/dependencies.d ]]; then
+        echo $(ls $srv_dir/dependencies.d)
+    fi
+}
+
+declare -A processed
+
+process_service() {
+    local service=$1
+
+    if [[ -n "${processed[$service]}" ]]; then
+        return
+    fi
+    processed[$service]=1
+
+    if [ $(is_service $service) -eq 1 ]; then
+    	graph="$graph   \"$service\";"
+    else
+	    graph="$graph   \"$service\" [shape=box];"
+        cont_dir=$services/$(get_service_name $service)/contents.d
+        if [ -d $cont_dir ]; then
+            for cont in $cont_dir/*; do
+                graph="$graph   \"$service\" -> \"$(basename $cont)\" [arrowhead = onormal];"
+                process_service $(basename $cont)
+            done
+        fi
+    fi
+
+    for dep in $(get_deps $service); do
+        graph="$graph   \"$service\" -> \"$dep\";"
+        process_service $dep
+    done
+}
+
+process_service "default"
+graph="$graph   }"
+
+echo $graph | dot -Tpng | chafa

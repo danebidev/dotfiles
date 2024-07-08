@@ -1,0 +1,25 @@
+pkgname=skalibs
+pkgver=2.14.2.0
+pkgrel=1
+pkgdesc="A general-purpose utility library for secure, small C development"
+url="http://www.skarnet.org/software/skalibs/"
+license=('ISC')
+arch=('x86_64')
+depends=('glibc')
+provides=('libskarnet.so')
+source=(http://www.skarnet.org/software/$pkgname/$pkgname-$pkgver.tar.gz)
+sha256sums=('ddfec5730e5b2f19d0381ecf7f796b39a6e473236bda0ad8d3776a3fe7b07e43')
+
+build() {
+  cd ${pkgname}-${pkgver}
+  ./configure --prefix=/usr \
+      --datadir=/etc \
+      --disable-static
+  make
+}
+
+package() {
+  cd ${pkgname}-${pkgver}
+  make DESTDIR="$pkgdir" install
+  install -D COPYING ${pkgdir}/usr/share/licenses/${pkgname}/LICENSE
+}

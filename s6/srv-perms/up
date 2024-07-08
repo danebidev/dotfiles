@@ -1,0 +1,4 @@
+#!/usr/bin/execlineb -P
+
+elglob -m -0 SERVICEDIRS /run/service/*
+s6-svperms -g wheel ${SERVICEDIRS}

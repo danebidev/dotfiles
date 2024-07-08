@@ -1,0 +1,3 @@
+#!/bin/execlineb -P
+
+exec etmpfiles --prefix=/dev --create --boot

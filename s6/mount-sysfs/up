@@ -1,0 +1,34 @@
+#!/bin/execlineb -P
+foreground {
+    if -n { mountpoint -q /sys }
+    mount -t sysfs sys /sys -o nosuid,noexec,nodev
+}
+foreground { 
+    if -n { mountpoint -q /sys/kernel/security }
+    mount -n -t securityfs securityfs /sys/kernel/security
+}
+foreground {
+    if { test -d /sys/kernel/debug }
+        if -n { mountpoint -q /sys/kernel/debug }
+        mount -n -t debugfs -o nosuid,noexec,nodev debugfs /sys/kernel/debug
+}
+foreground {
+    if { test -d /sys/kernel/config }
+        if -n { mountpoint -q /sys/kernel/config }
+        mount -n -t configfs -o nosuid,noexec,nodev configfs /sys/kernel/config
+}
+foreground {
+    if { test -d /sys/fs/fuse/connections }
+        if -n { mountpoint -q /sys/fs/fuse/connections }
+        mount -n -t fusectl -o nosuid,noexec,nodev fusectl /sys/fs/fuse/connections
+}
+foreground {
+    if { test -d /sys/fs/pstore }
+        if -n { mountpoint -q /sys/fs/pstore }
+        mount -t pstore pstore -o nosuid,noexec,nodev /sys/fs/pstore
+}
+foreground {
+    if { test -d /sys/firmware/efi }
+        if -n { mountpoint -q /sys/firmware/efi/efivars }
+        mount -n -t efivarfs -o ro efivarfs /sys/firmware/efi/efivars
+}

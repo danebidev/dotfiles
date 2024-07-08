@@ -1,0 +1,4 @@
+#!/bin/execlineb -P
+
+/usr/bin/sshd -D
+
