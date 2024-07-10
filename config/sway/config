@@ -20,8 +20,8 @@ exec "setxkbmap -model pc105 -layout us,it -option grp:alt_shift_toggle"
 exec --no-startup-id dex --autostart --environment sway
 exec --no-startup-id dunst
 
-exec --no-startup-id ~/.config/sway/scripts/pipewire.sh
-exec --no-startup-id ~/.config/sway/scripts/xdp-wlr.sh
+# exec --no-startup-id ~/.config/sway/scripts/pipewire.sh
+# exec --no-startup-id ~/.config/sway/scripts/xdp-wlr.sh
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod

@@ -13,10 +13,10 @@ source=("https://skarnet.org/software/${pkgname}/${pkgname}-${pkgver}.tar.gz"
 	"rc.shutdown.final"
 	"runlevel")
 sha256sums=('11ae08d0a66210b5e56b6baee0f6b9b1b69fbedb05fda1285b115a31ca46c77f'
-            'c19a904f08c0e8a4503ba564484aef0bf010d519872a85386fa77bfb2f1af973'
-            '3dc227cee3830727ceb3f6f0bbd0573592d1ff5a9783677a10642613abd2dc5b'
+            'ae9c38cf9e557105dafdc0a1848ebaf959d393f8a7ed0493af2ac57f52b1c041'
+            '962df203bbfd9a4e46af509baa86684fe2987968a7cde9902e859f6ccf89aa77'
             '524df97d15ea7cbcd885dd9a2e5af1f6411c41614e5c8125807412cc2e07c65a'
-            '4a839ae5afc9621f6da78c6fbcb8c76edc06a0419fcfa3ecc9ad25e2b3f7c2b7')
+            'c960e44cef24015b49d95d9532502cba34cab3610fe93f775c362d128838c3c8')
 
 build() {
   cd ${pkgname}-${pkgver}

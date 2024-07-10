@@ -1,7 +1,8 @@
 # Start sway if not already running
-if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
+if [ -z "$WAYLAND_DISPLAY" ]; then
     if read -q "REPLY?Start Sway? "; then
-        dbus-run-session sway --unsupported-gpu
+        s6-rc -l /run/$(id -u)/s6-rc -v2 -up change "graphical"
+        sway --unsupported-gpu
     fi
 fi
 

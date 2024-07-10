@@ -17,7 +17,7 @@ build() {
               --libexecdir=/usr/lib \
               --enable-shared \
               --disable-static
-  CFLAGS="-g -O0" make
+  make
 }
 
 package() {

@@ -14,7 +14,6 @@ depends=(
   audit
   libcap-ng
   expat
-  libelogind
   libx11
 )
 makedepends=(
@@ -22,24 +21,20 @@ makedepends=(
   docbook-xsl
   doxygen
   python
-  elogind
   xmlto
   yelp-tools
 )
 source=(
   https://dbus.freedesktop.org/releases/dbus/dbus-$pkgver.tar.xz{,.asc}
-  dbus-enable-elogind.patch
 )
 b2sums=('f605b0810dcde6a0753384927131e7f4675be737ad7506a51261717c2622e74b99ac33cc2c199b98e5aa6b9d7c68ef692b8ee9f684f6fdab8d06c6fa861a6f6b'
-        'SKIP'
-        'cb35bbeae6fbd73618bf7aa951c8c8bc5171f3da4a3f39e7618cd34c076249c1cbbaa16d5bccedde665836ffd4b34ed28f8cdd9433ea4932aedaca6fa19b76ad')
+        'SKIP')
 validpgpkeys=(
   DA98F25C0871C49A59EAFF2C4DE8FF2A63C7CC90  # Simon McVittie <simon.mcvittie@collabora.co.uk>
 )
 
 prepare() {
   cd dbus-$pkgver
-  patch -Np 1 -i ../dbus-enable-elogind.patch
   NOCONFIGURE=1 ./autogen.sh
 }
 
@@ -57,13 +52,10 @@ build() {
     --without-systemdsystemunitdir
     --enable-inotify
     --enable-libaudit
-    --disable-systemd
-    --disable-user-session
     --enable-xml-docs
     --enable-doxygen-docs
     --enable-ducktype-docs
     --disable-static
-    --enable-elogind
     --enable-x11-autolaunch
   )
 

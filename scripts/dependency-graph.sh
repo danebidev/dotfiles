@@ -1,6 +1,7 @@
 #!/bin/bash
 
 services="${1:-/etc/s6/sv}"
+start="${2:-default}"
 
 graph="digraph G {"
 
@@ -62,7 +63,7 @@ process_service() {
     done
 }
 
-process_service "default"
+process_service "$start"
 graph="$graph   }"
 
 echo $graph | dot -Tpng | chafa
