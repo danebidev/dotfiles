@@ -1,7 +1,7 @@
 #!/bin/execlineb -P
 
-backtick -E -n USER { whoami }
-backtick -E -n UID { id -u }
+importas -i USER _USER
+importas -i UID _UID
 
 foreground { install -d /run/${UID}/env }
 
@@ -13,7 +13,7 @@ define LOGDIR /home/${USER}/.local/share/s6/log/${SERVICENAME}
 # create log dir with right perms
 foreground { if -n { test -d ${LOGDIR} } install -d ${LOGDIR} }
 # pipe into logger
-pipeline -w { exec -c s6-log -b -- t p${SERVICENAME}: ${LOGDIR} }
+pipeline -w { exec -c s6-log -b -- t p[${SERVICENAME}] ${LOGDIR} }
 fdmove -c 2 1
 
 define BUS_ADDRESS "unix:path=/run/${UID}/bus"

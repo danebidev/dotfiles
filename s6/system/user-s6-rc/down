@@ -1,11 +1,11 @@
 #!/bin/execlineb -P
 
 define USER mkryss
-define ID "$(id -u)"
+define UID 1000
 
-foreground { s6-setuidgid ${USER} s6-rc -l /run/${ID}/s6-rc -bDa change }
-foreground { s6-setuidgid ${USER} rm -r /run/${ID}/service }
+foreground { s6-setuidgid ${USER} s6-rc -l /run/${UID}/s6-rc -bDa change }
+foreground { s6-setuidgid ${USER} rm -r /run/${UID}/service }
 s6-setuidgid ${USER}
-elglob -0 dirs /run/${ID}/s6-rc*
+elglob -0 dirs /run/${UID}/s6-rc*
 forx -E dir { ${dirs} }
     rm -r ${dir}

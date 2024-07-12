@@ -1,11 +1,11 @@
 #!/bin/execlineb -P
 
 define USER mkryss
-define ID 1000
+define UID 1000
 
-export XDG_RUNTIME_DIR "/run/${ID}"
-export DBUS_SESSION_BUS_ADDRESS "unix:path=/run/${ID}/bus"
+export _USER ${USER}
+export _UID ${UID}
 
-foreground { install -d -o ${USER} -g ${USER} /run/${ID} }
-foreground { install -d -o ${USER} -g ${USER} /run/${ID}/service }
-s6-setuidgid ${USER} exec s6-svscan -d 3 /run/${ID}/service
+foreground { install -d -o ${USER} -g ${USER} /run/${UID} }
+foreground { install -d -o ${USER} -g ${USER} /run/${UID}/service }
+s6-setuidgid ${USER} exec s6-svscan -d 3 /run/${UID}/service
