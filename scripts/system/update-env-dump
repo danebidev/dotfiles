@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import os
 import sys
+import shutil
 
 blacklist = [
     "_",
@@ -10,7 +11,12 @@ blacklist = [
     "TERM",
 ]
 
-envdir = sys.argv[1]
+envdir = os.path.join("/run", str(os.getuid()), "env")
+
+if os.path.exists(envdir):
+    shutil.rmtree(envdir)
+
+os.makedirs(envdir)
 
 for name, val in filter(lambda var: var[0] not in blacklist,
                         os.environ.items()):
