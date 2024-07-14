@@ -83,7 +83,6 @@ package_dbus() {
     libaudit.so
     libcap-ng.so
     libexpat.so
-    libelogind.so
   )
   provides=(
     libdbus

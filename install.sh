@@ -7,7 +7,7 @@ if [ "$response" != "y" ]; then
 fi
 
 sudo pacman -Syu
-sudo pacman -S --needed git base-devel wget stow
+sudo pacman -S --needed git base-devel
 
 if ! pacman -Qs yay > /dev/null; then
     git clone https://aur.archlinux.org/yay.git
@@ -25,20 +25,22 @@ yay -S --needed $(cat ./pkglist)
 
 sudo chsh mkryss -s /usr/bin/zsh
 
+conf_dir=${XDG_CONFIG_HOME:-~/.config}
+
 rm ~/.zshrc ~/.zshenv
 for conf in ./config/*; do
     rm -rf "$XDG_DESKTOP_HOME"/$(basename $conf)
-    ln -sf "$DOTFILES/config/$(basename $conf)" "$XDG_CONFIG_HOME"/$(basename $conf)
+    ln -sf $(realpath "$DOTFILES/config/$(basename $conf)") "$XDG_CONFIG_HOME"/$(basename $conf)
 done
 
 echo "Do you also want to install the /etc files? (y/n)"
 read response
 if [ "$response" != "y" ]; then
-    sudo cp -r ./etc/* /etc/
+    sudo cp -ra ./etc/* /etc/
 fi
 
 echo "Do you also want to install the system scripts in /usr/local? (y/n)"
 read response
 if [ "$response" != "y" ]; then
-    sudo cp -r ./scripts/system /usr/local/bin/
+    sudo cp -ra ./scripts/system /usr/local/bin/
 fi

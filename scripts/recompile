@@ -1,0 +1,86 @@
+#!/bin/bash
+
+s6_dir="${1:-/etc/s6}"
+sv_dir="$s6_dir/sv"
+rc_dir="$s6_dir/rc"
+
+install -d "$s6_dir"
+install -d "$sv_dir"
+install -d "$rc_dir"
+
+declare -a processed
+
+to_remove=()
+
+function is_service {
+    local service=$1
+    local type=$(cat "$sv_dir/$service/type")
+    [ "$type" == "bundle" ] && return 1
+    return 0
+}
+
+function add_dep {
+    local service=$1
+    local dep=$2
+
+    # If the dir does not exist, create it
+    if [ ! -d $sv_dir/$service/dependencies.d ]; then
+        echo "Creating $sv_dir/$service/dependencies.d"
+        mkdir $sv_dir/$service/dependencies.d
+        to_remove+=("$sv_dir/$service/dependencies.d")
+    fi
+
+    echo "Creating $sv_dir/$service/dependencies.d/$dep"
+    touch $sv_dir/$service/dependencies.d/$dep
+
+    to_remove+=("$sv_dir/$service/dependencies.d/$dep")
+}
+
+function process_service {
+    local service=$1
+
+    for i in "${processed[@]}"; do
+        [ "$i" == "$service" ] && return
+    done
+    processed+=("$service")
+
+    service_dir="$sv_dir/$service"
+
+    if [ ! -d "$service_dir" ]; then
+        echo "Service $service does not exist"
+        return
+    fi
+
+    if is_service "$service"; then
+        if [ -d "$service_dir/dependencies.d" ]; then
+            for dep in $service_dir/dependencies.d/*; do
+                process_service "$(basename $dep)"
+            done
+        fi
+    else
+        if [ -d "$service_dir/contents.d" ]; then
+            if [ -d "$service_dir/dependencies.d" ]; then
+                for content in $service_dir/contents.d/*; do
+                    for dep in $service_dir/dependencies.d/*; do
+                        add_dep "$(basename $content)" "$(basename $dep)"
+                    done
+                done
+            fi
+            for content in $service_dir/contents.d/*; do
+                process_service "$(basename $content)"
+            done
+        fi
+    fi
+}
+
+process_service "$2"
+
+rc_name=compiled-$(date +%s)
+s6-rc-compile "$rc_dir/$rc_name" "$sv_dir"
+
+rm "$rc_dir/compiled"
+ln -s $(basename "$rc_dir/$rc_name") "$rc_dir/compiled"
+
+echo "To remove: ${to_remove[@]}"
+
+rm -rf ${to_remove[@]}
