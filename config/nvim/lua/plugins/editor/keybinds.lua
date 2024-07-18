@@ -9,7 +9,7 @@ return {
                 icons = {
                     separator = "",
                 },
-                window = {
+                win = {
                     winblend = 5,
                 },
             })
@@ -22,42 +22,38 @@ return {
             vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 
             -- <leader> prefix
-            wk.register({
+            wk.add({
                 -- Splits movement
-                h = { "<cmd>wincmd h<CR>", "move left" },
-                j = { "<cmd>wincmd j<CR>", "move down" },
-                k = { "<cmd>wincmd k<CR>", "move up" },
-                l = { "<cmd>wincmd l<CR>", "move right" },
+                { "<leader>h",        "<cmd>wincmd h<CR>",                               desc = "move left" },
+                { "<leader>j",        "<cmd>wincmd j<CR>",                               desc = "move down" },
+                { "<leader>k",        "<cmd>wincmd k<CR>",                               desc = "move up" },
+                { "<leader>l",        "<cmd>wincmd l<CR>",                               desc = "move right" },
 
                 -- System clipboard
-                y = { '"+y', "copy" },
-                p = { '"+p', "paste" },
+                { "<leader>y",        '"+y',                                             desc = "system copy" },
+                { "<leader>p",        '"+p',                                             desc = "system paste" },
 
                 -- Neotree
-                t = { "<cmd>Neotree<cr>", "open neotree" },
+                { "<leader>t",        "<cmd>Neotree<cr>",                                desc = "open neotree" },
 
                 -- Telescope
-                ["<leader>"] = { "<cmd>Telescope buffers<cr>", "buffers" },
-                ["/"] = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "current buffer" },
+                { "<leader><leader>", "<cmd>Telescope buffers<cr>",                      desc = "buffers" },
+                { "<leader>/",        "<cmd>Telescope current_buffer_fuzzy_find<cr>",    desc = "current buffer" },
 
-                s = {
-                    name = "search",
-                    f = { "<cmd>Telescope find_files<cr>", "find files" },
-                    g = { "<cmd>Telescope live_grep<cr>", "live grep" },
-                    h = { "<cmd>Telescope help_tags<cr>", "help tags" },
-                },
+                -- Search
+                { "<leader>s",        group = "search" },
+                { "<leader>sf",       "<cmd>Telescope find_files<cr>",                   desc = "find files" },
+                { "<leader>sg",       "<cmd>Telescope live_grep<cr>",                    desc = "live grep" },
+                { "<leader>sh",       "<cmd>Telescope help_tags<cr>",                    desc = "help tags" },
 
-                -- DAP
-                d = {
-                    name = "debug",
-                    b = { "<cmd>DapToggleBreakpoint<cr>", "toggle breakpoint" },
-                    r = { "<cmd>DapToggleRepl<cr>", "toggle repl" },
-                    c = { "<cmd>DapContinue<cr>", "continue" },
-                    i = { "<cmd>DapStepInto<cr>", "step into" },
-                    o = { "<cmd>DapStepOver<cr>", "step over" },
-                    t = { "<cmd>DapStop<cr>", "terminate" },
-                },
-            }, { prefix = "<leader>" })
+                { "<leader>d",        group = "debug" },
+                { "<leader>db",       "<cmd>lua require('dap').toggle_breakpoint()<cr>", desc = "toggle breakpoint" },
+                { "<leader>dr",       "<cmd>lua require('dap').toggle_repl()<cr>",       desc = "toggle repl" },
+                { "<leader>dc",       "<cmd>lua require('dap').continue()<cr>",          desc = "continue" },
+                { "<leader>di",       "<cmd>lua require('dap').step_into()<cr>",         desc = "step into" },
+                { "<leader>do",       "<cmd>lua require('dap').step_over()<cr>",         desc = "step over" },
+                { "<leader>dt",       "<cmd>lua require('dap').stop()<cr>",              desc = "terminate" },
+            })
         end,
     },
 }

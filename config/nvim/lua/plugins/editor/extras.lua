@@ -18,15 +18,6 @@ return {
     },
     -- }}}
 
-    -- Discord presence
-    {
-        "andweeb/presence.nvim",
-        opts = {
-            buttons = false,
-        },
-    },
-
-    -- Trouble
     { "folke/trouble.nvim", opts = {} },
     { "rhysd/clever-f.vim" }
 }
