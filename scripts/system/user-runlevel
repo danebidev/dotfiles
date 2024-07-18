@@ -1,3 +1,0 @@
-#!/bin/bash
-
-s6-rc -l "/run/$(id -u)/s6-rc" -v2 -up change "$1"
