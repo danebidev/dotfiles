@@ -6,6 +6,11 @@ output DP-3 {
     mode 1920x1080@165.003Hz
 }
 
+input * {
+    xkb_layout "us,it"
+    xkb_options "grp:alt_shift_toggle"
+}
+
 # Remove borders
 # for_window [class="^.*"] border pixel 1
 default_border pixel 1
@@ -15,8 +20,6 @@ client.focused_inactive #343F44FF #343F44FF #343F44FF #343F44FF
 client.unfocused #343F44FF #343F44FF #343F44FF #343F44FF
 
 # Autostart
-exec "setxkbmap -model pc105 -layout us,it -option grp:alt_shift_toggle"
-
 exec --no-startup-id dex --autostart --environment sway
 exec --no-startup-id dunst
 
@@ -25,8 +28,6 @@ exec --no-startup-id $DOTFILES/scripts/system/user-runlevel "graphical"
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
-
-mouse_warping none
 
 # move tiling windows via drag & drop by left-clicking into the title bar,
 # or left-clicking anywhere into the window while holding the floating modifier.
@@ -39,10 +40,10 @@ bindsym $mod+Return exec foot
 bindsym $mod+c kill
 
 # Rofi
-bindsym $mod+p exec rofi -show drun -show-icons -icon-theme "Numix-Circle"
+bindsym $mod+p exec rofi -show drun
 
 # Screenshot
-bindsym $mod+s exec hyprshot -z -m region -o ~/pictures/screenshots -f $(date +%Y%m%d-%H%M%S).png
+bindsym $mod+s exec ~/.config/sway/scripts/screenshot.sh
 
 # Lock
 bindsym $mod+Shift+b exec swaylock
