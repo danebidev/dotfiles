@@ -4,15 +4,22 @@ font pango:Fira Mono 8
 
 output DP-3 {
     mode 1920x1080@165.003Hz
+    position 1920,0
 }
 
+output HDMI-A-1 {
+    mode 1920x1080@59.939Hz
+    position 0,0
+}
+
+focus output DP-3
+
 input * {
+    xkb_options caps:swapescape,grp:alt_shift_toggle
     xkb_layout "us,it"
-    xkb_options "grp:alt_shift_toggle"
 }
 
 # Remove borders
-# for_window [class="^.*"] border pixel 1
 default_border pixel 1
 
 client.focused #717272FF #717272FF #717272FF #717272FF
@@ -21,7 +28,6 @@ client.unfocused #343F44FF #343F44FF #343F44FF #343F44FF
 
 # Autostart
 exec --no-startup-id dex --autostart --environment sway
-exec --no-startup-id dunst
 
 exec --no-startup-id $DOTFILES/scripts/system/update-env-dump
 exec --no-startup-id $DOTFILES/scripts/system/user-runlevel "graphical"

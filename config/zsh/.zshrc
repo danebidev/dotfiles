@@ -25,6 +25,8 @@ alias vim='nvim'
 alias conf='cd $DOTFILES/config'
 alias dots='cd $DOTFILES'
 alias pkg='vim $DOTFILES/pkglist && sort $DOTFILES/pkglist -o $DOTFILES/pkglist'
+
+alias pkgs="pacman -Qqe | fzf --preview 'pacman   -Qii {}'"
 # -----------------------------------
 
 # ------------- Plugins -------------
