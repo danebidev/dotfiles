@@ -4,11 +4,19 @@ font pango:JetBrains Mono 8
 
 output DP-3 {
     mode 1920x1080@165.003Hz
+    position 1920,0
 }
 
+output HDMI-A-1 {
+    mode 1920x1080@59.939Hz
+    position 0,0
+}
+
+focus output DP-3
+
 input * {
+    xkb_options caps:swapescape,grp:alt_shift_toggle
     xkb_layout "us,it"
-    xkb_options "grp:alt_shift_toggle"
 }
 
 # Remove borders
@@ -22,7 +30,10 @@ client.unfocused #343F44FF #343F44FF #343F44FF #343F44FF
 exec --no-startup-id dex --autostart --environment sway
 exec --no-startup-id dunst
 
-exec gentoo-pipewire-launcher &
+exec gentoo-pipewire-launcher restart &
+
+exec /usr/libexec/xdg-desktop-portal-wlr &
+exec /usr/libexec/xdg-desktop-portal &
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod

@@ -29,3 +29,23 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
         vim.bo.filetype = 'c'
     end
 })
+
+local group_cdpwd = vim.api.nvim_create_augroup("group_cdpwd", { clear = true })
+vim.api.nvim_create_autocmd("VimEnter", {
+    group = group_cdpwd,
+    pattern = "*",
+    callback = function()
+        vim.api.nvim_set_current_dir(vim.fn.expand("%:p:h"))
+    end,
+})
+
+local disable_copilot = vim.api.nvim_create_augroup("DisableCopilot", { clear = true })
+vim.api.nvim_create_autocmd("BufEnter", {
+    callback = function()
+        if vim.startswith(vim.fn.expand("%:p:h"), vim.fn.expand("~/programming/cp")) then
+            vim.cmd("Copilot disable")
+        end
+    end,
+    group = disable_copilot,
+    pattern = "*",
+})
