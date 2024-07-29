@@ -7,10 +7,8 @@ return {
 
             wk.setup({
                 icons = {
-                    separator = "",
-                },
-                win = {
-                    winblend = 5,
+                    separator = " ",
+                    rules = false
                 },
             })
 

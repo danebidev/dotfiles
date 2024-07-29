@@ -28,15 +28,15 @@ pipewire
 pipewire-alsa
 pipewire-jack
 pipewire-pulse
-reflector
 ripgrep
 rofi-wayland
 sway-git
 swaylock
 vim
 wireplumber
-xdg-desktop-portal-wlr
+wlroots-git
 xdg-desktop-portal-termfilechooser-fix-for-lf-git
+xdg-desktop-portal-wlr
 yay
 zoxide
 zsh
