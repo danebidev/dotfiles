@@ -12,16 +12,18 @@ seconds_to_delta() {
 }
 
 main() {
+    if [ ! -n "$1" ]; then
+        die 'Usage: s6-status [--user] <service>'
+    fi
+
+    local user_service=0
     if [ "$1" = "--user" ]; then
+        user_service=1
         scandir=/run/"$(id -u)"/service
         service="$2"
         shift
-    fi
-
-    if [ -n "$1" ]; then
-        service="$1"
     else
-        die 'Usage: s6-status [--user] <service>'
+        service="$1"
     fi
 
     IFS=' ' read -r up wantedup normallyup ready paused pid pgid exitcode signal signum updownsince readysince updownfor readyfor < <(s6-svstat -o up,wantedup,normallyup,ready,paused,pid,pgid,exitcode,signal,signum,updownsince,readysince,updownfor,readyfor "${scandir}"/"${service}")
@@ -61,6 +63,10 @@ main() {
 
     nlines=10
     logfile=/var/log/s6/"${service}"/current
+    if [ "$user_service" = 1 ]; then
+        logfile=~/.local/share/s6/log/"${service}"/current
+    fi
+
     printf '\n'
     if [ -f "$logfile" ]; then
         printf '\033[1mLast %s lines from %s:\033[0m\n' "$nlines" "$logfile"
