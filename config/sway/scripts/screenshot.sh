@@ -1,5 +1,6 @@
 #!/bin/bash
 
+hyprpicker -rz &
 sleep 0.2
 grim  -g "$(slurp -d)" - | wl-copy && pkill hyprpicker
 mkdir -p ~/pictures/screenshot

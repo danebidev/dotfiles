@@ -1,2 +1,2 @@
 #!/bin/execlineb -P
-foreground { modules-load }
+foreground { /usr/lib/systemd/systemd-modules-load }
