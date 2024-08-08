@@ -83,7 +83,7 @@ s6-rc-update -v2 "$rc_dir/$rc_name"
 rm -r "$rc_dir/compiled"
 ln -s "$rc_name" "$rc_dir/compiled"
 
-rm -rf $(ls "$rc_dir" | sort | tail -n +7 | xargs -I{} echo "$rc_dir/{}")
+rm -rf $(ls "$rc_dir" -t | tail -n +4 | xargs -I{} echo "$rc_dir/{}")
 
 echo "To remove: ${to_remove[@]}"
 rm -rf ${to_remove[@]}
