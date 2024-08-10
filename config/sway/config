@@ -1,6 +1,6 @@
 set $mod Mod4
 
-font pango:Fira Mono 8
+font pango:JetBrainsMono Nerd Font 8
 
 output DP-3 {
     mode 1920x1080@165.003Hz
