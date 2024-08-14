@@ -1,13 +1,18 @@
 #!/bin/bash
 
-s6_dir="${1:-/etc/s6}"
-main_service="${2:-default}"
-sv_dir="$s6_dir/sv"
-rc_dir="$s6_dir/rc"
+# If run as root
+if [ "$(id -u)" -eq 0 ]; then
+    sv_dir="/etc/s6/sv"
+    rc_dir="/etc/s6/rc"
+    main_service="default"
+else
+    sv_dir="$HOME/.local/share/s6/sv"
+    rc_dir="$HOME/.local/share/s6/rc"
+    main_service="graphical"
+fi
 
-install -d "$s6_dir"
-install -d "$sv_dir"
-install -d "$rc_dir"
+test -w "$sv_dir" || { echo "Directory $sv_dir is not writable"; exit 1; }
+test -w "$rc_dir" || { echo "Directory $rc_dir is not writable"; exit 1; }
 
 declare -a processed
 
@@ -78,7 +83,12 @@ process_service "$main_service"
 
 rc_name=compiled-$(date +%s)
 s6-rc-compile "$rc_dir/$rc_name" "$sv_dir"
-s6-rc-update -v2 "$rc_dir/$rc_name"
+
+if [ "$(id -u)" -eq 0 ]; then
+    s6-rc-update -v2 $(realpath "$rc_dir/$rc_name")
+else
+    s6-rc-update -l /run/$(id -u)/s6-rc -v2 $(realpath "$rc_dir/$rc_name")
+fi
 
 rm -r "$rc_dir/compiled"
 ln -s "$rc_name" "$rc_dir/compiled"

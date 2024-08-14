@@ -1,3 +1,0 @@
-#!/bin/execlineb -P
-
-awk "{print \$1>\"/var/log/boot-time\"}" /proc/uptime
