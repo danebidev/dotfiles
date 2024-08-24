@@ -1,0 +1,2 @@
+set sixel
+set previewer ~/.config/lf/previewer.sh
