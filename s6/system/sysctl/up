@@ -1,0 +1,3 @@
+#!/bin/execlineb -P
+
+redirfd -w 1 /dev/null sysctl --system

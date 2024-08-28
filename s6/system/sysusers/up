@@ -1,0 +1,3 @@
+#!/bin/execlineb -P
+
+exec /usr/bin/systemd-sysusers

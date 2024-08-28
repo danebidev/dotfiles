@@ -1,0 +1,15 @@
+#!/bin/execlineb -P
+
+define SERVICENAME dbus
+define LOGDIR /var/log/s6/${SERVICENAME}
+
+# create log dir with right perms
+foreground { if -n { test -d ${LOGDIR} } install -d -o s6log -g s6log ${LOGDIR} }
+# pipe into logger
+pipeline -w { s6-setuidgid s6log exec -c s6-log -b -- t p[${SERVICENAME}] ${LOGDIR} }
+fdmove -c 2 1
+
+foreground { dbus-uuidgen --ensure=/etc/machine-id }
+foreground { install -m755 -o dbus -g dbus -d /run/dbus }
+
+exec dbus-daemon --system --nofork --nopidfile --print-pid=3
