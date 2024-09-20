@@ -19,14 +19,10 @@ alias cd='z'
 alias grep='grep --color=auto'
 alias diff='diff --color=auto'
 
-alias yolo='sudo pacman -Sy --needed --noconfirm archlinux-keyring && yay -Syu --noconfirm'
 alias vim='nvim'
 
 alias conf='cd $DOTFILES/config'
 alias dots='cd $DOTFILES'
-alias pkg='vim $DOTFILES/pkglist && sort $DOTFILES/pkglist -o $DOTFILES/pkglist'
-
-alias pkgs="pacman -Qqe | fzf --preview 'pacman   -Qii {}'"
 # -----------------------------------
 
 # ------------- Plugins -------------
