@@ -1,3 +1,5 @@
+export PATH="$HOME/bin:$PATH"
+
 export PROMPT='%F{blue}%~%f $ '
 export EDITOR='nvim'
 export DOTFILES=${$(realpath ~/.config/zsh/.zshenv):h:h:h}
