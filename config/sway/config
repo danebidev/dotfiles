@@ -12,14 +12,14 @@ output HDMI-A-1 {
     position 0,0
 }
 
-output * render_bit_depth 8
-
 focus output DP-3
 
 input * {
-    xkb_options caps:swapescape,grp:alt_shift_toggle
+    xkb_options caps:escape,grp:alt_shift_toggle
     xkb_layout "us,it"
 }
+
+exec dbus-update-activation-environment --all
 
 # Remove borders
 default_border pixel 1
@@ -28,11 +28,8 @@ client.focused #717272FF #717272FF #717272FF #717272FF
 client.focused_inactive #343F44FF #343F44FF #343F44FF #343F44FF
 client.unfocused #343F44FF #343F44FF #343F44FF #343F44FF
 
-# Autostart
-exec --no-startup-id dex --autostart --environment sway
-
-exec --no-startup-id $DOTFILES/scripts/system/update-env-dump
-exec --no-startup-id $DOTFILES/scripts/system/user-runlevel "graphical"
+exec $DOTFILES/scripts/system/update-env-dump
+exec sleep 2 && $DOTFILES/scripts/system/user-runlevel "graphical"
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
