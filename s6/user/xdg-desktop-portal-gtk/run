@@ -16,4 +16,4 @@ foreground { if -n { test -d ${LOGDIR} } install -d ${LOGDIR} }
 pipeline -w { exec -c s6-log -b -- t p[${SERVICENAME}] ${LOGDIR} }
 fdmove -c 2 1
 
-exec /usr/lib/xdg-desktop-portal-gtk
+exec /usr/libexec/xdg-desktop-portal-gtk

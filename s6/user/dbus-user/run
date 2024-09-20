@@ -18,4 +18,4 @@ fdmove -c 2 1
 
 define BUS_ADDRESS "unix:path=/run/${UID}/bus"
 
-exec /usr/bin/dbus-daemon --nofork --nopidfile --nosyslog --session --address ${BUS_ADDRESS}
+exec dbus-daemon --nofork --nopidfile --nosyslog --session --address ${BUS_ADDRESS}
