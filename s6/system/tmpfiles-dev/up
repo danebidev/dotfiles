@@ -1,3 +1,3 @@
 #!/bin/execlineb -P
 
-exec /usr/bin/systemd-tmpfiles --prefix=/dev --create --boot
+exec systemd-tmpfiles --prefix=/dev --create --boot

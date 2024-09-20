@@ -9,4 +9,4 @@ foreground { if -n { test -d ${LOGDIR} } install -d -o s6log -g s6log ${LOGDIR} 
 pipeline -w { s6-setuidgid s6log exec -c s6-log -b -- t p[${SERVICENAME}] ${LOGDIR} }
 fdmove -c 2 1
 
-exec virtlockd --verbose
+exec virtlockd
