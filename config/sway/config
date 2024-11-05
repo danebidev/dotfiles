@@ -5,6 +5,7 @@ font pango:JetBrainsMonoNL Nerd Font 8
 output DP-3 {
     mode 1920x1080@165.003Hz
     position 1920,0
+    adaptive_sync on
 }
 
 output HDMI-A-1 {
@@ -21,9 +22,6 @@ input * {
 
 exec dbus-update-activation-environment --all
 
-# Remove borders
-default_border pixel 1
-
 client.focused #717272FF #717272FF #717272FF #717272FF
 client.focused_inactive #343F44FF #343F44FF #343F44FF #343F44FF
 client.unfocused #343F44FF #343F44FF #343F44FF #343F44FF
@@ -31,8 +29,13 @@ client.unfocused #343F44FF #343F44FF #343F44FF #343F44FF
 exec $DOTFILES/scripts/system/update-env-dump
 exec sleep 2 && $DOTFILES/scripts/system/user-runlevel "graphical"
 
+# Remove borders
+default_border pixel 1
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
+
+focus_follows_mouse always
 
 # move tiling windows via drag & drop by left-clicking into the title bar,
 # or left-clicking anywhere into the window while holding the floating modifier.
@@ -49,6 +52,10 @@ bindsym $mod+p exec rofi -show drun
 
 # Screenshot
 bindsym $mod+s exec ~/.config/sway/scripts/screenshot.sh
+
+# Replay
+# Start gpu-screen-recorder in replay mode manually, then use this keybind
+bindsym $mod+y exec killall -SIGUSR1 gpu-screen-recorder
 
 # Lock
 bindsym $mod+Shift+b exec swaylock
