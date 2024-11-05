@@ -1,4 +1,5 @@
 #!/bin/execlineb -P
+
 foreground { ln -snf /proc/self/fd /dev/fd }
 foreground { ln -snf /proc/self/fd/0 /dev/stdin }
 foreground { ln -snf /proc/self/fd/1 /dev/stdout }
