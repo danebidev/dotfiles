@@ -18,6 +18,7 @@ alias grep='grep --color=auto'
 alias diff='diff --color=auto'
 
 alias vim='nvim'
+alias update='doas emerge -avuDN @world && doas smart-live-rebuild && doas emerge --depclean'
 
 alias conf='cd $DOTFILES/config'
 alias dots='cd $DOTFILES'
@@ -62,3 +63,24 @@ fh() {
 weather() {
     curl wttr.in/$1
 }
+
+# ------------ Prompt ------------
+
+set-cursor-shape() {
+  case "$1" in
+    block) echo -ne '\e[2 q';;
+    beam) echo -ne '\e[6 q';; esac
+}
+zle-keymap-select() {
+  case $KEYMAP in
+    vicmd) set-cursor-shape block;;
+    viins|main) set-cursor-shape beam;;
+  esac
+}
+zle -N zle-keymap-select
+zle-line-init() {
+  zle -K viins
+  set-cursor-shape beam
+}
+zle -N zle-line-init
+set-cursor-shape beam
