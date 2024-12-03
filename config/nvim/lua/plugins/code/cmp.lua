@@ -7,6 +7,7 @@ return {
             "hrsh7th/cmp-path",
             "L3MON4D3/LuaSnip",
             "L3MON4D3/cmp-luasnip-choice",
+            "rafamadriz/friendly-snippets"
         },
         config = function()
             local cmp = require("cmp")
@@ -90,6 +91,7 @@ return {
                     },
                 },
                 sources = {
+                    { name = "friendly", group_index = 1 },
                     { name = "lazydev",        group_index = 1 },
                     { name = "luasnip_choice", group_index = 1 },
                     { name = "nvim_lsp",       group_index = 1 },
@@ -106,5 +108,8 @@ return {
     {
         "L3MON4D3/LuaSnip",
         build = "make install_jsregexp",
+        dependencies = {
+            "rafamadriz/friendly-snippets"
+        }
     },
 }
