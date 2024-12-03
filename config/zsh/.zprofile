@@ -1,6 +1,6 @@
 $DOTFILES/scripts/system/update-env-dump
 
-if [[ -z "$SSH_CONNECTION" ]]; then
+if ! pgrep -l -u $USER | grep -E 'sway' > /dev/null; then
     $DOTFILES/scripts/system/user-runlevel "user"
 fi
 
