@@ -1,4 +1,5 @@
-export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/bin:$HOME/.local/share/cargo/bin:$PATH"
+typeset -U path
 
 export PROMPT='%F{blue}%~%f $ '
 export EDITOR='nvim'
