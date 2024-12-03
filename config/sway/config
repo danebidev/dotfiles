@@ -32,6 +32,8 @@ exec sleep 2 && $DOTFILES/scripts/system/user-runlevel "graphical"
 # Remove borders
 default_border pixel 1
 
+mouse_warping container
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -52,6 +54,8 @@ bindsym $mod+p exec rofi -show drun
 
 # Screenshot
 bindsym $mod+s exec ~/.config/sway/scripts/screenshot.sh
+bindsym $mod+shift+s exec ~/.config/sway/scripts/screenshot.sh swappy
+bindsym $mod+Print exec grim -g "$(swaymsg -t get_tree | jq -r 'recurse(.nodes[]) | select(.focused) | "\(.rect.x),\(.rect.y) \(.rect.width)x\(.rect.height)"')" - | wl-copy
 
 # Replay
 # Start gpu-screen-recorder in replay mode manually, then use this keybind
