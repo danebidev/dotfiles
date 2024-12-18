@@ -1,5 +1,3 @@
-fastfetch
-
 # ------- Basic configuration -------
 # vi keybinds
 bindkey -v
